@@ -1,4 +1,5 @@
 class Match < ActiveRecord::Base
+  has_many :scores
 
   def visitor
     Team.find(visitor_team_id)
