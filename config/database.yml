@@ -1,0 +1,23 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  port: 5432
+  pool: 5
+
+development:
+  <<: *default
+  database: quiniela_development
+  username: postgres
+  password: Geforce9800gtx
+test:
+  <<: *default
+  database: quiniela_test
+  username: postgres
+  password: Geforce9800gtx
+production:
+  <<: *default
+  database: quiniela_production
+  username: quiniela
+  password: <%= ENV['QUINIELA_DATABASE_PASSWORD'] %>
