@@ -15,10 +15,12 @@ class MatchesController < ApplicationController
   # GET /matches/new
   def new
     @match = Match.new
+    @groups = Group.all.includes(:teams)
   end
 
   # GET /matches/1/edit
   def edit
+    @groups = Group.all.includes(:teams)
   end
 
   # POST /matches
@@ -31,6 +33,7 @@ class MatchesController < ApplicationController
         format.html { redirect_to @match, notice: 'Match was successfully created.' }
         format.json { render :show, status: :created, location: @match }
       else
+        @groups = Group.all.includes(:teams)
         format.html { render :new }
         format.json { render json: @match.errors, status: :unprocessable_entity }
       end
@@ -45,6 +48,7 @@ class MatchesController < ApplicationController
         format.html { redirect_to @match, notice: 'Match was successfully updated.' }
         format.json { render :show, status: :ok, location: @match }
       else
+        @groups = Group.all.includes(:teams)
         format.html { render :edit }
         format.json { render json: @match.errors, status: :unprocessable_entity }
       end
