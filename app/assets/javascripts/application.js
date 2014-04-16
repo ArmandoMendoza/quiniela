@@ -12,5 +12,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require gumby.min.js
 //= require_tree .
