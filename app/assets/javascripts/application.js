@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require chosen.jquery.min
 //= require bootstrap
+//= require zebra_datepicker
 //= require_tree .

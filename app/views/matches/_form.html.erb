@@ -1,6 +1,6 @@
 <%= simple_form_for(@match) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :date %>
+  <%= f.input :date, as: :string, input_html:{ class: 'datepicker'} %>
   <%= f.input :stadium %>
   <%= f.input :local_team_id, collection: Group.all, as: :grouped_select, group_method: :teams,
     group_label_method: :name, input_html: { class: 'chosen-select',
