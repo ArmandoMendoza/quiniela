@@ -1,3 +1,7 @@
+# Admin
+User.create(name: "Admin", email: "admin@app.com", password: "12345678",
+  password_confirmation: "12345678", role: "admin")
+
 #Groups
 ('A'..'H').each do |l|
   Group.create(name: "Equipo #{l}")
