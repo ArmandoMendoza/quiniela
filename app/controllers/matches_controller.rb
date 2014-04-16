@@ -1,5 +1,6 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   def index
     @matches = Match.all

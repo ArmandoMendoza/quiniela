@@ -1,6 +1,7 @@
 class ScoresController < ApplicationController
   before_action :set_match
   before_action :set_score, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   def index
     @scores = @match.scores.all

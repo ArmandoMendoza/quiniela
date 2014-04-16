@@ -16,13 +16,19 @@
         <td><%= match.stadium %></td>
         <td><%= link_to 'Scores', match_scores_path(match) %></td>
         <td><%= link_to 'Show', match %></td>
-        <td><%= link_to 'Edit', edit_match_path(match) %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :edit, match %>
+          <td><%= link_to 'Edit', edit_match_path(match) %></td>
+        <% end %>
+        <% if can? :destroy, match %>
+          <td><%= link_to 'Destroy', match, method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Match', new_match_path %>
+<% if can? :create, Match %>
+  <%= link_to 'New Match', new_match_path %>
+<% end %>
