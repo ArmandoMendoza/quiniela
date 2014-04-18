@@ -1,5 +1,5 @@
 <%= form_tag create_bets_user_path(@user) do %>
   <%= select_tag :pool_id, options_from_collection_for_select(@pools, :id, :name),
     class: "chosen-select" %>
-  <%= submit_tag "Crear Apuestas" %>
+  <%= submit_tag "Crear Apuestas", class: "btn btn-default" %>
 <% end %>

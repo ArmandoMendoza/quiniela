@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140418161023) do
     t.integer  "local"
     t.integer  "visitor"
     t.string   "match_time"
-    t.boolean  "completed"
+    t.boolean  "completed",  default: false
     t.integer  "user_id"
     t.integer  "pool_id"
     t.integer  "match_id"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20140418161023) do
   create_table "pools", force: true do |t|
     t.string   "name"
     t.date     "end_date"
-    t.boolean  "completed"
+    t.boolean  "completed",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
