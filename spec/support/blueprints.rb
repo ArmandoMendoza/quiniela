@@ -47,6 +47,7 @@ end
 
 Pool.blueprint do
   name { "Quiniela #{sn}" }
+  end_date { Date.today + 80 }
   completed { false }
   matches(5)
 end

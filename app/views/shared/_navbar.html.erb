@@ -14,7 +14,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><%= link_to "Partidos", matches_path %></li>
+        <% if can? :read, Match %>
+          <li><%= link_to "Partidos", matches_path %></li>
+        <% end %>
+        <% if can? :read, Pool %>
+          <li><%= link_to "Quinelas", pools_path %></li>
+        <% end %>
         <% if current_user.admin? %>
           <li><%= link_to "Usuarios", users_path %></li>
         <% end %>

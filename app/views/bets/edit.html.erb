@@ -1,0 +1,7 @@
+<%= simple_form_for @bet do |f| %>
+  <%= f.input :local %>
+  <%= f.input :visitor %>
+  <%= f.input :match_time, collection: Score::MATCH_TIMES, input_html: { class: 'chosen-select',
+    data: { placeholder: "Seleccione Periodo de Juego"}  } %>
+  <%= f.submit  %>
+<% end %>

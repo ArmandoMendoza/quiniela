@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
 
   resources :pools
+  resources :bets, except: [:new, :create, :show]
 
   resources :users do
     member do

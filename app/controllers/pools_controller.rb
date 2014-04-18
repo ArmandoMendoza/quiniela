@@ -1,6 +1,6 @@
 class PoolsController < ApplicationController
   before_action :set_pool, only: [:show, :edit, :update, :destroy]
-  # authorize_resource
+  authorize_resource
 
   def index
     @pools = Pool.all

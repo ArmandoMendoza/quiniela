@@ -4,6 +4,10 @@ describe Bet do
   it { should belong_to(:user) }
   it { should belong_to(:pool) }
   it { should belong_to(:match) }
+  it { should validate_presence_of(:visitor).on(:update) }
+  it { should validate_presence_of(:local).on(:update) }
+  it { should validate_presence_of(:match_time).on(:update) }
+
 
 
   describe "class methods" do
