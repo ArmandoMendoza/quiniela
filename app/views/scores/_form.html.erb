@@ -1,6 +1,8 @@
 <%= simple_form_for([@match, @score]) do |f| %>
   <%= f.error_notification %>
+  <%= f.label @match.local.name %>
   <%= f.input :local, label: false %>
+  <%= f.label @match.visitor.name %>
   <%= f.input :visitor, label: false%>
   <%= f.input :match_time, collection: Score::MATCH_TIMES, input_html: { class: 'chosen-select',
     data: { placeholder: "Seleccione Periodo de Juego"}  } %>
