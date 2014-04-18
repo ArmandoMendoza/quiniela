@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416184017) do
+ActiveRecord::Schema.define(version: 20140418161023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bets", force: true do |t|
+    t.integer  "local"
+    t.integer  "visitor"
+    t.string   "match_time"
+    t.boolean  "completed",  default: false
+    t.integer  "user_id"
+    t.integer  "pool_id"
+    t.integer  "match_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bets", ["match_id"], name: "index_bets_on_match_id", using: :btree
+  add_index "bets", ["pool_id"], name: "index_bets_on_pool_id", using: :btree
+  add_index "bets", ["user_id"], name: "index_bets_on_user_id", using: :btree
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -27,6 +43,21 @@ ActiveRecord::Schema.define(version: 20140416184017) do
     t.string   "stadium"
     t.integer  "local_team_id"
     t.integer  "visitor_team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "matches_pools", id: false, force: true do |t|
+    t.integer "match_id", null: false
+    t.integer "pool_id",  null: false
+  end
+
+  add_index "matches_pools", ["match_id", "pool_id"], name: "index_matches_pools_on_match_id_and_pool_id", using: :btree
+
+  create_table "pools", force: true do |t|
+    t.string   "name"
+    t.date     "end_date"
+    t.boolean  "completed",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

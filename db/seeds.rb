@@ -4,7 +4,7 @@ User.create(name: "Admin", email: "admin@app.com", password: "12345678",
 
 #Groups
 ('A'..'H').each do |l|
-  Group.create(name: "Equipo #{l}")
+  Group.create(name: "Grupo #{l}")
 end
 
 #teams
