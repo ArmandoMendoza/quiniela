@@ -48,5 +48,14 @@ end
 Pool.blueprint do
   name { "Quiniela #{sn}" }
   completed { false }
-  matchs(5)
+  matches(5)
+end
+
+Bet.blueprint do
+  local { 0 }
+  visitor { 0 }
+  completed { false }
+  user { User.make! }
+  pool { Pool.make! }
+  # match should be a match that belong to pool
 end

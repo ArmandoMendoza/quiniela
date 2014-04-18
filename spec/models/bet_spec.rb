@@ -1,0 +1,20 @@
+require 'spec_helper'
+
+describe Bet do
+  it { should belong_to(:user) }
+  it { should belong_to(:pool) }
+  it { should belong_to(:match) }
+
+
+  describe "class methods" do
+    describe "create_all_bets_for" do
+      it "creates one bet for a given user per each match in a given pool " do
+        user = User.make!(:regular)
+        pool = Pool.make!
+        matches = pool.matches
+        Bet.create_all_bets_for(user, pool)
+        expect(user).to have(matches.size).bets
+      end
+    end
+  end
+end

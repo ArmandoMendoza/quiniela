@@ -1,6 +1,7 @@
 class Match < ActiveRecord::Base
   attr_reader :visitor_team, :local_team
   has_many :scores
+  has_many :bets
   has_and_belongs_to_many :pools
   validates_presence_of :stadium, :date, :visitor_team_id, :local_team_id
 
