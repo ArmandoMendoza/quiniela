@@ -15,6 +15,14 @@ describe Bet do
         Bet.create_all_bets_for(user, pool)
         expect(user).to have(matches.size).bets
       end
+      it "don't creates a bet that exists" do
+        user = User.make!(:regular)
+        pool = Pool.make!
+        matches = pool.matches
+        Bet.create_all_bets_for(user, pool)
+        Bet.create_all_bets_for(user, pool)
+        expect(user).to have(matches.size).bets
+      end
     end
   end
 end

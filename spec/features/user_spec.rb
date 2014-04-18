@@ -62,4 +62,32 @@ describe 'User Resource' do
       expect { click_delete_link(user_path(User.first)) }.to change(User, :count).by(-1)
     end
   end
+
+  describe "bets/create_bets" do
+    describe "when exists a pools active" do
+      it "should create a bets to user from a pool selected" do
+        login(@admin)
+        pool = Pool.make!
+        user = User.last
+        visit bets_user_path(user)
+        within('form') do
+          select pool.name, from: "pool_id"
+          click_submit_button
+        end
+        user.reload
+        expect(page.current_path).to eq(user_path(user))
+        expect(user).to have(pool.matches.size).bets
+      end
+    end
+
+    describe "when not exists a pools active" do
+      it "should redirect to users index" do
+        login(@admin)
+        user = User.last
+        visit bets_user_path(user)
+        expect(page.current_path).to eq(users_path)
+        expect(page).to have_content('No hay Quinielas activas')
+      end
+    end
+  end
 end
