@@ -8,4 +8,18 @@ class Score < ActiveRecord::Base
     "#{local}-#{visitor}"
   end
 
+  def result
+    valid? ? check_result : nil
+  end
+
+  private
+    def check_result
+      if local > visitor
+        'local'
+      elsif visitor > local
+        'visitor'
+      elsif local == visitor
+        'draw'
+      end
+    end
 end

@@ -4,6 +4,9 @@
     <tr>
       <td>Id</td>
       <th>Quinela</th>
+      <% if current_user.admin? %>
+        <th>Usuario</th>
+      <% end %>
       <th>Juego</th>
       <th>Local</th>
       <th>Visitante</th>

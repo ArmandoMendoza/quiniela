@@ -56,6 +56,7 @@ describe 'Bet Resource' do
           expect(bet.local).to eq(1)
           expect(bet.visitor).to eq(3)
           expect(bet.match_time).to eq("full-time")
+          expect(bet).to be_completed
         end
       end
 
