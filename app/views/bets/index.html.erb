@@ -2,6 +2,7 @@
 <table class="table">
   <thead>
     <tr>
+      <td>Id</td>
       <th>Quinela</th>
       <th>Juego</th>
       <th>Local</th>
@@ -13,7 +14,11 @@
   <tbody>
     <% @bets.each do |bet| %>
       <tr>
+        <td><%= bet.id %></td>
         <td><%= bet.pool.name %></td>
+        <% if current_user.admin? %>
+          <td><%= bet.user.name %></td>
+        <% end %>
         <td><%= bet.match.to_s %></td>
         <td><%= bet.local %></td>
         <td><%= bet.visitor %></td>

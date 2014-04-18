@@ -14,6 +14,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <% if can? :read, Bet %>
+          <li><%= link_to "Apuestas", bets_path %></li>
+        <% end %>
         <% if can? :read, Match %>
           <li><%= link_to "Partidos", matches_path %></li>
         <% end %>
