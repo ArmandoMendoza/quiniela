@@ -1,9 +1,12 @@
 class Score < ActiveRecord::Base
+  ### constants
+  MATCH_TIMES = { "Partido" => "full-time", "Prorroga" => "aggregate", "Penales" => "penalties" }
+  ### relations
   belongs_to :match
+  ### validations
   validates_presence_of :visitor, :local, :match_time
 
-  MATCH_TIMES = { "Partido" => "full-time", "Prorroga" => "aggregate", "Penales" => "penalties" }
-
+  ### instance methods
   def to_s
     "#{local}-#{visitor}"
   end

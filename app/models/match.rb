@@ -1,10 +1,14 @@
 class Match < ActiveRecord::Base
+  ### accesores
   attr_reader :visitor_team, :local_team
+  ### relations
   has_many :scores
   has_many :bets
   has_and_belongs_to_many :pools
+  ### validations
   validates_presence_of :stadium, :date, :visitor_team_id, :local_team_id
 
+  ### instance methods
   def to_s
     get_teams
     "#{local_team.name} vs #{visitor_team.name}"
