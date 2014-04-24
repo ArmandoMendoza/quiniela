@@ -56,7 +56,8 @@ Bet.blueprint do
   local { 0 }
   visitor { 0 }
   completed { false }
-  user { User.make! }
+  user { User.make!(:regular) }
   pool { Pool.make! }
+  match_time { Score::MATCH_TIMES["Partido"] }
   # match should be a match that belong to pool
 end

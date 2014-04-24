@@ -21,6 +21,14 @@ class Bet < ActiveRecord::Base
     valid? ? check_result : nil
   end
 
+  def points
+    if match.final_score.present?
+      check_points
+    else
+      0
+    end
+  end
+
   ### class methods
   def self.create_all_bets_for(user, pool)
     pool.matches.each do |match|
@@ -47,6 +55,16 @@ class Bet < ActiveRecord::Base
         'visitor'
       elsif local == visitor
         'draw'
+      end
+    end
+
+    def check_points
+      if (to_s == match.final_score.to_s) && result != 'draw'
+        3
+      elsif result == match.final_score.result
+        1
+      else
+        0
       end
     end
 end
