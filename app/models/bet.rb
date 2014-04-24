@@ -31,6 +31,10 @@ class Bet < ActiveRecord::Base
     end
   end
 
+  def self.of_pool(pool)
+    where(pool: pool)
+  end
+
   private
     def mark_as_completed
       update_column(:completed, true)

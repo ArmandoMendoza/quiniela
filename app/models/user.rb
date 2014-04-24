@@ -18,4 +18,10 @@ class User < ActiveRecord::Base
   def regular?
     role == "regular"
   end
+
+  def active_pools
+    ##get uniq ids of pool of my bets
+    pool_ids = bets.pluck(:pool_id).uniq
+    Pool.active.where(id: pool_ids)
+  end
 end

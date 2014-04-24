@@ -22,6 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development do
   gem 'spring'
+  gem 'spring-commands-rspec'
   # gem 'capistrano-rails'
   gem "better_errors"
   gem "binding_of_caller"
@@ -31,18 +32,17 @@ group :development do
 end
 
 group :test do
+  gem "rspec-rails"
+  gem 'shoulda-matchers', require: false
   gem 'machinist'
   gem 'faker'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'shoulda-matchers'
   gem 'poltergeist'
   gem 'selenium-webdriver'
 end
 
 group :development, :test do
   gem 'debugger'
-  gem "rspec-rails"
-  gem 'spring-commands-rspec'
 end
 

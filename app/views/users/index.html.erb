@@ -24,6 +24,9 @@
           <td><%= link_to 'Destroy', user, method: :delete,
             data: { confirm: 'Are you sure?' } %></td>
         <% end %>
+        <% if can? :create_bets, user %>
+          <td><%= link_to 'Crear Apuestas', bets_user_path(user) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
