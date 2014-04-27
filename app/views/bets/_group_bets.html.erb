@@ -1,0 +1,86 @@
+<div class="widget-container">
+  <div class="matches-widget">
+    <table>
+      <tr class="header-widget">
+        <td colspan="1">FECHA</td>
+        <td colspan="4">PARTIDO</td>
+      </tr>
+      <% @bets.each do |bet| %>
+        <% bet.match.get_teams %>
+        <%= form_for bet, remote: true do |f| %>
+        <tr class="row-widget <%= cycle('even', 'odd')%>" id="bet-<%= bet.id %>">
+          <!-- FECHA -->
+          <td><ul><li><%= bet.match.date.strftime("%d/%m") %></li><li>10:00</li></ul></td>
+          <!-- RESULTADO -->
+          <td><ul><li><%= image_tag("brazil.png") %></li><li><%= bet.match.local.abbr %></li></ul></td>
+          <td><span>
+            <%= f.text_field :local, class: "input-bet", data: { team: bet.match.local.name } %>
+          </span></td>
+          <td><span>
+            <%= f.text_field :visitor, class: "input-bet", data: { team: bet.match.visitor.name } %>
+          </span></td>
+          <td><ul><li><%= image_tag("brazil.png") %></li><li><%= bet.match.visitor.abbr %></li></ul></td>
+          <%= f.hidden_field :match_time, value: "full-time" %>
+        </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+  <div class="clasification-widget">
+    <table>
+      <tr class="header-widget">
+        <td colspan="8">TABLA DE CLASIFICACION</td>
+      </tr>
+      <tr class="sub-header-widget">
+        <td>A</td>
+        <td>J</td>
+        <td>G</td>
+        <td>E</td>
+        <td>P</td>
+        <td>GF</td>
+        <td>GC</td>
+        <td>PTS</td>
+      </tr>
+      <tr class="row-team even">
+        <td><ul><li><%= image_tag('brazil.png') %></li><li>BRA</li></ul></td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+      </tr>
+      <tr class="row-team odd">
+        <td><ul><li><%= image_tag('brazil.png') %></li><li>CRO</li></ul></td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+      </tr>
+      <tr class="row-team even">
+        <td><ul><li><%= image_tag('brazil.png') %></li><li>MEX</li></ul></td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+      </tr>
+      <tr class="row-team odd">
+        <td><ul><li><%= image_tag('brazil.png') %></li><li>CAM</li></ul></td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+        <td class="number">1</td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,12 +1,14 @@
 class BetsController < ApplicationController
-  before_action :set_bet, except: [:index]
+  before_action :set_bet, except: :index
+  before_action :check_group, only: :index
   authorize_resource
 
   def index
     if current_user.admin?
       @bets = Bet.all.includes([:user, :match, :pool])
     else
-      @bets = current_user.bets.includes([:user, :match, :pool])
+      @bets = current_user.bets.includes([:match, :pool])
+      @bets = @bets.of_group(@group)
     end
   end
 
@@ -14,10 +16,14 @@ class BetsController < ApplicationController
   end
 
   def update
-    if @bet.update(bet_params)
-      redirect_to bets_path, notice: 'Bet was successfully updated.'
-    else
-      render :edit
+    respond_to do |format|
+      if @bet.update(bet_params)
+        format.html { redirect_to bets_path, notice: 'Bet was successfully updated.' }
+        format.js
+      else
+        format.html { render :edit }
+        format.js
+      end
     end
   end
 
@@ -29,6 +35,10 @@ class BetsController < ApplicationController
   private
     def set_bet
       @bet = Bet.find(params[:id])
+    end
+
+    def check_group
+      @group = params[:group_id] ? Group.find(params[:group_id]) : @group = Group.first
     end
 
     def bet_params

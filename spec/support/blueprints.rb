@@ -33,6 +33,7 @@ end
 
 Match.blueprint do
   date { Time.now }
+  group_id { 1 }
   stadium { "Stadium #{sn}" }
   local_team_id { Team.make!.id }
   visitor_team_id { Team.make!.id }

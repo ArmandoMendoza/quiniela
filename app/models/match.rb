@@ -7,6 +7,7 @@ class Match < ActiveRecord::Base
   has_and_belongs_to_many :pools
   ### validations
   validates_presence_of :stadium, :date, :visitor_team_id, :local_team_id
+  validate :check_teams
 
   ### instance methods
   def to_s
@@ -33,4 +34,12 @@ class Match < ActiveRecord::Base
   def local
     @local_team || Team.find(local_team_id)
   end
+
+  private
+
+    def check_teams
+      if local_team_id == visitor_team_id
+        errors[:visitor_team_id] = "No puedes elegir dos veces el mismo equipo"
+      end
+    end
 end

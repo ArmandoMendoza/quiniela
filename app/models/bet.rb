@@ -43,6 +43,10 @@ class Bet < ActiveRecord::Base
     where(pool: pool)
   end
 
+  def self.of_group(group)
+    joins(:match).where('matches.group_id = ?', group.id).order('matches.date')
+  end
+
   private
     def mark_as_completed
       update_column(:completed, true)
