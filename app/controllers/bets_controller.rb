@@ -6,6 +6,7 @@ class BetsController < ApplicationController
   def index
     if current_user.admin?
       @bets = Bet.all.includes([:user, :match, :pool])
+      @bets = @bets.of_group(@group)
     else
       @bets = current_user.bets.includes([:match, :pool])
       @bets = @bets.of_group(@group)

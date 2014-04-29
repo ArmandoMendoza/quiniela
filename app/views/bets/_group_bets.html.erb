@@ -1,4 +1,6 @@
+<%= link_to "Check", "#", id: "check" %>
 <div class="widget-container">
+  <%= content_tag(:div, nil, id: "teams", data: { teams: @group.teams.pluck(:name) }) %>
   <div class="matches-widget">
     <table>
       <tr class="header-widget">
@@ -26,13 +28,14 @@
       <% end %>
     </table>
   </div>
-  <div class="clasification-widget">
-    <table>
+
+  <div class="classification-widget">
+    <table id="classification">
       <tr class="header-widget">
         <td colspan="8">TABLA DE CLASIFICACION</td>
       </tr>
       <tr class="sub-header-widget">
-        <td>A</td>
+        <td><%= @group.name %></td>
         <td>J</td>
         <td>G</td>
         <td>E</td>
@@ -41,46 +44,20 @@
         <td>GC</td>
         <td>PTS</td>
       </tr>
-      <tr class="row-team even">
-        <td><ul><li><%= image_tag('brazil.png') %></li><li>BRA</li></ul></td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-      </tr>
-      <tr class="row-team odd">
-        <td><ul><li><%= image_tag('brazil.png') %></li><li>CRO</li></ul></td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-      </tr>
-      <tr class="row-team even">
-        <td><ul><li><%= image_tag('brazil.png') %></li><li>MEX</li></ul></td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-      </tr>
-      <tr class="row-team odd">
-        <td><ul><li><%= image_tag('brazil.png') %></li><li>CAM</li></ul></td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-        <td class="number">1</td>
-      </tr>
+      <tbody>
+      <% @group.teams.each do |team| %>
+        <tr class="row-team" id="<%= team.name %>">
+          <td><ul><li><%= image_tag('brazil.png') %></li><li><%= team.abbr %></li></ul></td>
+          <td class="matches">0</td>
+          <td class="win">0</td>
+          <td class="draw">0</td>
+          <td class="lose">0</td>
+          <td class="goles_favor">0</td>
+          <td class="goles_contra">0</td>
+          <td class="points">0</td>
+        </tr>
+      <% end %>
+      </tbody>
     </table>
   </div>
 </div>
