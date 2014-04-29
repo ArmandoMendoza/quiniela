@@ -7,6 +7,8 @@ class PoolsController < ApplicationController
   end
 
   def show
+    @bets = @pool.bets.includes(:match).where(user: current_user)
+    @groups = Group.includes(:teams).all
   end
 
   def new

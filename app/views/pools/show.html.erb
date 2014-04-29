@@ -1,2 +1,7 @@
-<h1>Pools#show</h1>
-<p>Find me in app/views/pools/show.html.erb</p>
+<% @groups.each do |group| %>
+  <%= link_to group.name, "#", class: "group-link", data: { id: group.id } %>
+<% end %>
+
+<% @groups.each do |group| %>
+  <%= render partial: "group_bets", locals: { group: group, bets: @bets.of_group(group) } %>
+<% end %>

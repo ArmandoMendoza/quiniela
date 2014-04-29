@@ -1,11 +1,11 @@
 jQuery ->
-  $('.input-bet').blur (e) ->
-    form = this.form
-    $('#check').click()
-    # $(form).submit()
+  $('.group-link').click (e)->
+    id = $(this).data('id')
+    $('.group').hide()
+    $("#g#{id}").show()
+    e.preventDefault()
 
   ###### Calculate points #######
-
   class Team
     constructor: (@name) ->
     matches: 0
@@ -62,16 +62,15 @@ jQuery ->
       if local.goals == visitor.goals
         this.drawTeam(localData, local.goals, visitor.goals)
         this.drawTeam(visitorData, visitor.goals, local.goals)
-  ################
 
-
-  $('#check').click ()->
-    teams = $('#teams').data('teams')
+  calculate = (group)->
+    teams = group.data('teams')
+    id = group.data('id')
     positionTable = new PositionTable
     $.each teams, (index, team) ->
       teamObj = new Team(team)
       positionTable.add_team teamObj
-    rows = $('.row-widget')
+    rows = $(group).find('.row-widget')
     $.each rows, (index, row)->
       inputs = $(row).find('.input-bet')
       localInfo = $(inputs[0])
@@ -79,7 +78,6 @@ jQuery ->
       local = new Local(localInfo.data('team'), parseInt(localInfo.val()))
       visitor = new Visitor(visitorInfo.data('team'), parseInt(visitorInfo.val()))
       positionTable.calculate_points(local, visitor)
-
     $.each positionTable.orderedTeams(), (index, team) ->
       row = $("##{team.name}")
       row.find('td.matches').html(team.matches)
@@ -90,4 +88,15 @@ jQuery ->
       row.find('td.goles_contra').html(team.goles_contra)
       row.find('td.points').html(team.points)
       row.remove()
-      $('#classification').append(row)
+      $(".classification#group_#{id}").append(row)
+  ################
+
+  $('.check').click (e)->
+    e.preventDefault()
+    group = $(this).parent('div.group')
+    calculate(group)
+
+  $('.input-bet').blur () ->
+    form = this.form
+    group = $(this).parents('div.group')
+    calculate(group)

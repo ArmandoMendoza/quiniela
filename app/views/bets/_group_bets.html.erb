@@ -1,63 +1,64 @@
-<%= link_to "Check", "#", id: "check" %>
-<div class="widget-container">
-  <%= content_tag(:div, nil, id: "teams", data: { teams: @group.teams.pluck(:name) }) %>
-  <div class="matches-widget">
-    <table>
-      <tr class="header-widget">
-        <td colspan="1">FECHA</td>
-        <td colspan="4">PARTIDO</td>
-      </tr>
-      <% @bets.each do |bet| %>
-        <% bet.match.get_teams %>
-        <%= form_for bet, remote: true do |f| %>
-        <tr class="row-widget <%= cycle('even', 'odd')%>" id="bet-<%= bet.id %>">
-          <!-- FECHA -->
-          <td><ul><li><%= bet.match.date.strftime("%d/%m") %></li><li>10:00</li></ul></td>
-          <!-- RESULTADO -->
-          <td><ul><li><%= image_tag("brazil.png") %></li><li><%= bet.match.local.abbr %></li></ul></td>
-          <td><span>
-            <%= f.text_field :local, class: "input-bet", data: { team: bet.match.local.name } %>
-          </span></td>
-          <td><span>
-            <%= f.text_field :visitor, class: "input-bet", data: { team: bet.match.visitor.name } %>
-          </span></td>
-          <td><ul><li><%= image_tag("brazil.png") %></li><li><%= bet.match.visitor.abbr %></li></ul></td>
-          <%= f.hidden_field :match_time, value: "full-time" %>
+<%= content_tag(:div, id: "teams", data: { teams: @group.teams.pluck(:name) }) do %>
+  <%= link_to "Check", "#", id: "check" %>
+  <div class="widgets-container">
+    <div class="matches-widget">
+      <table id="matches">
+        <tr class="header-widget">
+          <td colspan="1">FECHA</td>
+          <td colspan="4">PARTIDO</td>
         </tr>
+        <% @bets.each do |bet| %>
+          <% bet.match.get_teams %>
+          <%= form_for bet, remote: true do |f| %>
+          <tr class="row-widget <%= cycle('even', 'odd')%>" id="bet-<%= bet.id %>">
+            <!-- FECHA -->
+            <td><ul><li><%= bet.match.date.strftime("%d/%m") %></li><li>10:00</li></ul></td>
+            <!-- RESULTADO -->
+            <td><ul><li><%= image_tag("brazil.png") %></li><li><%= bet.match.local.abbr %></li></ul></td>
+            <td><span>
+              <%= f.text_field :local, class: "input-bet", data: { team: bet.match.local.name } %>
+            </span></td>
+            <td><span>
+              <%= f.text_field :visitor, class: "input-bet", data: { team: bet.match.visitor.name } %>
+            </span></td>
+            <td><ul><li><%= image_tag("brazil.png") %></li><li><%= bet.match.visitor.abbr %></li></ul></td>
+            <%= f.hidden_field :match_time, value: "full-time" %>
+          </tr>
+          <% end %>
         <% end %>
-      <% end %>
-    </table>
-  </div>
+      </table>
+    </div>
 
-  <div class="classification-widget">
-    <table id="classification">
-      <tr class="header-widget">
-        <td colspan="8">TABLA DE CLASIFICACION</td>
-      </tr>
-      <tr class="sub-header-widget">
-        <td><%= @group.name %></td>
-        <td>J</td>
-        <td>G</td>
-        <td>E</td>
-        <td>P</td>
-        <td>GF</td>
-        <td>GC</td>
-        <td>PTS</td>
-      </tr>
-      <tbody>
-      <% @group.teams.each do |team| %>
-        <tr class="row-team" id="<%= team.name %>">
-          <td><ul><li><%= image_tag('brazil.png') %></li><li><%= team.abbr %></li></ul></td>
-          <td class="matches">0</td>
-          <td class="win">0</td>
-          <td class="draw">0</td>
-          <td class="lose">0</td>
-          <td class="goles_favor">0</td>
-          <td class="goles_contra">0</td>
-          <td class="points">0</td>
+    <div class="classification-widget">
+      <table id="classification">
+        <tr class="header-widget">
+          <td colspan="8">TABLA DE CLASIFICACION</td>
         </tr>
-      <% end %>
-      </tbody>
-    </table>
+        <tr class="sub-header-widget">
+          <td><%= @group.name %></td>
+          <td>J</td>
+          <td>G</td>
+          <td>E</td>
+          <td>P</td>
+          <td>GF</td>
+          <td>GC</td>
+          <td>PTS</td>
+        </tr>
+        <tbody>
+        <% @group.teams.each do |team| %>
+          <tr class="row-team" id="<%= team.name %>">
+            <td><ul><li><%= image_tag('brazil.png') %></li><li><%= team.abbr %></li></ul></td>
+            <td class="matches">0</td>
+            <td class="win">0</td>
+            <td class="draw">0</td>
+            <td class="lose">0</td>
+            <td class="goles_favor">0</td>
+            <td class="goles_contra">0</td>
+            <td class="points">0</td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
+<% end %>
