@@ -2,18 +2,22 @@
 <table class="table">
   <thead>
     <tr>
+      <th>#</th>
       <th>Fecha</th>
       <th>Juego</th>
       <th>Estadio</th>
+      <th>Resultado</th>
       <th colspan="3">Acciones</th>
     </tr>
   </thead>
   <tbody>
     <% @matches.each do |match| %>
       <tr>
+        <td><%= match.match_number %></td>
         <td><%= match.date.strftime('%d-%m-%Y') %></td>
         <td><%= match.to_s %></td>
         <td><%= match.stadium %></td>
+        <td><%= match.final_score.to_s %></td>
         <td><%= link_to 'Scores', match_scores_path(match) %></td>
         <td><%= link_to 'Show', match %></td>
         <% if can? :edit, match %>

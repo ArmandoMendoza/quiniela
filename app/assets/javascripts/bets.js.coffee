@@ -1,8 +1,17 @@
 jQuery ->
+  $('div#test > div.group').first().show()
+
   $('.group-link').click (e)->
     id = $(this).data('id')
-    $('.group').hide()
-    $("#g#{id}").show()
+    prev = $('div.group').not(':hidden').data('id')
+    if prev < id
+      directions = { prev: "right", curr: "left" }
+    if prev > id
+      directions = { prev: "left", curr: "right" }
+    if prev == id
+      return
+    $('div.group').not(':hidden').toggle 'slide', { direction: directions.prev }, 'fast', ->
+      $("#g#{id}").show('slide', { direction: directions.curr }, 'fast')
     e.preventDefault()
 
   ###### Calculate points #######
@@ -91,12 +100,8 @@ jQuery ->
       $(".classification#group_#{id}").append(row)
   ################
 
-  $('.check').click (e)->
-    e.preventDefault()
-    group = $(this).parent('div.group')
-    calculate(group)
-
   $('.input-bet').blur () ->
     form = this.form
     group = $(this).parents('div.group')
+    $(form).submit()
     calculate(group)

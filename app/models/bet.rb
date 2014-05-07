@@ -44,7 +44,7 @@ class Bet < ActiveRecord::Base
   end
 
   def self.of_group(group)
-    joins(:match).where('matches.group_id = ?', group.id).order('matches.date')
+    joins(:match).where('matches.group_id = ?', group.id).order('matches.match_number')
   end
 
   private
@@ -63,7 +63,7 @@ class Bet < ActiveRecord::Base
     end
 
     def check_points
-      if (to_s == match.final_score.to_s) && result != 'draw'
+      if to_s == match.final_score.to_s
         3
       elsif result == match.final_score.result
         1

@@ -1,5 +1,13 @@
-.group {
-  display: none;
+.group { display: none }
+
+.container-widgets {
+  padding: 10px;
+  border: 1px solid #C6C6C5;
+  border-radius: 3px 3px 3px 3px;
+  text-align: center;
+}
+.group-links-widget {
+  margin: 10px 0 20px 0;
 }
 
 .matches-widget {
@@ -8,6 +16,7 @@
   table {
     font-size: 16px;
     border: 1px solid #C6C6C5;
+    border-radius: 3px 3px 3px 3px;
     tr.odd { background-color: #ECECEC }
     tr.even { background-color: #DADAD9 }
     ul {
@@ -52,6 +61,7 @@
   table {
     font-size: 16px;
     border: 1px solid #C6C6C5;
+    border-radius: 3px 3px 3px 3px;
     tr.odd { background-color: #ECECEC }
     tr.even { background-color: #DADAD9 }
     tr.odd > td {
@@ -90,7 +100,7 @@
       padding: none;
     }
     .sub-header-widget > td {
-      padding: 10px;
+      padding: 12px;
       border: 1px solid #C6C6C5;
       text-align: center;
       font-size: 18px;

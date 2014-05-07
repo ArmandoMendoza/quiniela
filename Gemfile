@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.1'
 gem 'pg'
 gem 'devise'
 gem 'simple_form', git: 'git@github.com:plataformatec/simple_form.git', tag: 'v3.1.0.rc1'
@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'compass-rails'
 gem 'modernizr-rails'
+gem 'jquery-ui-rails'
 
 # docs
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -32,7 +33,6 @@ group :development do
 end
 
 group :test do
-  gem "rspec-rails"
   gem 'shoulda-matchers', require: false
   gem 'machinist'
   gem 'faker'
@@ -43,6 +43,7 @@ group :test do
 end
 
 group :development, :test do
+  gem "rspec-rails"
   gem 'debugger'
 end
 

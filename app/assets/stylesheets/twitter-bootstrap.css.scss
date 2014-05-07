@@ -1,1 +1,55 @@
 @import "bootstrap";
+a:focus {
+  outline: 0 !important;
+  outline: 5px auto -webkit-focus-ring-color !important;
+  outline-offset: -2px !important;
+}
+
+// Custom Button Widget
+.btn-widget {
+  color: #ffffff;
+  background-color: #DB5A30;
+  border-color: #DB5A30;
+  padding: 1px 17px;
+  margin-bottom: 5px;
+}
+
+.btn-widget:hover,
+.btn-widget:focus,
+.btn-widget:active,
+.btn-widget.active,
+.open .dropdown-toggle.btn-widget {
+  color: #ffffff;
+  background-color: #DB5A30;
+  border-color: #DB5A30;
+}
+
+.btn-widget:active,
+.btn-widget.active,
+.open .dropdown-toggle.btn-widget {
+  background-image: none;
+}
+
+.btn-widget.disabled,
+.btn-widget[disabled],
+fieldset[disabled] .btn-widget,
+.btn-widget.disabled:hover,
+.btn-widget[disabled]:hover,
+fieldset[disabled] .btn-widget:hover,
+.btn-widget.disabled:focus,
+.btn-widget[disabled]:focus,
+fieldset[disabled] .btn-widget:focus,
+.btn-widget.disabled:active,
+.btn-widget[disabled]:active,
+fieldset[disabled] .btn-widget:active,
+.btn-widget.disabled.active,
+.btn-widget[disabled].active,
+fieldset[disabled] .btn-widget.active {
+  background-color: #DB5A30;
+  border-color: #DB5A30;
+}
+
+.btn-widget .badge {
+  color: #DB5A30;
+  background-color: #ffffff;
+}

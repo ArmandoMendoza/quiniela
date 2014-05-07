@@ -5,6 +5,8 @@ class Match < ActiveRecord::Base
   has_many :scores
   has_many :bets
   has_and_belongs_to_many :pools
+  ### scopes
+  default_scope -> { order([:match_number, :date]) }
   ### validations
   validates_presence_of :stadium, :date, :visitor_team_id, :local_team_id
   validate :check_teams
