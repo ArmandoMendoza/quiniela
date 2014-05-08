@@ -1,3 +1,15 @@
+@import "colors";
+
 body {
   font-family: "Open Sans", sans-serif !important;
 }
+
+//COLORS BUTTONS
+.rojo { border-color: $rojo; background-color: $rojo; }
+.naranja { border-color: $naranja; background-color: $naranja; }
+.amarillo { border-color: $amarillo; background-color: $amarillo; }
+.verde { border-color: $verde; background-color: $verde; }
+.celeste { border-color: $celeste; background-color: $celeste; }
+.azul { border-color: $azul; background-color: $azul; }
+.fucsia { border-color: $fucsia; background-color: $fucsia; }
+.morado { border-color: $morado; background-color: $morado; }
