@@ -3,7 +3,7 @@ class MatchesController < ApplicationController
   authorize_resource
 
   def index
-    @matches = Match.all
+    @matches = Match.includes(:group).all
   end
 
   def show

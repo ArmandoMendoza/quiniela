@@ -4,6 +4,7 @@ class Match < ActiveRecord::Base
   ### relations
   has_many :scores
   has_many :bets
+  belongs_to :group
   has_and_belongs_to_many :pools
   ### scopes
   default_scope -> { order([:match_number, :date]) }

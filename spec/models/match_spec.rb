@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Match do
+  it { should belong_to(:group) }
   it { should have_many(:scores) }
   it { should have_many(:bets) }
   it { should have_and_belong_to_many(:pools) }

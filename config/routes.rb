@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :matches do
+  resources :matches, except: :show do
     resources :scores, except: :show
   end
   root 'dashboard#index'
