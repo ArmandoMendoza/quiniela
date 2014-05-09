@@ -1,20 +1,30 @@
-<div id="test">
+<div id="div-container">
 <%= content_tag(:div, class: "group", id: "g#{group.id}", data: { id: group.id,
     teams: group.teams.pluck(:name) }) do %>
   <% if bets.any? %>
     <div class="matches-widget">
       <table id="matches">
-        <tr class="header-widget">
-          <td colspan="1">FECHA</td>
-          <td colspan="4">PARTIDO</td>
-        </tr>
+      <tr class="header-widget">
+        <td><%= group.name.split(" ")[1] %></td>
+        <% group.teams.each do |team| %>
+          <td><ul><li><%= image_tag("brazil.png") %></li><li><%= team.abbr %></li></ul></td>
+        <% end %>
+      </tr>
+      <tr class="sub-header-widget">
+        <td>FECHA</td>
+        <td colspan="4">QUINIELA</td>
+      </tr>
         <% bets.each do |bet| %>
           <% bet.match.get_teams %>
           <%= form_for bet, remote: true do |f| %>
           <tr class="row-widget <%= cycle('even', 'odd')%>" id="bet-<%= bet.id %>">
-            <!-- FECHA -->
-            <td><ul><li><%= bet.match.date.strftime("%d/%m") %></li><li>10:00</li></ul></td>
-            <!-- RESULTADO -->
+            <!-- FECHA Y ESTADIO -->
+            <td><ul>
+              <li><b><%= bet.match.date.strftime("%d/%m") %></b></li>
+              <li><b>10:00</b></li>
+              <li><%= bet.match.stadium %></li>
+            </ul></td>
+            <!-- APUESTAS -->
             <td><ul><li><%= image_tag("brazil.png") %></li><li><%= bet.match.local.abbr %></li></ul></td>
             <td><span>
               <%= f.text_field :local, class: "input-bet", data: { team: bet.match.local.name } %>
@@ -33,10 +43,7 @@
     <div class="classification-widget">
       <table class="classification" id="group_<%= group.id %>">
         <tr class="header-widget">
-          <td colspan="8">TABLA DE CLASIFICACION</td>
-        </tr>
-        <tr class="sub-header-widget">
-          <td><%= group.name %></td>
+          <td><%= group.name.split(" ")[1] %></td>
           <td>J</td>
           <td>G</td>
           <td>E</td>
@@ -47,7 +54,7 @@
         </tr>
         <tbody>
         <% group.teams.each do |team| %>
-          <tr class="row-team" id="<%= team.name %>">
+          <tr class="row-team <%= cycle("odd", "even")  %>" id="<%= team.name %>">
             <td><ul><li><%= image_tag('brazil.png') %></li><li><%= team.abbr %></li></ul></td>
             <td class="matches">0</td>
             <td class="win">0</td>

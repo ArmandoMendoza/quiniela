@@ -3,87 +3,94 @@
 .group { display: none }
 
 .container-widgets {
+  background-color: #FFFFFF;
   padding: 10px;
   border: 1px solid #C6C6C5;
   border-radius: 3px 3px 3px 3px;
   text-align: center;
+  // width: 960px;
 }
 .group-links-widget {
   margin: 10px 0 20px 0;
 }
-
-.result-widget {
-  display: inline-block;
-  margin-right: 15px;
-  table {
-
-  }
-}
-
-
 
 .matches-widget {
   display: inline-block;
   margin-right: 15px;
   table {
     font-size: 16px;
-    border: 1px solid #C6C6C5;
+    border: 1px solid $gris_b;
     border-radius: 3px 3px 3px 3px;
-    tr.odd { background-color: #ECECEC }
-    tr.even { background-color: #DADAD9 }
+    tr.odd { background-color: #FFFFFF }
+    tr.even { background-color: $gris_a }
     ul {
       padding: 0;
       margin: 0;
       li {
         list-style: none;
-        padding: 0;
+        padding: 0 0 0 0;
         margin: 0;
         text-align: center;
       }
     }
-    span {
+    .score {
       background-color: #FFFFFF;
       padding: 2px 10px;
       font-weight: 900;
+      border: solid 1px $gris_b;
     }
-    .header-widget { background-color: #ECECEC }
+    .flag-team {
+      padding-left: 5px;
+      font-weight: bolder;
+    }
+    .header-widget { background-color: $gris_a }
     .header-widget > td {
-      padding: 5px;
-      border: 1px solid #C6C6C5;
+      padding: 8px 15px;
+      border: 1px solid $gris_b;
       text-align: center;
+      &:first-child {
+        color: #FFFFFF;
+        background-color: $rojo;
+        font-weight: 900;
+        font-size: 52px;
+        padding: 0 20px;
+      }
       .result { font-weight: 900 }
-
+    }
+    .sub-header-widget { background-color: $gris_a }
+    .sub-header-widget > td {
+      font-weight: bolder;
+      text-align: center;
+      border: 1px solid $gris_b;
     }
     .row-widget > td {
+      font-size: 11px;
       padding: 5px;
-      border: none;
+      border-left: solid 1px $gris_b;
       text-align: center;
+      .li-team {
+        padding-top: 5px;
+      }
     }
     .row-widget .ptos { background-color: #008D36 }
     .input-bet {
-      width: 20px;
+      padding: 5px 0;
+      width: 25px;
       background-color: #FFFFFF;
       text-align: center;
-      border: none;
+      border: solid 1px $gris_b;
     }
   }
 }
+
 .classification-widget {
   display: inline-block;
   table {
     font-size: 16px;
-    border: 1px solid #C6C6C5;
+    border: 1px solid $gris_b;
     border-radius: 3px 3px 3px 3px;
-    tr.odd { background-color: #ECECEC }
-    tr.even { background-color: #DADAD9 }
-    tr.odd > td {
-      border-right: solid 1px #DADAD9;
-      &:last-child { border-right: solid 1px #C6C6C5 }
-    }
-    tr.even > td {
-      border-right: solid 1px #ECECEC;
-      &:last-child { border-right: solid 1px #C6C6C5 }
-    }
+    tr.odd { background-color: #FFFFFF }
+    tr.even { background-color: $gris_a }
     ul {
       padding: 0;
       margin: 0;
@@ -100,18 +107,13 @@
       font-weight: 900;
     }
     .header-widget { background-color: #ECECEC }
-    .header-widget > td {
-      padding: 5px;
-      border: 1px solid #C6C6C5;
-      text-align: center;
-    }
-    .sub-header-widget { background-color: #ECECEC }
-    .sub-header-widget > td:first-child {
+    .header-widget > td:first-child {
       background-color: #DB5A30;
       color: #FFFFFF;
-      padding: none;
+      padding: 0;
+      font-size: 42px;
     }
-    .sub-header-widget > td {
+    .header-widget > td {
       padding: 12px;
       border: 1px solid #C6C6C5;
       text-align: center;
@@ -122,9 +124,10 @@
       font-weight: normal;
     }
     .row-team > td {
-      padding: 13px;
+      padding: 5px 15px;
       text-align: center;
       font-weight: 900;
+      border-left: solid 1px $gris_c;
     }
   }
 }

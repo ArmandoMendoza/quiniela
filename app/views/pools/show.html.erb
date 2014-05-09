@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-10 col-md-offset-1">
     <div class="container-widgets">
       <div class="group-links-widget">
         <% @groups.each do |group| %>
@@ -8,7 +8,7 @@
       </div>
 
       <% @groups.each do |group| %>
-        <%= render partial: "group_bets", locals: { group: group, bets: @bets.of_group(group) } %>
+        <%= render partial: "pool_bets", locals: { group: group, bets: @bets.of_group(group) } %>
       <% end %>
     </div>
   </div>

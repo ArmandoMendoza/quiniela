@@ -1,0 +1,97 @@
+<div id="div-container">
+<%= content_tag(:div, class: "group", id: "g#{group.id}", data: { id: group.id }) do %>
+  <% if bets.any? %>
+    <div class="matches-widget">
+    <table>
+      <tr class="header-widget">
+        <td><%= group.name.split(" ")[1] %></td>
+        <% group.teams.each do |team| %>
+          <td><ul><li><%= image_tag("brazil.png") %></li><li><%= team.abbr %></li></ul></td>
+        <% end %>
+        <td><%= image_tag("brazil.png") %></td>
+      </tr>
+      <tr class="sub-header-widget">
+        <td>FECHA</td>
+        <td colspan="2">RESULTADOS</td>
+        <td colspan="2">QUINIELA</td>
+        <td>PTS</td>
+      </tr>
+      <% bets.each do |bet| %>
+        <% bet.match.get_teams %>
+        <tr class="row-widget <%= cycle("odd", "even") %>">
+          <!-- FECHA Y ESTADIO -->
+          <td><ul>
+            <li><b><%= bet.match.date.strftime("%d/%m") %></b></li>
+            <li><b>10:00</b></li>
+            <li><%= bet.match.stadium %></li>
+          </ul></td>
+          <!-- PARTIDO -->
+          <td colspan="2">
+            <ul>
+              <li class="li-team"> <!-- LOCAL -->
+                <%= image_tag("brazil.png") %>
+                <span class="flag-team"><%= bet.match.local.abbr %></span>
+                <span class="score"><%= bet.match.final_score.try(:local) || 0 %></span>
+              </li>
+              <li class="li-team"> <!-- VISITANTE -->
+                <%= image_tag("brazil.png") %>
+                <span class="flag-team"><%= bet.match.visitor.abbr %></span>
+                <span class="score"><%= bet.match.final_score.try(:visitor) || 0 %></span>
+              </li>
+            </ul>
+          </td>
+          <!-- APUESTA -->
+          <td colspan="2">
+            <ul>
+              <li class="li-team"> <!-- LOCAL -->
+                <%= image_tag("brazil.png") %>
+                <span class="flag-team"><%= bet.match.local.abbr %></span>
+                <span class="score"><%= bet.local || 0 %></span>
+              </li>
+              <li class="li-team"> <!-- VISITANTE -->
+                <%= image_tag("brazil.png") %>
+                <span class="flag-team"><%= bet.match.visitor.abbr %></span>
+                <span class="score"><%= bet.visitor || 0 %></span>
+              </li>
+            </ul>
+          </td>
+          <!-- PUNTOS -->
+          <td class="ptos">
+            <span class="score"><%= bet.points %></span>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    </div>
+
+    <div class="classification-widget">
+      <table class="classification" id="group_<%= group.id %>">
+        <tr class="header-widget">
+          <td><%= group.name.split(" ")[1] %></td>
+          <td>J</td>
+          <td>G</td>
+          <td>E</td>
+          <td>P</td>
+          <td>GF</td>
+          <td>GC</td>
+          <td>PTS</td>
+        </tr>
+        <tbody>
+        <% group.teams.each do |team| %>
+          <tr class="row-team <%= cycle("odd", "even")  %>" id="<%= team.name %>">
+            <td><ul><li><%= image_tag('brazil.png') %></li><li><%= team.abbr %></li></ul></td>
+            <td class="matches">0</td>
+            <td class="win">0</td>
+            <td class="draw">0</td>
+            <td class="lose">0</td>
+            <td class="goles_favor">0</td>
+            <td class="goles_contra">0</td>
+            <td class="points">0</td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+<% end %>
+</div>

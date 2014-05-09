@@ -1,5 +1,5 @@
 jQuery ->
-  $('div#test > div.group').first().show()
+  $('div#div-container > div.group').first().show()
 
   $('.group-link').click (e)->
     id = $(this).data('id')
