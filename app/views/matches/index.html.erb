@@ -1,10 +1,10 @@
 <h1>Listing matches</h1>
-<table class="table">
+<table class="table sorted" id="matches-table">
   <thead>
     <tr>
-      <th>#</th>
-      <th>Grupo</th>
-      <th>Fecha</th>
+      <th data-sort="int"><%= link_to "#", "#" %></th>
+      <th data-sort="string"><%= link_to "Grupo", "#" %></th>
+      <th data-sort="date"><%= link_to "Fecha", "#" %></th>
       <th>Juego</th>
       <th>Estadio</th>
       <th>Resultado</th>
