@@ -8,7 +8,7 @@
       </div>
 
       <% @groups.each do |group| %>
-        <%= render partial: "pool_bets", locals: { group: group, bets: @bets.of_group(group) } %>
+        <%= render partial: "pool_results", locals: { group: group, bets: @bets.of_group(group) } %>
       <% end %>
     </div>
   </div>

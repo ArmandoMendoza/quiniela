@@ -1,4 +1,9 @@
 @import "bootstrap";
+
+.navbar-brand {
+  padding: 5px 15px 0 15px;
+}
+
 a:focus {
   outline: 0 !important;
   outline: 5px auto -webkit-focus-ring-color !important;
