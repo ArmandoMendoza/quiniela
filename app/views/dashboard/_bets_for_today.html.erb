@@ -1,0 +1,32 @@
+<div>
+  <table class="table-dashboard">
+    <tr class="header">
+      <td colspan="6">MI QUINIELA PARA HOY</td>
+    </tr>
+    <tr class="sub-header">
+      <td>Nro</td>
+      <td>Grupo</td>
+      <td>Partido</th>
+      <td>Ciudad</td>
+      <td>Fecha</td>
+      <td>Hora</th>
+    </tr>
+    <% bets.each do |bet| %>
+      <% bet.match.get_teams %>
+      <tr class="row-game <%= cycle("odd", "even") %>">
+        <td><%= bet.match.match_number %></td>
+        <td><%= bet.match.group.name %></td>
+        <td>
+          <span><%= bet.match.local.abbr %></span>
+            <%= image_tag("brazil.png") %>
+          <span><%= bet.try(:to_s) %></span>
+            <%= image_tag("brazil.png") %>
+          <span><%= bet.match.visitor.abbr %></span>
+        </td>
+        <td><%= bet.match.stadium %></td>
+        <td><%= bet.match.date.strftime("%d-%m") %></td>
+        <td>10:00</td>
+      </tr>
+    <% end %>
+  </table>
+</div>

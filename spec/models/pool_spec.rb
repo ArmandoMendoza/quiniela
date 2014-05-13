@@ -5,5 +5,4 @@ describe Pool do
   it { should have_many(:bets) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:end_date) }
-
 end

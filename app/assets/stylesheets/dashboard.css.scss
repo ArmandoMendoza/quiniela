@@ -1,0 +1,65 @@
+@import "colors";
+
+.table-dashboard {
+  width: 100%;
+  margin-bottom: 40px;
+  tr.odd { background-color: #FFFFFF }
+  tr.even { background-color: $gris_a }
+  .header {
+    background-color: $negro;
+    color: #FFFFFF;
+  }
+  .header > td {
+    padding: 2px 10px;
+    font-size: 20px;
+  }
+  .sub-header {
+    background-color: $gris_c;
+    text-align: center;
+  }
+  .sub-header > td {
+    padding: 5px;
+  }
+  .row-game {
+    text-align: center;
+  }
+  .row-game > td {
+    padding: 5px;
+  }
+  .row-game span {
+    padding: 0 15px;
+  }
+}
+
+.info-container {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.info-container > div {
+  margin-right: 10px;
+  margin-left: 10px;
+  float: left;
+}
+
+.dashboard-info {
+  background-color: $gris_a;
+  border: 1px solid $gris_c;
+  width: 30%;
+  height: 140px;
+  div.description {
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: center;
+  }
+  div.info {
+    margin-top: 10px;
+    font-size: 40px;
+    text-align: center;
+    span {
+      background-color: #FFFFFF;
+      border: solid 1px $gris_b;
+      padding: 0 15px;
+    }
+  }
+}

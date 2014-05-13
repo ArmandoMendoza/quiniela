@@ -8,7 +8,7 @@ class Score < ActiveRecord::Base
 
   ### instance methods
   def to_s
-    "#{local}-#{visitor}"
+    "#{local} - #{visitor}"
   end
 
   def result

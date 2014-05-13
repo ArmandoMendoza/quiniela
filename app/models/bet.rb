@@ -10,7 +10,7 @@ class Bet < ActiveRecord::Base
 
   ### instance methods
   def to_s
-    "#{local}-#{visitor}"
+    "#{local} - #{visitor}"
   end
 
   def match_score
@@ -45,6 +45,10 @@ class Bet < ActiveRecord::Base
 
   def self.of_group(group)
     joins(:match).where('matches.group_id = ?', group.id).order('matches.match_number')
+  end
+
+  def self.with_matches_by_date(time)
+    joins(:match).where('matches.date = ?', time).order('matches.match_number')
   end
 
   private

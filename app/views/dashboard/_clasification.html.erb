@@ -1,0 +1,16 @@
+<div>
+  <table class="table-dashboard">
+    <tr class="header">
+      <td colspan="2">Clasificacion</td>
+    </tr>
+    <tr class="sub-header">
+      <td>Usuario</td>
+      <td>Puntos</td>
+    </tr>
+    <% 50.times do |user| %>
+      <tr class="row-game <%= cycle("odd", "even") %>">
+        <td><%= "Usuario" %></td>
+        <td>1</td>
+    <% end %>
+  </table>
+</div>

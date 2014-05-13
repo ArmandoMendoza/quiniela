@@ -1,0 +1,32 @@
+<div>
+  <table class="table-dashboard">
+    <tr class="header">
+      <td colspan="6">PARTIDOS PARA HOY</td>
+    </tr>
+    <tr class="sub-header">
+      <td>Nro</td>
+      <td>Grupo</td>
+      <td>Partido</th>
+      <td>Ciudad</td>
+      <td>Fecha</td>
+      <td>Hora</th>
+    </tr>
+    <% matches.each do |match| %>
+      <% match.get_teams  %>
+      <tr class="row-game <%= cycle("odd", "even") %>">
+        <td><%= match.match_number %></td>
+        <td><%= match.group.name %></td>
+        <td>
+          <span><%= match.local.abbr %></span>
+            <%= image_tag("brazil.png") %>
+          <span><%= match.final_score.try(:to_s) || "por jugar" %></span>
+            <%= image_tag("brazil.png") %>
+          <span><%= match.visitor.abbr %></span>
+        </td>
+        <td><%= match.stadium %></td>
+        <td><%= match.date.strftime("%d-%m") %></td>
+        <td>10:00</td>
+      </tr>
+    <% end %>
+  </table>
+</div>

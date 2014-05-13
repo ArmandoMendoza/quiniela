@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
     pool_ids = bets.pluck(:pool_id).uniq
     Pool.active.where(id: pool_ids)
   end
+
+  def last_active_pool
+    active_pools.order(:updated_at).last
+  end
 end

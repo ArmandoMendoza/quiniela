@@ -17,12 +17,12 @@
         <% bets.each do |bet| %>
           <% bet.match.get_teams %>
           <%= form_for bet, remote: true do |f| %>
-          <tr class="row-widget <%= cycle('even', 'odd')%>" id="bet-<%= bet.id %>">
+          <tr class="row-widget <%= cycle('odd', 'even')%>" id="bet-<%= bet.id %>">
             <!-- FECHA Y ESTADIO -->
             <td><ul>
-              <li><b><%= bet.match.date.strftime("%d/%m") %></b></li>
-              <li><b>10:00</b></li>
-              <li><%= bet.match.stadium %></li>
+              <li><%= bet.match.date.strftime("%d/%m") %></li>
+              <li>10:00</li>
+              <li><%=raw bet.match.stadium.gsub("  ", "<br>") %></li>
             </ul></td>
             <!-- APUESTAS -->
             <td><ul><li><%= image_tag("brazil.png") %></li><li><%= bet.match.local.abbr %></li></ul></td>
