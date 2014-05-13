@@ -39,6 +39,10 @@ class Match < ActiveRecord::Base
     @local_team || Team.find(local_team_id)
   end
 
+  def played?
+    final_score.present?
+  end
+
   private
 
     def check_teams

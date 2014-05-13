@@ -45,11 +45,6 @@ describe Bet do
             match = Match.make!(scores: [score])
             bet = Bet.make!(match: match, local: 2, visitor: 1)
             expect(bet.points).to eq(1)
-            ## bet a draw
-            score = Score.make!(local: 1, visitor: 1)
-            match = Match.make!(scores: [score])
-            bet = Bet.make!(match: match, local: 1, visitor: 1)
-            expect(bet.points).to eq(1)
           end
         end
         describe "the bet's score is equal to match's score and is not a draw" do

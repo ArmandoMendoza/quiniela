@@ -21,7 +21,7 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(match_params)
     if @match.save
-      redirect_to @match, notice: 'Match was successfully created.'
+      redirect_to matches_path notice: 'Match was successfully created.'
     else
       @groups = Group.all.includes(:teams)
       render :new
@@ -30,7 +30,7 @@ class MatchesController < ApplicationController
 
   def update
     if @match.update(match_params)
-      redirect_to @match, notice: 'Match was successfully updated.'
+      redirect_to matches_path, notice: 'Match was successfully updated.'
     else
       @groups = Group.all.includes(:teams)
       render :edit
