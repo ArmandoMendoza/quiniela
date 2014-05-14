@@ -21,12 +21,9 @@ class Bet < ActiveRecord::Base
     valid? ? check_result : nil
   end
 
-  def points
-    if match.final_score.present?
-      check_points
-    else
-      0
-    end
+  def calculate_and_set_points
+    points = match.played? ? check_points : 0
+    update_column(:points, points)
   end
 
   ### class methods

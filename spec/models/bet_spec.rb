@@ -29,30 +29,36 @@ describe Bet do
   end
 
   describe "instance methods" do
-    describe "#points" do
+    describe "#calculate_and_set_points" do
       describe "bet with a match without score" do
-        it "should return 0" do
+        it "should set points to 0" do
           match = Match.make! #without score ergo without result
           bet = Bet.make!(match: match)
+          bet.calculate_and_set_points
+          bet.reload
           expect(bet.points).to eq(0)
         end
       end
       describe "bet with a match with score" do
         describe "bet's result is equal to result of final score of match" do
-          it "should return 1" do
+          it "should set points to 1" do
             ## bet a winner
             score = Score.make!(local: 3, visitor: 1)
             match = Match.make!(scores: [score])
             bet = Bet.make!(match: match, local: 2, visitor: 1)
+            bet.calculate_and_set_points
+            bet.reload
             expect(bet.points).to eq(1)
           end
         end
         describe "the bet's score is equal to match's score and is not a draw" do
-          it "should return 3" do
+          it "should set points to 3" do
             ## bet a winner and score
             score = Score.make!(local: 3, visitor: 1)
             match = Match.make!(scores: [score])
             bet = Bet.make!(match: match, local: 3, visitor: 1)
+            bet.calculate_and_set_points
+            bet.reload
             expect(bet.points).to eq(3)
           end
         end

@@ -44,7 +44,6 @@ class Match < ActiveRecord::Base
   end
 
   private
-
     def check_teams
       if local_team_id == visitor_team_id
         errors[:visitor_team_id] = "No puedes elegir dos veces el mismo equipo"

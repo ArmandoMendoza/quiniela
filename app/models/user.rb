@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     role == "regular"
   end
 
+  def total_points_in_pool(pool)
+    bets.where(pool_id: pool.id).sum(:points)
+  end
+
   def active_pools
     ##get uniq ids of pool of my bets
     pool_ids = bets.pluck(:pool_id).uniq
