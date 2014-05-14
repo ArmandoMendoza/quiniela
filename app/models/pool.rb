@@ -4,13 +4,17 @@ class Pool < ActiveRecord::Base
   has_many :bets
   has_many :users, through: :bets
   ### validations
-  validates_presence_of :name, :end_date
+  validates_presence_of :name, :end_date, :price
   ### scopes
   scope :active, -> { where(completed: false) }
   scope :inactive, -> { where(completed: true) }
 
   def uniq_users
     users.distinct
+  end
+
+  def pot_size
+    (uniq_users.count) * price
   end
 
 end
