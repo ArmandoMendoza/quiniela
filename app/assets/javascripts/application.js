@@ -18,4 +18,5 @@
 //= require zebra_datepicker
 //= require jquery.anystretch.min
 //= require stupidtable.min
+//= require jquery.ptTimeSelect
 //= require_tree .

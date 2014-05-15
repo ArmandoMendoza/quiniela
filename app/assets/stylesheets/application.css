@@ -13,6 +13,7 @@
  *= require zebra_datepicker
  *= require chosen.min
  *= require twitter-bootstrap
+ *= require jquery.ptTimeSelect
  *= require_tree .
  *= require_self
  */
