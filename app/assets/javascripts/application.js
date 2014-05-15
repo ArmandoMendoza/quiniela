@@ -19,4 +19,5 @@
 //= require jquery.anystretch.min
 //= require stupidtable.min
 //= require jquery.ptTimeSelect
+//= require jquery.onepage-scroll.min
 //= require_tree .

@@ -1,0 +1,58 @@
+.section-copa {
+  width: 100%;
+  height: 100%;
+}
+
+.with-shadow {
+  text-shadow: 2px 2px black;
+}
+
+.ad {
+  font-size: 50px;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 50px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.text {
+  color: #FFFFFF;
+  line-height: 22px;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.register-form {
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  padding: 30px;
+  background-color: #ECECEC;
+  .text {
+    text-align: center;
+    font-weight: 600;
+    font-size: 40px;
+    color: #94BC55;
+    margin: 0 0 40px 0;
+  }
+}
+
+.login-form {
+  border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px 6px 6px 6px;
+  -webkit-border-radius: 6px 6px 6px 6px;
+  margin-top: 40%;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #FFFFFF;
+  border: solid 1px #DADAD9;
+  .text {
+    text-align: center;
+    font-weight: 600;
+    font-size: 40px;
+    margin: 0 0 40px 0;
+    color: #C6C6C5;
+  }
+}

@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-
   resources :pools
   resources :bets, except: [:new, :create, :show]
 
@@ -16,5 +15,7 @@ Rails.application.routes.draw do
   resources :matches, except: :show do
     resources :scores, except: :show
   end
-  root 'dashboard#index'
+
+  get 'dashboard/index', as: "dashboard"
+  root 'home#index'
 end
