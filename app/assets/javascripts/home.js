@@ -12,15 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.effect.all
-//= require chosen.jquery.min
 //= require bootstrap
-//= require zebra_datepicker
 //= require jquery.anystretch.min
-//= require stupidtable.min
-//= require jquery.ptTimeSelect
-//= require global
-//= require stupidtable
-//= require anystretch
-//= require bets
-//= require matches
+//= require jquery.onepage-scroll.min
+//= require promo

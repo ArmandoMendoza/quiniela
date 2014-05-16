@@ -1,0 +1,7 @@
+jQuery ->
+  $('.main').onepage_scroll()
+  $('.section-copa').anystretch("<%= asset_path('copa-home.jpg') %>", { speed: 150 })
+  $('.home-menu-link').click (e)->
+    e.preventDefault
+    id = $(this).data("index")
+    $('.main').moveTo(id)
