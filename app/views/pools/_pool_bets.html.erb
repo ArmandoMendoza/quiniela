@@ -7,7 +7,7 @@
       <tr class="header-widget">
         <td><%= group.name.split(" ")[1] %></td>
         <% group.teams.each do |team| %>
-          <td><ul><li><%= image_tag("brazil.png") %></li><li><%= team.abbr %></li></ul></td>
+          <td><ul><li><%= flag(team) %></li><li><%= team.abbr %></li></ul></td>
         <% end %>
       </tr>
       <tr class="sub-header-widget">
@@ -25,14 +25,16 @@
               <li><%=raw bet.match.stadium.gsub("  ", "<br>") %></li>
             </ul></td>
             <!-- APUESTAS -->
-            <td><ul><li><%= image_tag("brazil.png") %></li><li><%= bet.match.local.abbr %></li></ul></td>
+            <td><ul><li><%= flag(bet.match.local) %></li>
+            <li><%= bet.match.local.abbr %></li></ul></td>
             <td><span>
               <%= f.text_field :local, class: "input-bet", data: { team: bet.match.local.name } %>
             </span></td>
             <td><span>
               <%= f.text_field :visitor, class: "input-bet", data: { team: bet.match.visitor.name } %>
             </span></td>
-            <td><ul><li><%= image_tag("brazil.png") %></li><li><%= bet.match.visitor.abbr %></li></ul></td>
+            <td><ul><li><%= flag(bet.match.visitor) %></li>
+            <li><%= bet.match.visitor.abbr %></li></ul></td>
             <%= f.hidden_field :match_time, value: "full-time" %>
           </tr>
           <% end %>
@@ -55,7 +57,7 @@
         <tbody>
         <% group.teams.each do |team| %>
           <tr class="row-team <%= cycle("odd", "even")  %>" id="<%= team.name %>">
-            <td><ul><li><%= image_tag('brazil.png') %></li><li><%= team.abbr %></li></ul></td>
+            <td><ul><li><%= flag(team) %></li><li><%= team.abbr %></li></ul></td>
             <td class="matches">0</td>
             <td class="win">0</td>
             <td class="draw">0</td>
