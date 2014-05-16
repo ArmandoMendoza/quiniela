@@ -100,8 +100,15 @@ jQuery ->
       $(".classification#group_#{id}").append(row)
   ################
 
-  $('.input-bet').blur () ->
+  $('.input-bet').blur ()->
     form = this.form
     group = $(this).parents('div.group')
     $(form).submit()
     calculate(group)
+  $('#answer_answer_one').blur ()->
+    form = this.form
+    $(form).submit()
+
+  $('#answer_answer_two').chosen().change ->
+    form = this.form
+    $(form).submit()

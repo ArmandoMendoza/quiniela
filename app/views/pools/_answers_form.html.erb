@@ -1,0 +1,15 @@
+<%= simple_form_for answer, remote: true, method: :put do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="answer">
+      <%= f.input :answer_one, label: "Goleador del Mundial (+5)" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="answer">
+      <%= f.input :answer_two, label: "Campeon del Mundial (+5)",
+        collection: Team.all, input_html: { class: "chosen-select" } %>
+      </div>
+    </div>
+  </div>
+<% end %>

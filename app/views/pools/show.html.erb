@@ -8,12 +8,17 @@
       </div>
 
       <% @groups.each do |group| %>
-        <%= render partial: "pool_bets", locals: { group: group, bets: @bets.of_group(group) } %>
+        <%= render partial: "pool_results", locals: { group: group, bets: @bets.of_group(group) } %>
       <% end %>
-    <div>
-    Goleador del mundial
-    Campeon del Mundial
-    </div>
     </div>
   </div>
 </div>
+<% if current_user.answer_of_pool(@pool).present? %>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="container-widgets" style="text-align: left">
+        <%= render partial: "answers_form", locals: { answer: current_user.answer_of_pool(@pool) } %>
+      </div>
+    </div>
+  </div>
+<% end %>

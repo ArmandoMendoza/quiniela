@@ -48,6 +48,7 @@ class UsersController < ApplicationController
     if params[:pool_id]
       pool = Pool.active.find(params[:pool_id])
       @user.create_bets_from(pool)
+      @user.create_answer_for(pool)
       redirect_to @user, notice: "Apuestas creadas con exito!"
     else
       redirect_to bets_user_path(@user), notice: 'Seleccione una Quiniela activa'

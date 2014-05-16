@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :rememberable, :trackable, :validatable
   ### relations
   has_many :bets
+  has_many :answers
   ### validations
   validates_presence_of :name, :email
 
@@ -11,12 +12,20 @@ class User < ActiveRecord::Base
     Bet.create_all_bets_for(self, pool)
   end
 
+  def create_answer_for(pool)
+    Answer.create(pool: pool, user: self)
+  end
+
   def admin?
     role == "admin"
   end
 
   def regular?
     role == "regular"
+  end
+
+  def answer_of_pool(pool)
+    answers.where(pool_id: pool.id).first
   end
 
   def total_points_in_pool(pool)

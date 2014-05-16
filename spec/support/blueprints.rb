@@ -50,6 +50,7 @@ Pool.blueprint do
   name { "Quiniela #{sn}" }
   end_date { Date.today + 80 }
   completed { false }
+  price { 2000 }
   matches(5)
 end
 
@@ -61,4 +62,11 @@ Bet.blueprint do
   pool { Pool.make! }
   match_time { Score::MATCH_TIMES["Partido"] }
   # match should be a match that belong to pool
+end
+
+Answer.blueprint do
+  answer_one { "wherever you want" }
+  answer_two { "incorrect" }
+  user
+  pool
 end

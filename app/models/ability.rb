@@ -8,6 +8,7 @@ class Ability
       can :read, [Match, Score, Pool]
       can [:read, :update], User, id: user.id
       can [:read, :update], Bet, user_id: user.id
+      can :update, Answer, user_id: user.id
     end
   end
 end

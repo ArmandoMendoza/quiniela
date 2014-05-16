@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :scores, except: :show
   end
 
+  resources :answers, only: :update
+
   get 'dashboard/index', as: "dashboard"
   root 'home#index'
 end
