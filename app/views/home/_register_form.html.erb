@@ -1,20 +1,11 @@
-<%= form_tag root_path do %>
-  <div class="form-group">
-    <%= text_field_tag :full_name,nil, class: "form-control", placeholder: "Nombre Completo" %>
-  </div>
-  <div class="form-group">
-    <%= text_field_tag :email,nil, class: "form-control", placeholder: "Correo Electronico" %>
-  </div>
-  <div class="form-group">
-    <%= text_field_tag :phone,nil, class: "form-control", placeholder: "Telefono" %>
-  </div>
-  <div class="form-group">
-    <%= text_field_tag :pool,nil, class: "form-control", placeholder: "Quiniela" %>
-  </div>
-  <div class="form-group">
-    <%= text_area_tag :comment,nil, class: "form-control", placeholder: "Comentarios" %>
-  </div>
+<%= simple_form_for @register do |f| %>
+  <%= f.input :name, label: false, placeholder: "Nombre Completo" %>
+  <%= f.input :email, label: false, placeholder: "Correo Electronico" %>
+  <%= f.input :phone, label: false, placeholder: "Telefono" %>
+  <%= f.input :pool_id, label: false, collection: Pool.active,
+    input_html: { class: "chosen-select", data: { placeholder: "Quiniela"} } %>
+  <%= f.input :comments, label: false, placeholder: "Comentarios", as: :text %>
   <div style="text-align: center">
-  <%= submit_tag "HACER RESERVA", class: "btn btn-default" %>
+    <%= submit_tag "HACER RESERVA", class: "btn btn-default" %>
   </div>
 <% end %>

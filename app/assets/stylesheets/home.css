@@ -12,5 +12,6 @@
  *
  *= require twitter-bootstrap
  *= require onepage-scroll
+ *= require chosen.min
  *= require promo
  */

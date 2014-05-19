@@ -24,6 +24,9 @@
           <td><%= link_to 'Destroy', pool, method: :delete,
             data: { confirm: 'Are you sure?' } %></td>
         <% end %>
+        <% if can? :read, Register %>
+          <td><%= link_to 'Registros', pool_registers_path(pool)  %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

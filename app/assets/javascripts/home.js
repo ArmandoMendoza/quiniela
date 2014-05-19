@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require jquery.anystretch.min
 //= require jquery.onepage-scroll.min
+//= require chosen.jquery.min
 //= require promo

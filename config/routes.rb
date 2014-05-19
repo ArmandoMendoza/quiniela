@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :pools
+  resources :pools do
+    resources :registers, only: [:index, :destroy]
+  end
+
   resources :bets, except: [:new, :create, :show]
 
   resources :users do
@@ -18,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :answers, only: :update
 
-  get 'dashboard/index', as: "dashboard"
+  post '/register', to: 'home#register', as: 'registers'
+  get 'dashboard/index', as: 'dashboard'
   root 'home#index'
 end

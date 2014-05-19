@@ -17,6 +17,9 @@
         <div class="col-md-5">
           <div class="register-form">
             <div class="text">Reserva tu cupo ya!</div>
+            <% if notice %>
+              <div class="alert alert-success"><b><%= notice %></b></div>
+            <% end %>
             <%= render "register_form" %>
           </div>
         </div>
