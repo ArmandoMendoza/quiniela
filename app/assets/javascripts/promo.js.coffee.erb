@@ -1,8 +1,16 @@
 jQuery ->
   $('.chosen-select').chosen()
   $('.main').onepage_scroll()
-  $('.section-copa').anystretch("<%= asset_path('copa-home.jpg') %>", { speed: 150 })
+  $.anystretch("<%= asset_path('copa-home.jpg') %>", { speed: 150 })
   $('.home-menu-link').click (e)->
     e.preventDefault
     id = $(this).data("index")
     $('.main').moveTo(id)
+
+  $('#accordion').collapse()
+
+  $('#accordion').on 'hidden.bs.collapse', ()->
+    $('.glyphicon').removeClass('glyphicon-minus').addClass('glyphicon-plus')
+
+  $('.collapse-link').click (e)->
+    $(this).parent().find('span').toggleClass('glyphicon-minus glyphicon-plus')
