@@ -4,6 +4,7 @@ gem 'rails', '4.1.1'
 gem 'pg'
 gem 'devise'
 gem 'simple_form', git: 'git@github.com:plataformatec/simple_form.git', tag: 'v3.1.0.rc1'
+gem 'mail_form'
 gem 'jbuilder', '~> 2.0'
 gem 'cancancan'
 

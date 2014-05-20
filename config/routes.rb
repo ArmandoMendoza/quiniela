@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :answers, only: :update
-
+  post '/contact', to: 'home#contact', as: 'contacts'
   post '/register', to: 'home#register', as: 'registers'
   get 'dashboard/index', as: 'dashboard'
   root 'home#index'

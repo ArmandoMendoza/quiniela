@@ -116,6 +116,9 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mail_form (1.5.0)
+      actionmailer (>= 3.2, < 5)
+      activemodel (>= 3.2, < 5)
     mime-types (1.25.1)
     mini_portile (0.5.3)
     minitest (5.3.3)
@@ -235,6 +238,7 @@ DEPENDENCIES
   jquery-ui-rails
   lol_dba
   machinist
+  mail_form
   modernizr-rails
   pg
   poltergeist

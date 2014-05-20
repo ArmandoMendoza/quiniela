@@ -1,17 +1,9 @@
-<%= form_tag root_path do %>
-  <div class="form-group">
-    <%= text_field_tag :full_name,nil, class: "form-control", placeholder: "Nombre Completo" %>
-  </div>
-  <div class="form-group">
-    <%= text_field_tag :email,nil, class: "form-control", placeholder: "Correo Electronico" %>
-  </div>
-  <div class="form-group">
-    <%= text_field_tag :phone,nil, class: "form-control", placeholder: "Telefono" %>
-  </div>
-  <div class="form-group">
-    <%= text_area_tag :comment,nil, class: "form-control", placeholder: "Comentarios" %>
-  </div>
+<%= simple_form_for @contact do |f| %>
+  <%= f.input :name, placeholder: "Nombre Completo", label: false %>
+  <%= f.input :email, placeholder: "Correo Electronico", label: false %>
+  <%= f.input :message, placeholder: "Comentarios", label: false, as: :text %>
+
   <div style="text-align: center">
-  <%= submit_tag "ENVIAR", class: "btn btn-default" %>
+    <%= submit_tag "ENVIAR", class: "btn btn-default" %>
   </div>
 <% end %>
