@@ -1,4 +1,5 @@
 <%= simple_form_for @register do |f| %>
+  <%= f.input :nickname, label: false, placeholder: "Usuario" %>
   <%= f.input :name, label: false, placeholder: "Nombre Completo" %>
   <%= f.input :email, label: false, placeholder: "Correo Electronico" %>
   <%= f.input :phone, label: false, placeholder: "Telefono" %>

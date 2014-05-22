@@ -2,6 +2,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>NickName</th>
       <th>Nombres</th>
       <th>Email</th>
       <th>Telefono</th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @registers.each do |register| %>
       <tr>
+        <td><%= register.nickname %></td>
         <td><%= register.name %></td>
         <td><%= register.email %></td>
         <td><%= register.phone %></td>

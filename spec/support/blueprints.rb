@@ -70,3 +70,12 @@ Answer.blueprint do
   user
   pool
 end
+
+Register.blueprint do
+  nickname { "register_#{sn}" }
+  name { "register #{sn}" }
+  phone { '0414-3761125' }
+  email { "register#{sn}@gmail.com" }
+  comments { "wow!" }
+  pool { Pool.make! }
+end
