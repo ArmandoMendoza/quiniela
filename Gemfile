@@ -7,6 +7,7 @@ gem 'simple_form', git: 'git@github.com:plataformatec/simple_form.git', tag: 'v3
 gem 'mail_form'
 gem 'jbuilder', '~> 2.0'
 gem 'cancancan'
+gem 'rails_12factor', group: :production
 
 
 # assets
