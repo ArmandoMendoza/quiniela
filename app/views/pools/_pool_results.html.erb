@@ -2,7 +2,7 @@
 <%= content_tag(:div, class: "group", id: "g#{group.id}", data: { id: group.id }) do %>
   <% if bets.any? %>
     <div class="matches-widget">
-    <table>
+    <table id="results">
       <tr class="header-widget">
         <td><%= group.name.split(" ")[1] %></td>
         <% group.teams.each do |team| %>
@@ -29,14 +29,14 @@
           <td colspan="2">
             <ul>
               <li class="li-team"> <!-- LOCAL -->
-                <%= flag(bet.match.local) %>
-                <span class="flag-team"><%= bet.match.local.abbr %></span>
-                <span class="score"><%= bet.match.final_score.try(:local) || 0 %></span>
+                <div class="flag"><%= flag(bet.match.local) %></div>
+                <div class="team"><%= bet.match.local.abbr %></div>
+                <div class="score"><%= bet.match.final_score.try(:local) || 0 %></div>
               </li>
               <li class="li-team"> <!-- VISITANTE -->
-                <%= flag(bet.match.visitor) %>
-                <span class="flag-team"><%= bet.match.visitor.abbr %></span>
-                <span class="score"><%= bet.match.final_score.try(:visitor) || 0 %></span>
+                <div class="flag"><%= flag(bet.match.visitor) %></div>
+                <div class="team"><%= bet.match.visitor.abbr %></div>
+                <div class="score"><%= bet.match.final_score.try(:visitor) || 0 %></div>
               </li>
             </ul>
           </td>
@@ -44,14 +44,14 @@
           <td colspan="2">
             <ul>
               <li class="li-team"> <!-- LOCAL -->
-                <%= flag(bet.match.local) %>
-                <span class="flag-team"><%= bet.match.local.abbr %></span>
-                <span class="score"><%= bet.local || 0 %></span>
+                <div class="flag"><%= flag(bet.match.local) %></div>
+                <div class="team"><%= bet.match.local.abbr %></div>
+                <div class="score"><%= bet.local || 0 %></div>
               </li>
               <li class="li-team"> <!-- VISITANTE -->
-                <%= flag(bet.match.visitor) %>
-                <span class="flag-team"><%= bet.match.visitor.abbr %></span>
-                <span class="score"><%= bet.visitor || 0 %></span>
+                <div class="flag"><%= flag(bet.match.visitor) %></div>
+                <div class="team"><%= bet.match.visitor.abbr %></div>
+                <div class="score"><%= bet.visitor || 0 %></div>
               </li>
             </ul>
           </td>

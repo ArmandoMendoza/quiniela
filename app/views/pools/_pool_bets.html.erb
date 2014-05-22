@@ -3,39 +3,49 @@
     teams: group.teams.pluck(:name) }) do %>
   <% if bets.any? %>
     <div class="matches-widget">
-      <table id="matches">
+      <table id="bets">
       <tr class="header-widget">
         <td><%= group.name.split(" ")[1] %></td>
         <% group.teams.each do |team| %>
           <td><ul><li><%= flag(team) %></li><li><%= team.abbr %></li></ul></td>
         <% end %>
+        <td><%= image_tag("copa.png") %></td>
       </tr>
       <tr class="sub-header-widget">
         <td>FECHA</td>
-        <td colspan="4">QUINIELA</td>
+        <td colspan="5">QUINIELA</td>
       </tr>
         <% bets.each do |bet| %>
           <% bet.match.get_teams %>
           <%= form_for bet, remote: true do |f| %>
+            <%= f.hidden_field :match_time, value: "full-time" %>
           <tr class="row-widget <%= cycle('odd', 'even')%>" id="bet-<%= bet.id %>">
             <!-- FECHA Y ESTADIO -->
             <td><ul>
               <li><%= bet.match.date.strftime("%d/%m") %></li>
               <li>10:00</li>
               <li><%=raw bet.match.stadium.gsub("  ", "<br>") %></li>
+              <li><%=raw bet.match.match_number %></li>
             </ul></td>
             <!-- APUESTAS -->
-            <td><ul><li><%= flag(bet.match.local) %></li>
-            <li><%= bet.match.local.abbr %></li></ul></td>
-            <td><span>
-              <%= f.text_field :local, class: "input-bet", data: { team: bet.match.local.name } %>
-            </span></td>
-            <td><span>
-              <%= f.text_field :visitor, class: "input-bet", data: { team: bet.match.visitor.name } %>
-            </span></td>
-            <td><ul><li><%= flag(bet.match.visitor) %></li>
-            <li><%= bet.match.visitor.abbr %></li></ul></td>
-            <%= f.hidden_field :match_time, value: "full-time" %>
+            <td colspan="5">
+              <ul>
+                <li class="li-bet">
+                  <div class="team"><%= bet.match.local.abbr %></div>
+                  <div class="flag"><%= big_flag(bet.match.local) %></div>
+                  <div class="field">
+                    <%= f.text_field :local, class: "input-bet",
+                      data: { team: bet.match.local.name } %>
+                  </div>
+                  <div class="field">
+                    <%= f.text_field :visitor, class: "input-bet",
+                      data: { team: bet.match.visitor.name } %>
+                  </div>
+                  <div class="flag"><%= big_flag(bet.match.visitor) %></div>
+                  <div class="team"><%= bet.match.visitor.abbr %></div>
+                </li>
+              </ul>
+            </td>
           </tr>
           <% end %>
         <% end %>
