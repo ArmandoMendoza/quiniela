@@ -19,4 +19,12 @@ class Pool < ActiveRecord::Base
     (uniq_users.count) * price
   end
 
+  def users_classification
+    classification = {}
+    users.each do |user|
+      classification[user.name] = user.total_points_in_pool(self)
+    end
+    classification.sort_by{|k,v| v}.reverse.to_h
+  end
+
 end

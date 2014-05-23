@@ -12,4 +12,10 @@ module ApplicationHelper
     name = team.name.downcase.gsub(" ","_")
     image_tag "flags/50x33_#{name}.png"
   end
+
+  def position_in_classification(table, user_name)
+    table.each_with_index do |(name, point), index|
+      return (index + 1) if user_name == name
+    end
+  end
 end

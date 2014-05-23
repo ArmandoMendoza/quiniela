@@ -7,10 +7,10 @@
       <td>Usuario</td>
       <td>Puntos</td>
     </tr>
-    <% users.each do |user| %>
+    <% classification.each do |nickname, points| %>
       <tr class="row-game <%= cycle("odd", "even") %>">
-        <td><%= user.name %></td>
-        <td><%= user.total_points_in_pool(pool) %></td>
+        <td><%= nickname %></td>
+        <td><%= points %></td>
     <% end %>
   </table>
 </div>

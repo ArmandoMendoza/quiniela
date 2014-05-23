@@ -18,12 +18,14 @@
       </div>
       <div class="dashboard-info">
         <div class="description">MI POSICION</div>
-        <div class="info"><span>30000</span></div>
+        <div class="info">
+          <span><%= position_in_classification(@table, current_user.name) %></span>
+        </div>
       </div>
     </div>
   </div>
   <div class="col-md-4">
-    <%= render partial: "clasification", locals: { users: @users, pool: @pool } %>
+    <%= render partial: "clasification", locals: { classification: @table } %>
   </div>
 </div>
 <% end %>
