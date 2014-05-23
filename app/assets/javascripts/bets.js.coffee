@@ -2,7 +2,10 @@ jQuery ->
   $('div#div-container > div.group').first().show()
 
   $('.group-link').click (e)->
+    e.preventDefault()
     id = $(this).data('id')
+    group = $("div.group#g#{id}")
+    calculate(group)
     prev = $('div.group').not(':hidden').data('id')
     if prev < id
       directions = { prev: "right", curr: "left" }
@@ -12,7 +15,7 @@ jQuery ->
       return
     $('div.group').not(':hidden').toggle 'slide', { direction: directions.prev }, 'fast', ->
       $("#g#{id}").show('slide', { direction: directions.curr }, 'fast')
-    e.preventDefault()
+    false
 
   ###### Calculate points #######
   class Team
@@ -105,6 +108,7 @@ jQuery ->
     group = $(this).parents('div.group')
     $(form).submit()
     calculate(group)
+
   $('#answer_answer_one').blur ()->
     form = this.form
     $(form).submit()
@@ -112,3 +116,7 @@ jQuery ->
   $('#answer_answer_two').chosen().change ->
     form = this.form
     $(form).submit()
+
+  ##Calculo inicial
+  if $("div.group#g1").length > 0
+    calculate($("div.group#g1"))

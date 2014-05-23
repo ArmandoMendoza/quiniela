@@ -4,8 +4,10 @@ class User < ActiveRecord::Base
   ### relations
   has_many :bets
   has_many :answers
+  ### scopes
+  scope :order_by_last_name, -> { order(:last_name) }
   ### validations
-  validates_presence_of :name, :email
+  validates_presence_of :name, :last_name, :email
 
   ### instance methods
   def create_bets_from(pool)

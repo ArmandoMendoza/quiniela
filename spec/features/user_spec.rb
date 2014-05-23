@@ -27,14 +27,16 @@ describe 'User Resource' do
       login(@admin)
       visit new_user_path
       within("form") do
-        fill_in "user_name", with: "User Test"
+        fill_in "user_name", with: "User"
+        fill_in "user_last_name", with: "Test"
         fill_in "user_email", with: "usertest@app.com"
         fill_in "user_phone", with: "0276-353540"
         select "regular", from: "user_role"
         fill_in "user_password", with: "12345678"
         fill_in "user_password_confirmation", with: "12345678"
         click_submit_button
-        expect(User.last.name).to eq("User Test")
+        expect(User.last.name).to eq("User")
+        expect(User.last.last_name).to eq("Test")
       end
     end
   end

@@ -2,6 +2,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Apellidos</th>
       <th>Nombres</th>
       <th>Telefono</th>
       <th>Email</th>
@@ -11,6 +12,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= user.last_name %></td>
         <td><%= user.name %></td>
         <td><%= user.phone %></td>
         <td><%= user.email %></td>

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   authorize_resource
 
   def index
-    @users = User.all
+    @users = User.all.order_by_last_name
   end
 
   def show
