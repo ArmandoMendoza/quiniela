@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :pools do
-    resources :registers, only: [:index, :destroy]
+    resources :registrations, only: [:index, :destroy]
   end
 
   resources :bets, except: [:new, :create, :show]
@@ -20,8 +20,10 @@ Rails.application.routes.draw do
   end
 
   resources :answers, only: :update
+
+
   post '/contact', to: 'home#contact', as: 'contacts'
-  post '/register', to: 'home#register', as: 'registers'
+  post '/registrations', to: 'home#registration', as: 'registrations'
   get 'dashboard/index', as: 'dashboard'
   root 'home#index'
 end

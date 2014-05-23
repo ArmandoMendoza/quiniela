@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Register do
+describe Registration do
   it { should belong_to(:pool) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:email) }
@@ -10,9 +10,9 @@ describe Register do
   describe "Callbacks" do
     describe "#set_nickname" do
       it "should set a nickname from the name if nickname is not set" do
-        register = Register.make(name: "Armando Mendoza", nickname: nil)
-        register.save
-        expect(register.nickname).to eq("armando_mendoza")
+        registration = Registration.make(name: "Armando Mendoza", nickname: nil)
+        registration.save
+        expect(registration.nickname).to eq("armando_mendoza")
       end
     end
   end

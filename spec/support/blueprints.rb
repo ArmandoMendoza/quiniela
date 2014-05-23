@@ -71,7 +71,7 @@ Answer.blueprint do
   pool
 end
 
-Register.blueprint do
+Registration.blueprint do
   nickname { "register_#{sn}" }
   name { "register #{sn}" }
   phone { '0414-3761125' }

@@ -1,4 +1,4 @@
-class Register < ActiveRecord::Base
+class Registration < ActiveRecord::Base
   ### Relations
   belongs_to :pool
   ### Validations

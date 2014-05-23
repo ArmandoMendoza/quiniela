@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522173304) do
+ActiveRecord::Schema.define(version: 20140522214615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20140522173304) do
     t.integer  "price"
   end
 
-  create_table "registers", force: true do |t|
+  create_table "registrations", force: true do |t|
     t.string   "name"
     t.string   "phone"
     t.string   "email"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20140522173304) do
     t.string   "nickname"
   end
 
-  add_index "registers", ["pool_id"], name: "index_registers_on_pool_id", using: :btree
+  add_index "registrations", ["pool_id"], name: "index_registrations_on_pool_id", using: :btree
 
   create_table "scores", force: true do |t|
     t.integer  "local"

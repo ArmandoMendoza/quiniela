@@ -3,14 +3,14 @@ class HomeController < ApplicationController
   layout "home"
 
   def index
-    @register = Register.new
+    @registration = Registration.new
     @contact = Contact.new
   end
 
-  def register
-    params_register = params[:register].permit!
-    @register = Register.new(params_register)
-    if @register.save
+  def registration
+    params_registration = params[:registration].permit!
+    @registration = Registration.new(params_registration)
+    if @registration.save
       redirect_to root_path, notice: "Registro creado... Gracias por participar!!!"
     else
       @contact = Contact.new
@@ -24,7 +24,7 @@ class HomeController < ApplicationController
     if @contact.deliver
       redirect_to root_path, notice: 'Gracias por tu mensaje!'
     else
-      @register = Register.new
+      @registration = Registration.new
       flash.now[:notice] = 'No se puedo enviar mensaje.'
       render :index
     end

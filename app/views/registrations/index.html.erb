@@ -1,0 +1,28 @@
+<h1>Listing registrations</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>NickName</th>
+      <th>Nombres</th>
+      <th>Email</th>
+      <th>Telefono</th>
+      <th colspan="3">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @registrations.each do |registration| %>
+      <tr>
+        <td><%= registration.nickname %></td>
+        <td><%= registration.name %></td>
+        <td><%= registration.email %></td>
+        <td><%= registration.phone %></td>
+        <% if current_user.admin? %>
+        <td><%= link_to 'Destroy', [@pool, registration], method: :delete,
+            data: { confirm: 'Estas seguro?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "volver", pools_path %>
