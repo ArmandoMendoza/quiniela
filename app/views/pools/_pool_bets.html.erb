@@ -66,7 +66,7 @@
         </tr>
         <tbody>
         <% group.teams.each do |team| %>
-          <tr class="row-team <%= cycle("odd", "even")  %>" id="<%= team.name %>">
+          <tr class="row-team" id="<%= team.name %>">
             <td><ul><li><%= flag(team) %></li><li><%= team.abbr %></li></ul></td>
             <td class="matches">0</td>
             <td class="win">0</td>

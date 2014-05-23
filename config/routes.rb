@@ -24,6 +24,6 @@ Rails.application.routes.draw do
 
   post '/contact', to: 'home#contact', as: 'contacts'
   post '/registrations', to: 'home#registration', as: 'registrations'
-  get 'dashboard/index', as: 'dashboard'
+  get '/dashboard', to: 'dashboard#index', as: 'dashboard'
   root 'home#index'
 end
