@@ -32,7 +32,7 @@
           <td><%= match.hour %></td>
           <td><%= match.to_s %></td>
           <td><%= match.stadium %></td>
-          <td><%= match.final_score.to_s %></td>
+          <td><%=cm match.final_score.to_s %></td>
           <% if current_user.admin? %>
             <td><%= link_to 'Scores', match_scores_path(match) %></td>
             <td><%= link_to 'Edit', edit_match_path(match) %></td>
