@@ -6,8 +6,6 @@
   <%= f.input :completed %>
   <%= f.input :match_ids, collection: Match.all,
     input_html: { class: "chosen-select", multiple: true } %>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <%= f.button :submit, class: "btn btn-success" %>
+  <%= link_to "Volver", pools_path, class: "btn btn-default" %>
 <% end %>

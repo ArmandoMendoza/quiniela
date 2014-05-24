@@ -39,3 +39,21 @@ body {
     color: #C6C6C5;
   }
 }
+
+
+
+.user-pool-list {
+  margin: 0;
+  padding: 0;
+  span.title {
+    font-size: 14px;
+    font-weight: bold;
+    padding-right: 10px;
+  }
+  li {
+    font-size: 12px;
+    display: inline;
+    list-style-type: none;
+    padding-right: 20px;
+  }
+}

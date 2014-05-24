@@ -1,17 +1,16 @@
-<h1>Apuestas</h1>
 <table class="table">
   <thead>
     <tr>
-      <td>Id</td>
+      <th>Id</th>
       <th>Quinela</th>
       <% if current_user.admin? %>
         <th>Usuario</th>
       <% end %>
       <th>Juego</th>
-      <th>Local</th>
-      <th>Visitante</th>
+      <th class="center">Local</th>
+      <th class="center">Visitante</th>
       <th>Periodo</th>
-      <th colspan="3">Acciones</th>
+      <th class="center">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -23,15 +22,15 @@
           <td><%= bet.user.name %></td>
         <% end %>
         <td><%= bet.match.to_s %></td>
-        <td><%= bet.local %></td>
-        <td><%= bet.visitor %></td>
+        <td class="center"><%= bet.local %></td>
+        <td class="center"><%= bet.visitor %></td>
         <td><%= bet.match_time %></td>
+        <td class="center">
         <% if can? :edit, bet %>
-          <td><%= link_to 'Edit', edit_bet_path(bet) %></td>
+          <%= edit_table_button edit_bet_path(bet) %>
         <% end %>
         <% if can? :destroy, bet %>
-          <td><%= link_to 'Destroy', bet, method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
+          <%= destroy_table_button bet %>
         <% end %>
       </tr>
     <% end %>

@@ -9,7 +9,6 @@
   <% if current_user.admin? %>
     <%= f.input :role, collection: ["admin", "regular"], input_html: { class: "chosen-select" } %>
   <% end %>
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <%= f.button :submit, class: "btn btn-success" %>
+  <%= link_to "Volver", users_path, class: "btn btn-default" %>
 <% end %>

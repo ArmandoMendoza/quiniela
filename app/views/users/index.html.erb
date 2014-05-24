@@ -1,41 +1,45 @@
-<h1>Listing users</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Apellidos</th>
-      <th>Nombres</th>
-      <th>Telefono</th>
-      <th>Email</th>
-      <th colspan="3">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.last_name %></td>
-        <td><%= user.name %></td>
-        <td><%= user.phone %></td>
-        <td><%= user.email %></td>
-        <% if can? :read, user %>
-          <td><%= link_to 'Show', user %></td>
+<%= index_panel("Usuarios", can?(:create, User), new_user_path, dashboard_path) do %>
+  <% if @users.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Apellidos</th>
+          <th>Nombres</th>
+          <th>Telefono</th>
+          <th>Email</th>
+          <th class="center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.last_name %></td>
+            <td><%= user.name %></td>
+            <td><%= user.phone %></td>
+            <td><%= user.email %></td>
+            <td class = "center">
+              <% if can? :read, user %>
+                <%= show_table_button user %>
+              <% end %>
+              <% if can? :edit, user %>
+                <%= edit_table_button edit_user_path(user) %>
+              <% end %>
+              <% if can? :destroy, user %>
+                <%= destroy_table_button user %>
+              <% end %>
+              <% if can? :create_bets, user %>
+                <%= link_to 'Crear Apuestas', bets_user_path(user) %>
+              <% end %>
+            </td>
+          <% if user.regular? %>
+            <tr>
+              <td colspan="5"><%= display_user_pools(user.active_pools) %></td>
+            </tr>
+          <% end %>
         <% end %>
-        <% if can? :edit, user %>
-          <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <% end %>
-        <% if can? :destroy, user %>
-          <td><%= link_to 'Destroy', user, method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-        <% if can? :create_bets, user %>
-          <td><%= link_to 'Crear Apuestas', bets_user_path(user) %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<% if can? :create, User %>
-  <%= link_to 'New User', new_user_path %>
+      </tbody>
+    </table>
+  <% else %>
+    <%=  mssg_for_empty_table %>
+  <% end %>
 <% end %>

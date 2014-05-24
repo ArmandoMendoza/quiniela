@@ -3,7 +3,7 @@ class RegistrationsController < ApplicationController
   authorize_resource
 
   def index
-    @registration = @pool.registrations
+    @registrations = @pool.registrations
   end
 
   def destroy

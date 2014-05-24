@@ -1,1 +1,7 @@
-<%= render "table_index" %>
+<%= index_panel("Apuestas") do %>
+  <% if @bets.any? %>
+    <%= render "table_index" %>
+  <% else %>
+    <%=  mssg_for_empty_table %>
+  <% end %>
+<% end %>
