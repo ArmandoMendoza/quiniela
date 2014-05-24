@@ -1,6 +1,6 @@
 # Admin
 User.create(name: "Admin", email: "admin@app.com", password: "12345678",
-  password_confirmation: "12345678", role: "admin")
+  password_confirmation: "12345678", role: "admin", last_name: "Application")
 
 #Groups
 ('A'..'H').each do |l|

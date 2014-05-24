@@ -7,4 +7,4 @@ jQuery ->
       'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
     lang_clear_date: "Limpiar"
     show_select_today: false
-    direction: ['2014-06-12','2014-07-13']
+    # direction: ['2014-06-12','2014-07-13']
