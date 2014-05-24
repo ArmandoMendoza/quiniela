@@ -1,19 +1,21 @@
 require 'machinist/active_record'
 
 User.blueprint(:admin) do
- name { "Admin" }
- email { "admin#{sn}@app.com" }
- role { "admin" }
- password { "12345678" }
- password_confirmation { "12345678" }
+  name { "Admin" }
+  last_name { "Application" }
+  email { "admin#{sn}@app.com" }
+  role { "admin" }
+  password { "12345678" }
+  password_confirmation { "12345678" }
 end
 
 User.blueprint(:regular) do
- name { "Regular" }
- email { "regular#{sn}@app.com" }
- role { "regular" }
- password { "12345678" }
- password_confirmation { "12345678" }
+  name { "Regular" }
+  last_name { "Application" }
+  email { "regular#{sn}@app.com" }
+  role { "regular" }
+  password { "12345678" }
+  password_confirmation { "12345678" }
 end
 
 Group.blueprint do

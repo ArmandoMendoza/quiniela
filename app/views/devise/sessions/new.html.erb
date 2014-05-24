@@ -15,8 +15,8 @@
       </div>
         <%# f.input :remember_me, as: :boolean, label: false if devise_mapping.rememberable? %>
       <div style="text-align: center">
-        <%= f.button :submit, "Entrar", id: 'login', class: "btn btn-default" %>
         <%= link_to "Volver", root_path, class: "btn btn-default" %>
+        <%= f.button :submit, "Entrar", id: 'login', class: "btn btn-default" %>
       </div>
     <% end %>
   </div>
