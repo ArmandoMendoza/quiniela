@@ -1,11 +1,11 @@
 jQuery ->
-  $('div#div-container > div.group').first().show()
+  $('div.group').first().show()
 
   $('.group-link').click (e)->
     e.preventDefault()
     id = $(this).data('id')
-    group = $("div.group#g#{id}")
-    calculate(group)
+    if $('.input-bet').length > 0
+      calculate($("div.group#g#{id}"))
     prev = $('div.group').not(':hidden').data('id')
     if prev < id
       directions = { prev: "right", curr: "left" }
@@ -101,6 +101,11 @@ jQuery ->
       row.find('td.points').html(team.points)
       row.remove()
       $(".classification#group_#{id}").append(row)
+    t = $(".classification#group_#{id} tbody tr.row-team")
+    first = $(t[0]).data('abrr')
+    second = $(t[1]).data('abrr')
+    $("#group_#{id} .teams-classified").html("#{first} - #{second}")
+
   ################
 
   $('.input-bet').blur ()->
@@ -118,5 +123,5 @@ jQuery ->
     $(form).submit()
 
   ##Calculo inicial
-  if $("div.group#g1").length > 0
+  if $("div.group#g1").length > 0 && $('.input-bet').length > 0
     calculate($("div.group#g1"))

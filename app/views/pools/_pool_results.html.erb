@@ -1,8 +1,7 @@
-<div id="div-container">
+<div class="group-table-widget">
 <%= content_tag(:div, class: "group", id: "g#{group.id}", data: { id: group.id }) do %>
   <% if bets.any? %>
-    <div class="matches-widget">
-    <table id="results">
+    <table class="matches-widget" >
       <tr class="header-widget">
         <td><%= group.name.split(" ")[1] %></td>
         <% group.teams.each do |team| %>
@@ -62,36 +61,39 @@
         </tr>
       <% end %>
     </table>
-    </div>
 
-    <div class="classification-widget">
-      <table class="classification" id="group_<%= group.id %>">
-        <tr class="header-widget">
-          <td><%= group.name.split(" ")[1] %></td>
-          <td>J</td>
-          <td>G</td>
-          <td>E</td>
-          <td>P</td>
-          <td>GF</td>
-          <td>GC</td>
-          <td>PTS</td>
+    <table class="classification classification-widget" id="group_<%= group.id %>">
+      <tr class="header-widget">
+        <td><%= group.name.split(" ")[1] %></td>
+        <td>J</td>
+        <td>G</td>
+        <td>E</td>
+        <td>P</td>
+        <td>GF</td>
+        <td>GC</td>
+        <td>PTS</td>
+      </tr>
+      <% group.teams.each do |team| %>
+        <tr class="row-team" id="<%= team.name %>" data-abrr="<%= team.abbr %>">
+          <td><ul><li><%= flag(team) %></li><li><%= team.abbr %></li></ul></td>
+          <td class="matches">0</td>
+          <td class="win">0</td>
+          <td class="draw">0</td>
+          <td class="lose">0</td>
+          <td class="goles_favor">0</td>
+          <td class="goles_contra">0</td>
+          <td class="points">0</td>
         </tr>
-        <tbody>
-        <% group.teams.each do |team| %>
-          <tr class="row-team" id="<%= team.name %>">
-            <td><ul><li><%= flag(team) %></li><li><%= team.abbr %></li></ul></td>
-            <td class="matches">0</td>
-            <td class="win">0</td>
-            <td class="draw">0</td>
-            <td class="lose">0</td>
-            <td class="goles_favor">0</td>
-            <td class="goles_contra">0</td>
-            <td class="points">0</td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+      <% end %>
+      <tfoot>
+        <tr class="row-team row-classified">
+          <td colspan="8">
+            <span class="teams-classified"></span>
+          </td>
+        </tr>
+        <tr><td class="fake-space"></td></tr>
+      </tfoot>
+    </table>
   <% end %>
 <% end %>
 </div>
