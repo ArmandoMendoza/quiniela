@@ -1,19 +1,10 @@
-.chosen-container-single { .chosen-single { height: 32px } }
-
 body {
   font-family: "Open Sans", sans-serif !important;
+  // padding-top: 70px;
 }
 
-.section-copa {
-  width: 100%;
-  height: 100%;
-}
-
-.section-rules {
-  width: 100%;
-  height: 100%;
-  padding: 30px;
-}
+.chosen-container-single { .chosen-single { height: 32px } }
+.panel-title > a:hover, a:focus { text-decoration: none !important}
 
 .panel-rules {
   background-color: #3C3C3B;
@@ -36,46 +27,30 @@ body {
   font-weight: 600;
   color: #FFFFFF;
   line-height: 55px;
-  margin-top: 50px;
-  margin-bottom: 30px;
 }
-.text {
+
+.text-promo {
   color: #FFFFFF;
   line-height: 30px;
   font-size: 20px;
-  margin-bottom: 30px;
 }
 
-.register-form {
+.promo-form {
   border-radius: 3px 3px 3px 3px;
   -moz-border-radius: 3px 3px 3px 3px;
   -webkit-border-radius: 3px 3px 3px 3px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding: 30px;
   background-color: #ECECEC;
-  .text {
+  padding: 15px 25px;
+  .title-form {
     text-align: center;
     font-weight: 600;
     font-size: 40px;
     color: #94BC55;
-    margin: 0 0 40px 0;
-  }
-  #registration_comments {
-    text-align: left;
-    font-size: 14px;
-    color: black;
-    margin: 0;
-    font-weight: normal;
-    height: 35px;
+    margin: 0 0 20px 0;
   }
 }
 
-#contact_message {
-  text-align: left;
-  font-size: 14px;
-  color: black;
-  margin: 0;
-  font-weight: normal;
-  height: 105px;
+#home, #rules, #contact {
+  padding-top: 90px;
+  margin-bottom: 150px;
 }

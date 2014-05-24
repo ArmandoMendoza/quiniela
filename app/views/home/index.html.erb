@@ -1,74 +1,57 @@
-<section>
-  <div class="section-copa">
-    <div class="row">
-      <div class="col-md-5 col-sm-5 col-md-offset-1">
-        <div class="ad with-shadow">
-          Ya comienza la Mejor Quiniela Online del Mundial de Futbol Brasil 2014
-        </div>
-        <div class="text with-shadow">
-          Para saber como registrarte y participar haz click aqui.
-          Participa en varias Quinielas y multiplica tus posiblidades de ganar.
-        </div>
-        <div class="text with-shadow" style="text-align: center;">
-          <b>NO OLVIDES RESERVAR TU CUPO >></b> <br><br>
-          <b>Si quieres crear tu quiniela privada haz click aqui</b>
-        </div>
+<div id="home">
+  <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+      <div class="ad with-shadow">
+        Ya comienza la Mejor Quiniela Online del Mundial de Futbol Brasil 2014
       </div>
-      <div class="col-md-5 col-sm-5">
-        <div class="register-form">
-          <div class="text">Reserva tu cupo ya!</div>
-          <% if notice %>
-            <div class="alert alert-success"><b><%= notice %></b></div>
-          <% end %>
-          <%= render "register_form" %>
-        </div>
+      <div class="text-promo with-shadow">
+        Para saber como registrarte y participar haz click aqui.
+        Participa en varias Quinielas y multiplica tus posiblidades de ganar.
+      </div>
+      <div class="text-promo with-shadow" style="text-align: center;">
+        <b>NO OLVIDES RESERVAR TU CUPO >></b> <br>
+        <b>Si quieres crear tu quiniela privada haz click aqui</b>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="promo-form">
+        <div class="title-form">Reserva tu cupo ya!</div>
+        <% if notice %>
+          <div class="alert alert-success"><b><%= notice %></b></div>
+        <% end %>
+        <%= render "register_form" %>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<section>
-  <div class="section-rules">
-    <%= render "rules" %>
+<div id="rules">
+  <div class="row">
+    <div class="col-md-12"><%= render "rules" %></div>
   </div>
-</section>
+</div>
 
-<section>
-  <div class="section-rules">
-    <%= render "score" %>
-  </div>
-</section>
-
-<section>
-  <div class="section-rules">
-    <%= render "winners" %>
-  </div>
-</section>
-
-<section>
-  <div class="section-copa">
-    <div class="row">
-      <div class="col-md-5 col-sm col-md-offset-1">
-        <div class="register-form">
-          <div class="text">Contáctanos</div>
-          <%= render "contact_form" %>
-        </div>
+<div id="contact">
+  <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+      <div class="promo-form">
+        <div class="title-form">Contáctanos</div>
+        <%= render "contact_form" %>
       </div>
-      <div class="col-md-5 col-sm">
-        <div class="ad with-shadow">
-          ¿Dudas? <br> Comunicate ahora mismo con nosotros.
-        </div>
-        <div class="text with-shadow">
-          Si tu duda es como registrarte y participar haz clic aqui.
-          Participa en varias Quinielas y multiplica tus oportunidades
-          ganar
-        </div>
-        <div class="text with-shadow" style="text-align: center;">
-          <b>Federico Georgi - (0414)-0749411</b>
-          <b>info@quitus.com.ve</b>
-        </div>
+    </div>
+    <div class="col-md-5">
+      <div class="ad with-shadow">
+        ¿Dudas? <br> Comunicate ahora mismo con nosotros.
+      </div>
+      <div class="text-promo with-shadow">
+        Si tu duda es como registrarte y participar haz clic aqui.
+        Participa en varias Quinielas y multiplica tus oportunidades
+        ganar
+      </div>
+      <div class="text-promo with-shadow" style="text-align: center;">
+        <b>Federico Georgi - (0414)-0749411</b>
+        <b>info@quitus.com.ve</b>
       </div>
     </div>
   </div>
-</section>
-
+</div>

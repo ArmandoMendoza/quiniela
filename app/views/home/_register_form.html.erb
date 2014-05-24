@@ -5,7 +5,7 @@
   <%= f.input :phone, label: false, placeholder: "Telefono" %>
   <%= f.input :pool_id, label: false, collection: Pool.active,
     input_html: { class: "chosen-select", data: { placeholder: "Quiniela"} } %>
-  <%= f.input :comments, label: false, placeholder: "Comentarios", as: :text %>
+  <%# f.input :comments, label: false, placeholder: "Comentarios", as: :text %>
   <div style="text-align: center">
     <%= submit_tag "HACER RESERVA", class: "btn btn-default" %>
   </div>
