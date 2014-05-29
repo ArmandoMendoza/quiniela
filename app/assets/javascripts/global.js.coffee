@@ -1,7 +1,7 @@
 jQuery ->
   $('.multiselect').multiSelect
-    selectableHeader: "<div class='multiselect-header'>Equipos</div>",
-    selectionHeader: "<div class='multiselect-header'>Equipos en Quiniela</div>",
+    selectableHeader: "<div class='multiselect-header'>Partidos</div>",
+    selectionHeader: "<div class='multiselect-header'>Partidos en Quiniela</div>",
   $('.chosen-select').chosen()
   $('.timepicker').ptTimeSelect()
   $('.datepicker').Zebra_DatePicker

@@ -1,6 +1,6 @@
 <div class="group-table-widget">
 <%= content_tag(:div, class: "group", id: "g#{group.id}", data: { id: group.id,
-    teams: group.teams.pluck(:name) }) do %>
+    teams: group.teams.map(&:name_js) }) do %>
   <% if bets.any? %>
       <table class="matches-widget">
         <tr class="header-widget">
@@ -33,11 +33,11 @@
                     <div class="flag"><%= big_flag(bet.match.local) %></div>
                     <div class="field">
                       <%= f.text_field :local, class: "input-bet",
-                        data: { team: bet.match.local.name } %>
+                        data: { team: bet.match.local.name_js } %>
                     </div>
                     <div class="field">
                       <%= f.text_field :visitor, class: "input-bet",
-                        data: { team: bet.match.visitor.name } %>
+                        data: { team: bet.match.visitor.name_js } %>
                     </div>
                     <div class="flag"><%= big_flag(bet.match.visitor) %></div>
                     <div class="team"><%= bet.match.visitor.abbr %></div>
@@ -61,7 +61,7 @@
           <td>PTS</td>
         </tr>
         <% group.teams.each do |team| %>
-          <tr class="row-team" id="<%= team.name %>" data-abrr="<%= team.abbr %>">
+          <tr class="row-team" id="<%= team.name_js %>" data-abrr="<%= team.abbr %>">
             <td><ul><li><%= flag(team) %></li><li><%= team.abbr %></li></ul></td>
             <td class="matches">0</td>
             <td class="win">0</td>
