@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   ### thirt party
   devise :database_authenticatable, :rememberable, :trackable, :validatable
   ### relations
-  has_many :bets
-  has_many :answers
+  has_many :bets, dependent: :delete_all
+  has_many :answers, dependent: :delete_all
   has_many :pools, -> { distinct }, through: :bets
   ### scopes
   scope :order_by_last_name, -> { order(:last_name) }

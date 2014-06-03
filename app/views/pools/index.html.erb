@@ -28,7 +28,7 @@
                 <%= destroy_table_button pool %>
               <% end %>
               <% if can? :read, Registration %>
-                <%= link_to 'Registros', pool_registrations_path(pool)  %>
+                <%= registrations_table_button pool_registrations_path(pool)  %>
               <% end %>
             </td>
           </tr>

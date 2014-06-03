@@ -30,12 +30,12 @@
                 <%= destroy_table_button user %>
               <% end %>
               <% if can?(:create_bets, user) && user.regular? %>
-                <%= link_to 'Crear Apuestas', bets_user_path(user) %>
+                <%= link_to_create_bets bets_user_path(user) %>
               <% end %>
             </td>
           <% if user.regular? %>
             <tr>
-              <td colspan="5"><%= display_user_pools(user.active_pools) %></td>
+              <td colspan="8"><%= display_user_pools(user.active_pools) %></td>
             </tr>
           <% end %>
         <% end %>

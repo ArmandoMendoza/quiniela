@@ -23,27 +23,51 @@ module ApplicationHelper
   end
 
   def show_table_button(url)
-    link_to url, class: "btn btn-default btn-xs" do
+    link_to url, class: "btn btn-default btn-xs", title: "ver" do
       content_tag(:span, nil, class: "glyphicon glyphicon-eye-open")
     end
   end
 
   def edit_table_button(url)
-    link_to url, class: "btn btn-default btn-xs" do
+    link_to url, class: "btn btn-default btn-xs", title: "editar" do
       content_tag(:span, nil, class: "glyphicon glyphicon-pencil")
     end
   end
 
   def destroy_table_button(url)
-    link_to url, class: "btn btn-default btn-xs", method: :delete,
+    link_to url, class: "btn btn-default btn-xs", title: "eliminar" , method: :delete,
       data: { confirm: '¿Estas seguro?' } do
         content_tag(:span, nil, class: "glyphicon glyphicon-trash")
     end
   end
 
+  def registrations_table_button(url)
+    link_to url, class: "btn btn-default btn-xs", title: "registros" do
+      content_tag(:span, nil, class: "glyphicon glyphicon-registration-mark")
+    end
+  end
+
   def back_table_button(url = :back)
-    link_to url, class: "btn btn-default btn-xs" do
+    link_to url, class: "btn btn-default btn-xs", title: "volver" do
       content_tag(:span, nil, class: "glyphicon glyphicon-arrow-left")
+    end
+  end
+
+  def link_to_register(url)
+    link_to url, class: "btn btn-default btn-xs", title: "registrar" do
+      content_tag(:span, nil, class: "glyphicon glyphicon-transfer")
+    end
+  end
+
+  def link_to_create_bets(url)
+    link_to url, class: "btn btn-default btn-xs", title: "crear apuestas" do
+      content_tag(:span, nil, class: "glyphicon glyphicon-th-list")
+    end
+  end
+
+  def link_to_results(url)
+    link_to url, class: "btn btn-default btn-xs", title: "resultados" do
+      content_tag(:span, nil, class: "glyphicon glyphicon-list-alt")
     end
   end
 

@@ -27,7 +27,7 @@
             <td><%=cm match.final_score.to_s %></td>
             <% if current_user.admin? %>
               <td>
-                <%= link_to "Resultados", match_scores_path(match) %>
+                <%= link_to_results match_scores_path(match) %>
                 <%= edit_table_button edit_match_path(match) %>
                 <%= destroy_table_button match %>
               </td>
