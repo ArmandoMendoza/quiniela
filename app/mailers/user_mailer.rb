@@ -5,4 +5,10 @@ class UserMailer < ActionMailer::Base
     @registration = registration
     mail(to: @registration.email, subject: 'Aviso de Registro')
   end
+
+  def new_user_email(user, password)
+    @user = user
+    @password = password
+    mail(to: @user.email, subject: 'Creacion de Cuenta')
+  end
 end

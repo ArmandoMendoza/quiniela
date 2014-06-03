@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div class="header" style="text-align: center">
+
+      <h2 style="color: blue">
+        Mundial Brasil 2014 <br>
+        Confirmación de registro
+      </h2>
+
+      <h3 style="color: red"><%= @user.full_name %></h3>
+    </div>
+
+    <p>
+      ¡FELICIDADES! acaba de registrar su nueva cuenta www.tuquinielaonline.com
+      Su nombre de usuario y contraseña:
+    </p>
+    <p>
+      Usuario: <%= @user.email %> <br>
+      Contraseña: <%= @password %>
+    </p>
+
+    <h3 style="color: red">Por favor recuerde cambiar su contraseña al ingresar al sistema.</h3>
+
+    <p>
+      Gracias por participar y ¡MUCHA SUERTE! <br>
+      Equipo de www.tuquinielaonline.com
+    </p>
+  </body>
+</html>
