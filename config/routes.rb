@@ -7,7 +7,9 @@ Rails.application.routes.draw do
       get :bets
       get :results
     end
-    resources :registrations, only: [:index, :destroy]
+    resources :registrations, only: [:index, :destroy] do
+      get :register, on: :member
+    end
   end
 
   resources :bets, except: [:new, :create, :show]

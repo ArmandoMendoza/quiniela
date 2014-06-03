@@ -4,6 +4,23 @@ class Registration < ActiveRecord::Base
   ### Validations
   validates_presence_of :name, :last_name, :phone, :email, :pool_id
   validates_uniqueness_of :email, :nickname
+  before_create :set_status
 
+  ### Instance methods
 
+  def create_user
+    user = User.create(name: name, last_name: last_name, nickname: nickname, email: email,
+      role: "regular", password: "12345678", password_confirmation: "12345678")
+    if user.errors.empty?
+      user.create_bets_from(pool)
+      user.create_answer_for(pool)
+      update_column(:status, "registered")
+    end
+    user
+  end
+
+  private
+    def set_status
+      self.status = "unregistered" unless self.status.present?
+    end
 end

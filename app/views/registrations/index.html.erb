@@ -8,6 +8,7 @@
           <th>Apellidos</th>
           <th>Email</th>
           <th>Telefono</th>
+          <th>Status</th>
           <th class="center">Acciones</th>
         </tr>
       </thead>
@@ -19,10 +20,13 @@
             <td><%= registration.last_name %></td>
             <td><%= registration.email %></td>
             <td><%= registration.phone %></td>
+            <td><%= registration.status %></td>
             <td class="center">
               <% if current_user.admin? %>
                 <%= destroy_table_button [@pool, registration] %>
-                <%= link_to "Inscribir", "#" %>
+                <% if registration.status == "unregistered" %>
+                  <%= link_to "Inscribir", [:register, @pool, registration] %>
+                <% end %>
               <% end %>
             </td>
           </tr>

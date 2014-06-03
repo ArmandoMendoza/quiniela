@@ -6,6 +6,17 @@ class RegistrationsController < ApplicationController
     @registrations = @pool.registrations
   end
 
+  def register
+    @registration = @pool.registrations.find(params[:id])
+    user = @registration.create_user
+    if user.errors.empty?
+      notice = "Usuario registrado con exito!"
+    else
+      notice = user.errors.full_messages.join(" - ")
+    end
+    redirect_to pool_registrations_path(@pool), notice: notice
+  end
+
   def destroy
     @registration = @pool.registrations.find(params[:id])
     @registration.destroy
