@@ -1,0 +1,48 @@
+es:
+  activerecord:
+    models:
+      group: "Grupo"
+      team: "Equipo"
+      match: "Partido"
+      score: "Resultado"
+      pool: "Quiniela"
+      user: "Usuario"
+      bet: "Apuesta"
+      registration: "Registro"
+      answer: "Pregunta"
+    attributes:
+      user:
+        name: "Nombre"
+        last_name: "Apellido"
+        phone: "Telefono"
+        password_confirmation: "Confirmacion de Password"
+        role: "Rol"
+      answer:
+        answer_one: "Pregunta Uno"
+        answer_two: "Pregunta Dos"
+      bet:
+        local: "Local"
+        visitor: "Visitante"
+        match_time: "Periodo de Juego"
+        completed: "Completado"
+        points: "Puntos"
+      match:
+        date: "Fecha"
+        stadium: "Estadio"
+        local_team_id: "Equipo Local"
+        visitor_team_id: "Equipo Visitante"
+        match_number: "Nro de Partido"
+        hour: "Hora"
+      pool:
+        name: "Nombre"
+        end_date: "Fecha de Finalizacion"
+        completed: "Complatado"
+        price: "Precio"
+      registration:
+        name: "Nombre"
+        last_name: "Apellido"
+        phone: "Telefono"
+      score:
+        local: "Local"
+        visitor: "Visitante"
+        match_time: "Periodo de Juego"
