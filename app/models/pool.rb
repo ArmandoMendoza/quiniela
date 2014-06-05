@@ -12,13 +12,13 @@ class Pool < ActiveRecord::Base
   scope :inactive, -> { where(completed: true) }
 
   def pot_size
-    (users.count) * price
+    (users.count * price) * 0.9
   end
 
   def users_classification
     classification = {}
     users.each do |user|
-      classification[user.name] = user.total_points_in_pool(self)
+      classification[user.nickname] = user.total_points_in_pool(self)
     end
     Hash[classification.sort_by{|k,v| v}.reverse]
   end
