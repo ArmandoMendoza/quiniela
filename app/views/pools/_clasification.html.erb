@@ -9,7 +9,8 @@
       <td>Puntos</td>
     </tr>
     <% classification.each_with_index do |(nickname, points), pos| %>
-      <tr class="row-game <%= cycle("odd", "even") %> <%= highlight_current_user(nickname,:name) %>">
+      <tr class="row-game <%= cycle("odd", "even") %> <%= highlight_current_user(nickname,
+        :nickname) %>">
         <td><%= pos + 1 %></td>
         <td><%= nickname %></td>
         <td><%= points %></td>
