@@ -2,17 +2,17 @@ class Pool < ActiveRecord::Base
   ### relations
   has_and_belongs_to_many :matches
   has_many :bets, dependent: :delete_all
-  has_many :answers
+  has_many :answers, dependent: :delete_all
   has_many :registrations
   has_many :users, -> { distinct }, through: :bets
   ### validations
-  validates_presence_of :name, :end_date, :price
+  validates_presence_of :name, :end_date, :price, :pot_percentage
   ### scopes
   scope :active, -> { where(completed: false) }
   scope :inactive, -> { where(completed: true) }
 
   def pot_size
-    (users.count * price) * 0.9
+    (users.count * price) * (pot_percentage / 100)
   end
 
   def users_classification

@@ -15,7 +15,9 @@
       </div>
       <div class="dashboard-info">
         <div class="description">POTE EN BS.</div>
-        <div class="info"><span><%= @pool.pot_size %></span></div>
+        <div class="info">
+          <span><%= number_with_precision(@pool.pot_size, separator: ',', delimiter: '.') %></span>
+        </div>
       </div>
       <div class="dashboard-info">
         <div class="description">MI POSICION</div>

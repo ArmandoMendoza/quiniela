@@ -38,6 +38,7 @@ es:
         end_date: "Fecha de Finalizacion"
         completed: "Complatado"
         price: "Precio"
+        pot_percentage: "Porcentaje de Pote"
       registration:
         name: "Nombre"
         last_name: "Apellido"
