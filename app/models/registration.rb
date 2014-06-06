@@ -11,7 +11,7 @@ class Registration < ActiveRecord::Base
   def create_user
     password = "12345678"
     user = User.create(name: name, last_name: last_name, nickname: nickname, email: email,
-      role: "regular", password: password, password_confirmation: "12345678")
+      phone: phone, role: "regular", password: password, password_confirmation: "12345678")
     if user.errors.empty?
       user.create_bets_from(pool)
       user.create_answer_for(pool)

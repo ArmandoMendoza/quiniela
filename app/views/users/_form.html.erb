@@ -1,10 +1,10 @@
 <%= simple_form_for(@user) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :name, disabled: current_user.regular?, hint: 'No puedes cambiar tu nombre.' %>
-  <%= f.input :last_name, disabled: current_user.regular?, hint: 'No puedes cambiar tu apellido.' %>
-  <%= f.input :nickname, disabled: current_user.regular?, hint: 'No puedes cambiar tu nickname.' %>
-  <%= f.input :phone, disabled: current_user.regular?, hint: 'No puedes cambiar tu telefono.' %>
-  <%= f.input :email, disabled: current_user.regular?, hint: 'No puedes cambiar tu email.' %>
+  <%= f.input :name, disabled: current_user.regular? %>
+  <%= f.input :last_name, disabled: current_user.regular? %>
+  <%= f.input :nickname, disabled: current_user.regular?  %>
+  <%= f.input :phone, disabled: current_user.regular? %>
+  <%= f.input :email, disabled: current_user.regular? %>
   <%= f.input :password %>
   <%= f.input :password_confirmation %>
   <% if current_user.admin? %>
