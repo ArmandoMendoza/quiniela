@@ -14,6 +14,7 @@
  *= require chosen.min
  *= require twitter-bootstrap
  *= require jquery.ptTimeSelect
+ *= require simplemodal
  *= require multi-select
  *= require chosen-custom
  *= require colors

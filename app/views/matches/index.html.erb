@@ -1,3 +1,5 @@
+<div id="score-remote-form" style="display:none"></div>
+
 <%= index_panel("Partidos", can?(:create, Match), new_match_path, dashboard_path) do %>
   <% if @matches.any? %>
     <table class="table sorted" id="matches-table">
@@ -24,9 +26,14 @@
             <td><%= match.hour %></td>
             <td><%= match.to_s %></td>
             <td><%= match.stadium %></td>
-            <td><%=cm match.final_score.to_s %></td>
+            <td id="match-score-<%= match.id %>"><%= match.score_to_s %></td>
             <% if current_user.admin? %>
               <td>
+                <% if match.played? %>
+                  <%= link_to_change_result edit_match_score_path(match, match.final_score), match.id %>
+                <% else %>
+                  <%= link_to_change_result new_match_score_path(match), match.id %>
+                <% end %>
                 <%= link_to_results match_scores_path(match) %>
                 <%= edit_table_button edit_match_path(match) %>
                 <%= destroy_table_button match %>

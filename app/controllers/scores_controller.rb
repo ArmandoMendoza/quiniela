@@ -11,7 +11,7 @@ class ScoresController < ApplicationController
   end
 
   def new
-    @score = Score.new
+    @score = Score.new(match_time: Score::MATCH_TIMES["Partido"])
   end
 
   def edit
@@ -19,18 +19,26 @@ class ScoresController < ApplicationController
 
   def create
     @score = Score.new(score_params)
-    if @match.scores << @score
-      redirect_to match_scores_path(@match), notice: 'Match was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if @match.scores << @score
+        format.js
+        format.html { redirect_to match_scores_path(@match), notice: 'Match was successfully created.' }
+      else
+        format.js
+        format.html { render :new }
+      end
     end
   end
 
   def update
-    if @score.update(score_params)
-      redirect_to match_scores_path(@match), notice: 'Match was successfully updated.'
-    else
-      render :edit
+    respond_to do |format|
+      if @score.update(score_params)
+        format.js
+        format.html { redirect_to match_scores_path(@match), notice: 'Match was successfully updated.' }
+      else
+        format.js
+        format.html { render :edit }
+      end
     end
   end
 

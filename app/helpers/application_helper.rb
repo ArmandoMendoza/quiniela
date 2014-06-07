@@ -71,6 +71,13 @@ module ApplicationHelper
     end
   end
 
+  def link_to_change_result(url, match_id)
+    link_to url, class: "btn btn-default btn-xs", title: "cambiar resultado", remote: true,
+    id: "link-to-change-result-#{match_id}" do
+      content_tag(:span, nil, class: "glyphicon glyphicon glyphicon-sound-stereo")
+    end
+  end
+
   def check_string(string)
     string.present? ? string : content_tag(:span, "no suministro", class: "text-danger")
   end

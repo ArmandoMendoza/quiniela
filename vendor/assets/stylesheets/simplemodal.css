@@ -1,0 +1,10 @@
+#simplemodal-overlay {
+  background-color: #000;
+}
+
+#simplemodal-container {
+  color: #3C3C3B;
+  background-color: #FFF;
+  border: 8px solid #3C3C3B;
+  padding: 12px;
+}
