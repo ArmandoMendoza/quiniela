@@ -20,8 +20,8 @@ class Match < ActiveRecord::Base
   end
 
   def get_teams
-    teams = Team.find([local_team_id, visitor_team_id])
-    teams.each do |team|
+    @teams ||= Team.find([local_team_id, visitor_team_id])
+    @teams.each do |team|
       @local_team = team if team.id == local_team_id
       @visitor_team = team if team.id == visitor_team_id
     end

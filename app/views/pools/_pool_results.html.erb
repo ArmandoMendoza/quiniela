@@ -73,22 +73,24 @@
         <td>GC</td>
         <td>PTS</td>
       </tr>
-      <% group.teams.each do |team| %>
+      <% classification_table.each do |team| %>
         <tr class="row-team" id="<%= team.name %>" data-abrr="<%= team.abbr %>">
           <td><ul><li><%= flag(team) %></li><li><%= team.abbr %></li></ul></td>
-          <td class="matches">0</td>
-          <td class="win">0</td>
-          <td class="draw">0</td>
-          <td class="lose">0</td>
-          <td class="goles_favor">0</td>
-          <td class="goles_contra">0</td>
-          <td class="points">0</td>
+          <td class="matches"><%= team.matches %></td>
+          <td class="win"><%= team.win %></td>
+          <td class="draw"><%= team.draw %></td>
+          <td class="lose"><%= team.lose %></td>
+          <td class="goles_favor"><%= team.goles_favor %></td>
+          <td class="goles_contra"><%= team.goles_contra %></td>
+          <td class="points"><%= team.points %></td>
         </tr>
       <% end %>
       <tfoot>
         <tr class="row-team row-classified">
           <td colspan="8">
-            <span class="teams-classified"></span>
+            <span class="teams-classified">
+              <%= classification_table[0].abbr %> - <%= classification_table[1].abbr %>
+            </span>
           </td>
         </tr>
         <tr><td class="fake-space"></td></tr>

@@ -17,7 +17,8 @@
         <% end %>
       </div>
       <% @groups.each do |group| %>
-        <%= render partial: "pool_results", locals: { group: group, bets: @bets.of_group(group) } %>
+        <%= render partial: "pool_results", locals: { group: group, bets: @bets.of_group(group),
+          classification_table: group.classification_table } %>
       <% end %>
     </div>
   </div>

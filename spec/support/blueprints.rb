@@ -26,7 +26,7 @@ Group.blueprint do
 end
 
 Group.blueprint(:with_teams) do
-  name { "Group #{sm}" }
+  name { "Group #{sn}" }
   teams(4)
 end
 
