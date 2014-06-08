@@ -1,9 +1,10 @@
 <div>
   <table class="table-dashboard">
     <tr class="header">
-      <td colspan="6">PARTIDOS PARA HOY</td>
+      <td colspan="7">PARTIDOS PARA HOY</td>
     </tr>
     <tr class="sub-header">
+      <td></td>
       <td>Nro</td>
       <td>Grupo</td>
       <td>Partido</th>
@@ -14,6 +15,7 @@
     <% matches.each do |match| %>
       <% match.get_teams  %>
       <tr class="row-game <%= cycle("odd", "even") %>">
+        <%= td_color(match.group.color) %>
         <td><%= match.match_number %></td>
         <td><%= match.group.name %></td>
         <td>

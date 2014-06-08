@@ -1,6 +1,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th></th>
       <th>Id</th>
       <th>Quinela</th>
       <% if current_user.admin? %>
@@ -16,6 +17,7 @@
   <tbody>
     <% @bets.each do |bet| %>
       <tr>
+        <%= td_color(bet.match.group.color) %>
         <td><%= bet.id %></td>
         <td><%= bet.pool.name %></td>
         <% if current_user.admin? %>

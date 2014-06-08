@@ -13,7 +13,8 @@
     <div class="container-widgets">
       <div class="group-links-widget">
         <% @groups.each do |group| %>
-          <%= link_to group.name, "#", class: "group-link btn btn-widget btn-sm #{apply_colors}", data: { id: group.id } %>
+          <%= link_to group.name, "#", class: "group-link btn btn-widget btn-sm",
+            style: set_background_color(group.color), data: { id: group.id } %>
         <% end %>
       </div>
       <% @groups.each do |group| %>

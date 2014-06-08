@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to groupes_path, notice: 'Group was successfully updated.'
+      redirect_to groups_path, notice: 'Group was successfully updated.'
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
-    redirect_to groupes_url
+    redirect_to groups_url
   end
 
   private

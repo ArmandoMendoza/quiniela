@@ -5,6 +5,7 @@
     <table class="table sorted" id="matches-table">
       <thead>
         <tr>
+          <th></th>
           <th data-sort="int"><%= link_to "#", "#" %></th>
           <th data-sort="string"><%= link_to "Grupo", "#" %></th>
           <th data-sort="date"><%= link_to "Fecha", "#" %></th>
@@ -20,6 +21,7 @@
       <tbody>
         <% @matches.each do |match| %>
           <tr>
+            <%= td_color(match.group.color) %>
             <td><%= match.match_number %></td>
             <td><%= match.group.name %></td>
             <td><%= match.date.strftime('%d-%m-%Y') %></td>

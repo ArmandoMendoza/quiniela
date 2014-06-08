@@ -87,6 +87,13 @@ module ApplicationHelper
     content_tag(:div, mssg, class: "mssg-empty-table")
   end
 
+  def set_background_color(color)
+    "border-color: #{color};background-color: #{color}"
+  end
+
+  def td_color(color)
+    content_tag(:td, nil, class: "row-color", style: set_background_color(color))
+  end
 
   def apply_colors
     cycle("rojo", "naranja", "amarillo", "verde", "celeste", "azul", "fucsia", "morado")
