@@ -12,7 +12,7 @@
         <% @groups.each do |group| %>
           <tr>
             <td><%= group.name %></td>
-            <td style="<%= set_backgroup_color(group.color) %>"><%= group.color %></td>
+            <td style="<%= set_background_color(group.color) %>"><%= group.color %></td>
             <td class="center">
             <% if current_user.admin? %>
                 <%= edit_table_button edit_group_path(group) %>
