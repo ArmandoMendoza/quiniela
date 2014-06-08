@@ -25,4 +25,17 @@ describe Pool do
       end
     end
   end
+
+  describe "class method" do
+    describe "active_for_user" do
+      it "return of all pool without pools of user" do
+        array_pool = []
+        4.times { array_pool << Pool.make! }
+        pool = Pool.make!
+        user = User.make!(:regular)
+        Bet.make!(user: user, pool: pool, match: pool.matches.first)
+        expect(Pool.active_for_user(user)).to eq(array_pool)
+      end
+    end
+  end
 end

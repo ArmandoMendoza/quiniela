@@ -58,6 +58,14 @@ class User < ActiveRecord::Base
     active_pools.order(:updated_at).last
   end
 
+  def delete_bets_of_pool(pool)
+    bets_in_pool(pool).delete_all
+  end
+
+  def delete_anwser_of_pool(pool)
+    answer_of_pool(pool).delete
+  end
+
   private
     def set_nickname
       self.nickname = [name, last_name].join("_").underscore unless nickname.present? and name.present?

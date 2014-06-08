@@ -57,6 +57,7 @@ Pool.blueprint do
   end_date { Date.today + 80 }
   completed { false }
   price { 2000 }
+  pot_percentage { 90 }
   matches(5)
 end
 

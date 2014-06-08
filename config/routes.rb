@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     member do
       get :bets
       post :create_bets
+      delete :destroy_bets
     end
   end
 

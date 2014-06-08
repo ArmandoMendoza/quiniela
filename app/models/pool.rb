@@ -11,6 +11,7 @@ class Pool < ActiveRecord::Base
   scope :active, -> { where(completed: false) }
   scope :inactive, -> { where(completed: true) }
 
+  ## instance methods
   def pot_size
     (users.count * price) * (pot_percentage / 100)
   end
@@ -23,4 +24,12 @@ class Pool < ActiveRecord::Base
     Hash[classification.sort_by{|k,v| v}.reverse]
   end
 
+  ## class methods
+    def self.active_for_user(user)
+      array_pool = all.to_a
+      user.pools.each do |user_pool|
+        array_pool.delete(user_pool)
+      end
+      array_pool
+    end
 end

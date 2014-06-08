@@ -1,5 +1,39 @@
-<%= form_tag create_bets_user_path(@user) do %>
-  <%= select_tag :pool_id, options_from_collection_for_select(@pools, :id, :name),
-    class: "chosen-select" %>
-  <%= submit_tag "Crear Apuestas", class: "btn btn-default" %>
+<%= index_panel("Agregar usuario a Quiniela", false, "#", users_path ) do %>
+  <div class="row">
+    <div class="col-md-5">
+    <table class="table table-condensed table-striped">
+      <thead style="background-color: #3C3C3B; color: #FFF">
+        <tr>
+          <th colspan="2">Quinielas Disponibles</th>
+        </tr>
+      </thead>
+    </table>
+      <%= form_tag create_bets_user_path(@user), class: "form-inline" do %>
+        <%= select_tag :pool_id, options_from_collection_for_select(@pools, :id, :name),
+          class: "chosen-select form-control", style: "width: 350px",
+          data: { placeholder: "Quinielas" } %>
+        <%= submit_tag "Agregar", class: "btn btn-default" %>
+      <% end %>
+    </div>
+    <div class="col-md-7">
+    <table class="table table-condensed table-striped">
+      <thead style="background-color: #3C3C3B; color: #FFF">
+        <tr>
+          <th colspan="2">Quinielas de Usuario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.pools.each do |pool| %>
+        <tr>
+          <td><%= pool.name %></td>
+          <td class="center">
+            <%= destroy_table_button destroy_bets_user_path(@user, pool_id: pool.id) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
 <% end %>
+
