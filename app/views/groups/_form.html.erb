@@ -1,0 +1,6 @@
+<%= simple_form_for(@group) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name %>
+  <%= f.button :submit, class: "btn btn-success" %>
+  <%= link_to "Volver", matches_path, class: "btn btn-default" %>
+<% end %>

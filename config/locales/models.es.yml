@@ -11,6 +11,8 @@ es:
       registration: "Registro"
       answer: "Pregunta"
     attributes:
+      group:
+        name: "Nombre"
       user:
         name: "Nombre"
         last_name: "Apellido"

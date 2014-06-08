@@ -1,0 +1,28 @@
+<%= index_panel("Grupos", can?(:create, Group), new_group_path, dashboard_path) do %>
+  <% if @groups.any? %>
+    <table class="table sorted" id="groups-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th class="center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @groups.each do |group| %>
+          <tr>
+            <td><%= group.name %></td>
+            <td class="center">
+            <% if current_user.admin? %>
+                <%= edit_table_button edit_group_path(group) %>
+                <%= destroy_table_button group %>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <%=  mssg_for_empty_table %>
+  <% end %>
+<% end %>
+

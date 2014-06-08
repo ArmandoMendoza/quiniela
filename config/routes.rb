@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     resources :scores, except: :show
   end
 
+  resources :groups, except: :show
+
   resources :answers, only: :update
 
   get 'documents/my_bets/:pool_id', to: "documents#my_bets", as: 'documents_my_bets'

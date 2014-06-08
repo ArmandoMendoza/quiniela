@@ -15,6 +15,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><%= link_to "Inicio", dashboard_path %></li>
+        <% if can? :read, Group %>
+          <li><%= link_to "Grupos", groups_path %></li>
+        <% end %>
         <% if can? :read, Match %>
           <li><%= link_to "Partidos", matches_path %></li>
         <% end %>
