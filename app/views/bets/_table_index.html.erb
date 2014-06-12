@@ -1,16 +1,16 @@
-<table class="table">
+<table class="table sorted" id="bets-table">
   <thead>
     <tr>
       <th></th>
-      <th>Id</th>
-      <th>Quinela</th>
+      <th data-sort="int"><%= link_to "#", "#" %></th>
+      <th data-sort="string"><%= link_to "Quinela", "#" %></th>
+      <th data-sort="string"><%= link_to "Grupo", "#" %></th>
       <% if current_user.admin? %>
-        <th>Usuario</th>
+        <th data-sort="string"><%= link_to "Usuario", "#" %></th>
       <% end %>
       <th>Juego</th>
-      <th class="center">Local</th>
-      <th class="center">Visitante</th>
-      <th>Periodo</th>
+      <th class="center">Prediccion</th>
+      <th>ref</th>
       <th class="center">Acciones</th>
     </tr>
   </thead>
@@ -18,15 +18,15 @@
     <% @bets.each do |bet| %>
       <tr>
         <%= td_color(bet.match.group.color) %>
-        <td><%= bet.id %></td>
+        <td><%= bet.match.match_number %></td>
         <td><%= bet.pool.name %></td>
+        <td><%= bet.match.group.name %></td>
         <% if current_user.admin? %>
           <td><%= bet.user.full_name %></td>
         <% end %>
         <td><%= bet.match.to_s %></td>
-        <td class="center"><%= bet.local %></td>
-        <td class="center"><%= bet.visitor %></td>
-        <td><%= bet.match_time %></td>
+        <td class="center"><%= bet.to_s %></td>
+        <td><%= bet.id %></td>
         <td class="center">
           <% if can? :edit, bet %>
             <%= edit_table_button edit_bet_path(bet) %>

@@ -10,7 +10,10 @@ class Ability
       end
       can :read, [Match, Score]
       can [:read, :update], User, id: user.id
-      can [:read, :update], Bet, user_id: user.id
+      can :read, Bet, user_id: user.id
+      can :update, Bet do |bet|
+        bet.user_id == user.id && !bet.pool.stopped
+      end
       can :update, Answer, user_id: user.id
     end
   end

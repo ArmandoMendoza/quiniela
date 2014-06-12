@@ -11,5 +11,6 @@ jQuery ->
       aDate = date_from_string(a)
       bDate = date_from_string(b)
       aDate - bDate
+  $('#bets-table').stupidtable()
   $('.sorted th a').on 'click', (event)->
     event.preventDefault()
