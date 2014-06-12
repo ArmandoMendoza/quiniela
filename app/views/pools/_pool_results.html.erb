@@ -3,7 +3,9 @@
   <% if bets.any? %>
     <table class="matches-widget" >
       <tr class="header-widget">
-        <td><%= group.name.split(" ")[1] %></td>
+        <td style="<%= set_background_color(group.color) %>">
+          <%= group.name.split(" ")[1] %>
+        </td>
         <% group.teams.each do |team| %>
           <td><ul><li><%= flag(team) %></li><li><%= team.abbr %></li></ul></td>
         <% end %>
@@ -64,7 +66,9 @@
 
     <table class="classification classification-widget" id="group_<%= group.id %>">
       <tr class="header-widget">
-        <td><%= group.name.split(" ")[1] %></td>
+        <td style="<%= set_background_color(group.color) %>">
+          <%= group.name.split(" ")[1] %>
+        </td>
         <td>J</td>
         <td>G</td>
         <td>E</td>

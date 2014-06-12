@@ -1,7 +1,7 @@
 <%= index_panel("Todas las Apuestas - #{@pool.name}") do %>
   <% @users.each do |user| %>
     <div>
-      Jugador: <%= current_user.full_name %> <br>
+      Jugador: <%= user.full_name %> <br>
       Fecha: <%= Time.now.strftime("%d-%m-%Y  %H:%M") %>
     </div>
     <table class="table">

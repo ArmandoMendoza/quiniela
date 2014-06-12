@@ -21,7 +21,7 @@
         <td><%= bet.id %></td>
         <td><%= bet.pool.name %></td>
         <% if current_user.admin? %>
-          <td><%= bet.user.name %></td>
+          <td><%= bet.user.full_name %></td>
         <% end %>
         <td><%= bet.match.to_s %></td>
         <td class="center"><%= bet.local %></td>

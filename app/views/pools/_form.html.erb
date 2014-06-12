@@ -5,6 +5,7 @@
   <%= f.input :pot_percentage %>
   <%= f.input :end_date, as: :string, input_html: { class: "datepicker"} %>
   <%= f.input :completed %>
+  <%= f.input :stopped %>
   <%= f.input :match_ids, collection: Match.all,
     input_html: { class: "multiselect", multiple: true } %>
   <%= f.button :submit, class: "btn btn-success" %>

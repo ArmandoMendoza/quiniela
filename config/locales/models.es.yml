@@ -38,7 +38,8 @@ es:
       pool:
         name: "Nombre"
         end_date: "Fecha de Finalizacion"
-        completed: "Complatado"
+        completed: "Completada"
+        stopped: "Detenida"
         price: "Precio"
         pot_percentage: "Porcentaje de Pote"
       registration:
