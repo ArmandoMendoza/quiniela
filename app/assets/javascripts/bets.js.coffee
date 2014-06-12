@@ -46,7 +46,11 @@ jQuery ->
       @teams = []
     orderedTeams: ->
       @teams.sort (a, b)->
-        b.points - a.points
+        avG = a.goles_favor - a.goles_contra
+        bvG = b.goles_favor - b.goles_contra
+        p = b.points - a.points
+        return p if p != 0
+        return bvG - avG
     add_team: (team)->
       @teams.push(team)
     find_team: (name)->
