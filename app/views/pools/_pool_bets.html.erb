@@ -2,6 +2,11 @@
 <%= content_tag(:div, class: "group", id: "g#{group.id}", data: { id: group.id,
     teams: group.teams.map(&:name_js) }) do %>
   <% if bets.any? %>
+      <div class="center">
+        <b>Espera a que el fondo las casillas de los resultados esten de color verde
+        para verificar que tu predicción ha sido guardada.</b>
+      </div>
+      <br>
       <table class="matches-widget">
         <tr class="header-widget">
           <td><%= group.name.split(" ")[1] %></td>
@@ -16,8 +21,6 @@
         </tr>
         <% bets.each do |bet| %>
           <% bet.match.get_teams %>
-          <%= form_for bet, remote: true do |f| %>
-            <%= f.hidden_field :match_time, value: "full-time" %>
             <tr class="row-widget <%= cycle('odd', 'even')%>" id="bet-<%= bet.id %>">
               <!-- FECHA Y ESTADIO -->
               <td><ul>
@@ -29,6 +32,8 @@
               <td colspan="5">
                 <ul>
                   <li class="li-bet">
+                    <%= form_for bet, remote: true do |f| %>
+                    <%= f.hidden_field :match_time, value: "full-time" %>
                     <div class="team"><%= bet.match.local.abbr %></div>
                     <div class="flag"><%= big_flag(bet.match.local) %></div>
                     <div class="field">
@@ -41,11 +46,11 @@
                     </div>
                     <div class="flag"><%= big_flag(bet.match.visitor) %></div>
                     <div class="team"><%= bet.match.visitor.abbr %></div>
+                    <% end %>
                   </li>
                 </ul>
               </td>
             </tr>
-          <% end %>
         <% end %>
       </table>
 

@@ -1,4 +1,11 @@
 jQuery ->
+
+  ### Bind a formulario para capturar eventos ajax ####
+  if $('form.edit_bet').length > 0
+    $('form.edit_bet').bind "ajax:beforeSend", (evt, xhr, settings) ->
+      form = $(this)
+      form.find('.input-bet').css('background-color', '#f2dede')
+
   $('div.group').first().show()
 
   $('.group-link').click (e)->
