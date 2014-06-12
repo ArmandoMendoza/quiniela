@@ -1,37 +1,47 @@
-<%= index_panel("Todas las Apuestas - #{@pool.name}") do %>
-  <% @users.each do |user| %>
-    <div>
-      Jugador: <%= user.full_name %> <br>
-      Fecha: <%= Time.now.strftime("%d-%m-%Y  %H:%M") %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todas las Predicciones - <%= @pool.name %></title>
+  </head>
+  <body>
+    <div style="text-align: center; font-size: 18px;">
+      <b>Todas las Predicciones - <%= @pool.name %></b>
     </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Grupo</th>
-          <th>Juego</th>
-          <th>Fecha</th>
-          <th>Hora</th>
-          <th>Resultado</th>
-          <th>Apuesta</th>
-          <th>Puntos</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% Bet.of_user_in_pool(user, @pool).order(['matches.group_id', 'bets.pos']).each do |bet| %>
-        <% bet.match.get_teams %>
-          <tr>
-            <td><%= bet.id %></td>
-            <td><%= bet.match.group.name %></td>
-            <td><%= bet.match.to_s %></td>
-            <td><%= bet.match.date.strftime('%d-%m') %></td>
-            <td><%= bet.match.hour %></td>
-            <td><%= bet.match.score_to_s %></td>
-            <td><%= bet.to_s %></td>
-            <td><%= bet.points %></td>
+    <% @users.each do |user| %>
+      <div>
+        Jugador: <b><%= user.full_name %></b> <br>
+        Fecha: <b><%= Time.now.strftime("%d-%m-%Y  %H:%M") %></b>
+      </div>
+      <br>
+      <table class="table" style="font-size: 14px">
+        <thead>
+          <tr style="text-align: center">
+            <th style="padding: 10px 20px">Id</th>
+            <th style="padding: 10px 20px">Grupo</th>
+            <th style="padding: 10px 20px">Juego</th>
+            <th style="padding: 10px 20px">Fecha</th>
+            <th style="padding: 10px 20px">Hora</th>
+            <th style="padding: 10px 20px">Resultado</th>
+            <th style="padding: 10px 20px">Apuesta</th>
+            <th style="padding: 10px 20px">Puntos</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-<% end %>
+        </thead>
+        <tbody>
+          <% Bet.of_user_in_pool(user, @pool).order(['matches.group_id', 'bets.pos']).each do |bet| %>
+          <% bet.match.get_teams %>
+            <tr style="text-align: center">
+              <td><%= bet.id %></td>
+              <td><%= bet.match.group.name %></td>
+              <td><%= bet.match.to_s %></td>
+              <td><%= bet.match.date.strftime('%d-%m') %></td>
+              <td><%= bet.match.hour %></td>
+              <td><%= bet.match.score_to_s %></td>
+              <td><%= bet.to_s %></td>
+              <td><%= bet.points %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </body>
+</html>

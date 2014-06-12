@@ -18,10 +18,11 @@ class DocumentsController < ApplicationController
   end
 
   def all_bets
+
     @users = @pool.users
     if @users.any?
       respond_to do |format|
-        format.html
+        format.html { render "all_bets", layout: false }
         format.pdf do
           pdf = AllBetsPdf.new(@pool, @users)
           send_data pdf.render, filename: "todas_las_apuestas-#{@pool.name}.pdf",

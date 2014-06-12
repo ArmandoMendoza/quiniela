@@ -3,9 +3,9 @@ module PoolsHelper
     "highlight" if current_user.send(method) == value
   end
 
-  def my_bets_button
+  def dropdown_button(name)
     link_to "#", class: "btn btn-default dropdown-toggle", data: { toggle: "dropdown" } do
-      raw("Ver mis Apuestas ") + content_tag(:span, nil, class: "caret")
+      raw("#{name} ") + content_tag(:span, nil, class: "caret")
     end
   end
 end
