@@ -12,7 +12,6 @@
         Jugador: <b><%= user.full_name %></b> <br>
         Fecha: <b><%= Time.now.strftime("%d-%m-%Y  %H:%M") %></b>
       </div>
-      <br>
       <table class="table" style="font-size: 14px">
         <thead>
           <tr style="text-align: center">
@@ -42,6 +41,9 @@
           <% end %>
         </tbody>
       </table>
+      <br>
+      <br>
+      <div style="page-break-after:always"></div>
     <% end %>
   </body>
 </html>
