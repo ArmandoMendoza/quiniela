@@ -4,6 +4,7 @@ require 'faker'
 User.blueprint(:admin) do
   name { "Admin" }
   last_name { "Application" }
+  nickname { Faker::Internet.user_name }
   email { "admin#{sn}@app.com" }
   role { "admin" }
   password { "12345678" }
@@ -13,6 +14,7 @@ end
 User.blueprint(:regular) do
   name { "Regular" }
   last_name { "Application" }
+  nickname { Faker::Internet.user_name }
   email { "regular#{sn}@app.com" }
   role { "regular" }
   password { "12345678" }

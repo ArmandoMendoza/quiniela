@@ -17,7 +17,8 @@ describe 'Home' do
       visit root_path
       expect do
         fill_in "registration_nickname", with: "Batman"
-        fill_in "registration_name", with: "Bruce Wayne"
+        fill_in "registration_name", with: "Bruce"
+        fill_in "registration_last_name", with: "Wayne"
         fill_in "registration_phone", with: "500-228626"
         fill_in "registration_email", with: "soybatman@batman.com"
         select pool.name, from: "registration_pool_id"

@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   scope :order_by_last_name, -> { order(:last_name) }
   ### validations
   validates_presence_of :name, :last_name, :email
+  validates_uniqueness_of :email, :nickname
+  ### Callbacks
+  before_save :set_nickname
 
   ### instance methods
   def create_bets_from(pool)
@@ -43,4 +46,9 @@ class User < ActiveRecord::Base
   def last_active_pool
     active_pools.order(:updated_at).last
   end
+
+  private
+    def set_nickname
+      self.nickname = [name, last_name].join("_").underscore unless nickname.present? and name.present?
+    end
 end

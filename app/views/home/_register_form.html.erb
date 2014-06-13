@@ -1,11 +1,11 @@
 <%= simple_form_for @registration do |f| %>
   <%= f.input :nickname, label: false, placeholder: "Usuario" %>
-  <%= f.input :name, label: false, placeholder: "Nombre Completo" %>
+  <%= f.input :name, label: false, placeholder: "Nombres" %>
+  <%= f.input :last_name, label: false, placeholder: "Apellidos" %>
   <%= f.input :email, label: false, placeholder: "Correo Electronico" %>
   <%= f.input :phone, label: false, placeholder: "Telefono" %>
   <%= f.input :pool_id, label: false, collection: Pool.active,
     input_html: { class: "chosen-select", data: { placeholder: "Quiniela"} } %>
-  <%# f.input :comments, label: false, placeholder: "Comentarios", as: :text %>
   <div style="text-align: center">
     <%= submit_tag "HACER RESERVA", class: "btn btn-default" %>
   </div>
