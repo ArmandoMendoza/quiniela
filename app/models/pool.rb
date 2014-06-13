@@ -24,7 +24,7 @@ class Pool < ActiveRecord::Base
     uniq_users.each do |user|
       classification[user.name] = user.total_points_in_pool(self)
     end
-    classification.sort_by{|k,v| v}.reverse.to_h
+    Hash[classification.sort_by{|k,v| v}.reverse]
   end
 
 end
