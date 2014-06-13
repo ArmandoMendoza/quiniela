@@ -31,6 +31,7 @@ class Bet < ActiveRecord::Base
     pool.matches.each do |match|
       attributes = {pool: pool, match: match, user: user}
       unless exists?(attributes)
+        attributes[:pos] = match.match_number.gsub(/[^\d]/, '').to_i
         create(attributes)
       end
     end
@@ -41,11 +42,11 @@ class Bet < ActiveRecord::Base
   end
 
   def self.of_group(group)
-    joins(:match).where('matches.group_id = ?', group.id).order('matches.match_number')
+    joins(:match).where('matches.group_id = ?', group.id).order('bets.pos')
   end
 
   def self.with_matches_by_date(time)
-    joins(:match).where('matches.date = ?', time).order('matches.match_number')
+    joins(:match).where('matches.date = ?', time).order('bets.pos')
   end
 
   private

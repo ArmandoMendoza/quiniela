@@ -1,4 +1,5 @@
 require 'machinist/active_record'
+require 'faker'
 
 User.blueprint(:admin) do
   name { "Admin" }
@@ -39,6 +40,7 @@ Match.blueprint do
   stadium { "Stadium #{sn}" }
   local_team_id { Team.make!.id }
   visitor_team_id { Team.make!.id }
+  match_number { Faker::Number.digit  }
 end
 
 Score.blueprint do

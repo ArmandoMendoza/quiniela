@@ -22,9 +22,8 @@
               <!-- FECHA Y ESTADIO -->
               <td><ul>
                 <li><%= bet.match.date.strftime("%d/%m") %></li>
-                <li>10:00</li>
+                <li><%= bet.match.hour %></li>
                 <li><%=raw bet.match.stadium.gsub("  ", "<br>") %></li>
-                <li><%#raw bet.match.match_number %></li>
               </ul></td>
               <!-- APUESTAS -->
               <td colspan="5">

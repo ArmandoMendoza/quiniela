@@ -25,6 +25,15 @@ describe Bet do
         Bet.create_all_bets_for(user, pool)
         expect(user).to have(matches.size).bets
       end
+      it "the bet created should have pos equal to match_number of match" do
+        user = User.make!(:regular)
+        pool = Pool.make!
+        matches = pool.matches
+        Bet.create_all_bets_for(user, pool)
+        Bet.create_all_bets_for(user, pool)
+        bet = user.bets.where(match_id: matches.last.id).first
+        expect(bet.pos).to eq(matches.last.match_number.to_i)
+      end
     end
   end
 

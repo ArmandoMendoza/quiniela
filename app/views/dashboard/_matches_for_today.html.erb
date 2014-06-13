@@ -18,14 +18,14 @@
         <td><%= match.group.name %></td>
         <td>
           <span><%= match.local.abbr %></span>
-            <%= image_tag("brazil.png") %>
+            <%= flag(match.local) %>
           <span><%= match.final_score.try(:to_s) || "por jugar" %></span>
-            <%= image_tag("brazil.png") %>
+            <%= flag(match.visitor) %>
           <span><%= match.visitor.abbr %></span>
         </td>
         <td><%= match.stadium %></td>
         <td><%= match.date.strftime("%d-%m") %></td>
-        <td>10:00</td>
+        <td><%= match.hour %></td>
       </tr>
     <% end %>
   </table>

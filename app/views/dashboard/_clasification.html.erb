@@ -1,14 +1,16 @@
 <div>
   <table class="table-dashboard">
     <tr class="header">
-      <td colspan="2">Clasificacion</td>
+      <td colspan="3">Clasificacion</td>
     </tr>
     <tr class="sub-header">
+      <td>Pos</td>
       <td>Usuario</td>
       <td>Puntos</td>
     </tr>
-    <% classification.each do |nickname, points| %>
+    <% classification.each_with_index do |(nickname, points), pos| %>
       <tr class="row-game <%= cycle("odd", "even") %>">
+        <td><%= pos + 1 %></td>
         <td><%= nickname %></td>
         <td><%= points %></td>
     <% end %>
