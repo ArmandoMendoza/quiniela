@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
     role == "regular"
   end
 
+  def bets_in_pool(pool)
+    bets.where(pool_id: pool.id)
+  end
+
   def answer_of_pool(pool)
     answers.where(pool_id: pool.id).first
   end
