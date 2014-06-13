@@ -7,8 +7,7 @@ class DocumentsController < ApplicationController
       respond_to do |format|
         format.html { render text: @bets.count }
         format.pdf do
-          pdf = Prawn::Document.new
-          pdf.text "Prueba"
+          pdf = MyBetsPdf.new
           send_data pdf.render
         end
       end
