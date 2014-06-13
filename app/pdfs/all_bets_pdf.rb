@@ -11,10 +11,12 @@ class AllBetsPdf < Prawn::Document
     font_size(20) { text @pool.name, align: :center, style: :bold }
     draw_text "Jugador:  #{user.full_name}", at: [0,680]
     draw_text "Fecha: #{Time.now.strftime("%d-%m-%Y  %H:%M")}", at: [320, 680]
+    draw_text "Goleador del Mundial: #{user.answers.on_pool(@pool).player}", at: [0,660]
+    draw_text "Equipo Ganador: #{user.answers.on_pool(@pool).team}", at: [320,660]
   end
 
   def body(bets)
-    move_down 30
+    move_down 60
     table rows(bets)
   end
 

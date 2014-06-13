@@ -1,7 +1,9 @@
 <%= index_panel("Mis Apuestas - #{@pool.name}") do %>
   <div>
-    Jugador: <%= current_user.full_name %> <br>
-    Fecha: <%= Time.now.strftime("%d-%m-%Y  %H:%M") %>
+    Jugador: <b><%= current_user.full_name %></b> <br>
+    Fecha: <b><%= Time.now.strftime("%d-%m-%Y  %H:%M") %></b><br>
+    Goleador del Mundial: <b><%= current_user.answers.on_pool(@pool).player %></b> <br>
+    Equipo Ganador: <b><%= current_user.answers.on_pool(@pool).team %></b>
   </div>
   <table class="table">
     <thead>

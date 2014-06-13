@@ -10,8 +10,11 @@
     <% @users.each do |user| %>
       <div>
         Jugador: <b><%= user.full_name %></b> <br>
-        Fecha: <b><%= Time.now.strftime("%d-%m-%Y  %H:%M") %></b>
+        Fecha: <b><%= Time.now.strftime("%d-%m-%Y  %H:%M") %></b><br>
+        Goleador del Mundial: <b><%= user.answers.on_pool(@pool).player %></b> <br>
+        Equipo Ganador: <b><%= user.answers.on_pool(@pool).team %></b>
       </div>
+
       <table class="table" style="font-size: 14px">
         <thead>
           <tr style="text-align: center">
