@@ -4,6 +4,7 @@
       <thead>
         <tr>
           <th>Nombre</th>
+          <th>Partidos</th>
           <th>Limite</th>
           <th>Completada</th>
           <th class="center">Acciones</th>
@@ -13,6 +14,7 @@
         <% @pools.each do |pool| %>
           <tr>
             <td><%= pool.name %></td>
+            <td><%= pool.matches.count %></td>
             <td><%= pool.end_date %></td>
             <td><%= pool.completed %></td>
             <td class="center">

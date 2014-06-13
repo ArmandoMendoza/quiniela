@@ -27,7 +27,7 @@
               <% if can? :destroy, user %>
                 <%= destroy_table_button user %>
               <% end %>
-              <% if can? :create_bets, user %>
+              <% if can?(:create_bets, user) && user.regular? %>
                 <%= link_to 'Crear Apuestas', bets_user_path(user) %>
               <% end %>
             </td>
