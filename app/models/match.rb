@@ -31,6 +31,10 @@ class Match < ActiveRecord::Base
     scores.last
   end
 
+  def score_to_s
+    played? ? final_score.to_s : "por jugar"
+  end
+
   def visitor
     @visitor_team || Team.find(visitor_team_id)
   end

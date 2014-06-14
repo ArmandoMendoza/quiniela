@@ -12,7 +12,7 @@ class Pool < ActiveRecord::Base
   scope :inactive, -> { where(completed: true) }
 
   def pot_size
-    (uniq_users.count) * price
+    (users.count) * price
   end
 
   def users_classification

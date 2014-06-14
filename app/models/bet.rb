@@ -10,7 +10,11 @@ class Bet < ActiveRecord::Base
 
   ### instance methods
   def to_s
-    "#{local} - #{visitor}"
+    if local.present? && visitor.present?
+      "#{local} - #{visitor}"
+    else
+      "sin apostar"
+    end
   end
 
   def match_score

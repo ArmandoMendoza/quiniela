@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   before_save :set_nickname
 
   ### instance methods
+  def full_name
+    "#{name} #{last_name}"
+  end
+
   def create_bets_from(pool)
     Bet.create_all_bets_for(self, pool)
   end

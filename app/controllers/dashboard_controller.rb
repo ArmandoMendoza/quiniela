@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
     if current_user.regular? && @pool.present?
       @matches = @pool.matches.includes(:group).by_date(Date.today)
       @bets = @pool.bets.with_matches_by_date(Date.today)
-      @users = @pool.uniq_users
+      @users = @pool.users
       @table = @pool.users_classification
     else
       render "notice"
