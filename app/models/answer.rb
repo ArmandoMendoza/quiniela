@@ -11,6 +11,6 @@ class Answer < ActiveRecord::Base
   end
 
   def team
-    Team.find(answer_two).name
+    Team.find(answer_two).name if answer_two.present?
   end
 end
