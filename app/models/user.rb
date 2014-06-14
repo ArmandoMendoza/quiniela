@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def bets_in_pool(pool)
-    bets.where(pool_id: pool.id)
+    bets.where(pool_id: pool.id).includes(match: :group)#.order('matches.group_id')
   end
 
   def answer_of_pool(pool)

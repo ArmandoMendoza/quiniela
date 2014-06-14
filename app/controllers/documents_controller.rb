@@ -5,9 +5,9 @@ class DocumentsController < ApplicationController
     @bets = current_user.bets_in_pool(@pool)
     if @bets
       respond_to do |format|
-        format.html { render text: @bets.count }
+        format.html
         format.pdf do
-          pdf = MyBetsPdf.new
+          pdf = MyBetsPdf.new(@pool, @bets, current_user)
           send_data pdf.render
         end
       end
