@@ -1,0 +1,31 @@
+<%= index_panel("Buscador de Apuestas") do %>
+  <p>
+    <%= render "search_form" %>
+  </p>
+  <% if @bets.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Usuario</th>
+          <th>Juego</th>
+          <th>Quiniela</th>
+          <th class="center">Prediccion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bets.each do |bet| %>
+          <tr>
+            <%= td_color(bet.match.group.color) %>
+            <td><%= bet.user.nickname %></td>
+            <td><%= bet.match.to_s %></td>
+            <td><%= bet.pool.name %></td>
+            <td class="center"><%= bet.to_s %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <%=  mssg_for_empty_table %>
+  <% end %>
+<% end %>

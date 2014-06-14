@@ -1,0 +1,15 @@
+<%= search_form_for @q, url: dashboard_path, html: { class: "form-inline" } do |f| %>
+  <%= f.select :pool_id_eq, options_from_collection_for_select(@pools, 'id', 'name'),{},
+    { class: "form-control chosen-select" } %>
+  <%= f.select :match_id_eq, options_from_collection_for_select(@matches, 'id', 'to_s'),{},
+    { class: "form-control chosen-select" } %>
+  <div class="form-group">
+    <%= f.text_field :local_eq, class: "form-control center",
+      placeholder: "Marcador Local" %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :visitor_eq, class: "form-control center",
+      placeholder: "Marcador Visitante" %>
+  </div>
+  <%= f.submit "Buscar", class: "btn btn-default" %>
+<% end %>
