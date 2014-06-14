@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :answers, only: :update
 
+  get 'documents/my_bets/:pool_id', to: "documents#my_bets", as: 'documents_my_bets'
 
   post '/contact', to: 'home#contact', as: 'contacts'
   post '/registrations', to: 'home#registration', as: 'registrations'

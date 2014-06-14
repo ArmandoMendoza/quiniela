@@ -1,0 +1,7 @@
+<% @bets.each do |bet| %>
+<% bet.match.get_teams %>
+<%= bet.match.to_s %>
+<%= bet.match.final_score.to_s %>
+<%= bet.match.group.name %>
+<% end %>
+
