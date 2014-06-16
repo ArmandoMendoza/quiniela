@@ -1,4 +1,8 @@
 <%= index_panel("Mis Apuestas - #{@pool.name}") do %>
+  <div>
+    Jugador: <%= current_user.full_name %> <br>
+    Fecha: <%= Time.now.strftime("%d-%m-%Y  %H:%M") %>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -14,7 +18,7 @@
     </thead>
     <tbody>
       <% @bets.each do |bet| %>
-      <%= bet.match.get_teams %>
+      <% bet.match.get_teams %>
         <tr>
           <td><%= bet.id %></td>
           <td><%= bet.match.group.name %></td>

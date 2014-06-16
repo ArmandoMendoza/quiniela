@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :set_pool, only: [:my_bets]
+  before_action :set_pool, only: [:my_bets, :all_bets]
 
   def my_bets
     @bets = current_user.bets_in_pool(@pool).order(['matches.group_id', 'bets.pos'])
@@ -15,6 +15,22 @@ class DocumentsController < ApplicationController
       redirect_to dashboard_path, notice: "No tienes apuestas en esta quiniela - #{pool.name}"
     end
   end
+
+  def all_bets
+    @users = @pool.users
+    if @users.any?
+      respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = AllBetsPdf.new(@pool, @users)
+          send_data pdf.render, filename: "#{@pool.name}.pdf", disposition: 'inline'
+        end
+      end
+    else
+      redirect_to dashboard_path, notice: "No tienes apuestas en esta quiniela - #{pool.name}"
+    end
+  end
+
 
   private
     def set_pool

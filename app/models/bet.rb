@@ -45,6 +45,14 @@ class Bet < ActiveRecord::Base
     where(pool: pool)
   end
 
+  def self.of_user(user)
+    where(user: user)
+  end
+
+  def self.of_user_in_pool(user, pool)
+    of_user(user).of_pool(pool).includes(match: :group)
+  end
+
   def self.of_group(group)
     joins(:match).where('matches.group_id = ?', group.id).order('bets.pos')
   end
