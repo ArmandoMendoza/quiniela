@@ -1,0 +1,8 @@
+<%= form_panel(@pool.name.upcase) do %>
+  <%= link_to "Realizar Apuestas", bets_pool_path(@pool), class: "btn btn-default" %>
+  <%= link_to "Ver Resultados", results_pool_path(@pool), class: "btn btn-default" %>
+  <%= link_to "Ver Mis Apuestas", documents_my_bets_path(@pool, format: :pdf),
+    class: "btn btn-default", target: "_blank" %>
+  <%= link_to "Ver Todas las Apuestas" , documents_all_bets_path(@pool, format: :pdf),
+    class: "btn btn-default", target: "_blank" %>
+<% end %>

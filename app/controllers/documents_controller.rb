@@ -8,7 +8,8 @@ class DocumentsController < ApplicationController
         format.html
         format.pdf do
           pdf = MyBetsPdf.new(@pool, @bets, current_user)
-          send_data pdf.render, filename: "#{@pool.name}.pdf", disposition: 'inline'
+          send_data pdf.render, filename: "mis_apuestas-#{@pool.name}.pdf",
+            type: "application/pdf", disposition: 'inline'
         end
       end
     else
@@ -23,7 +24,8 @@ class DocumentsController < ApplicationController
         format.html
         format.pdf do
           pdf = AllBetsPdf.new(@pool, @users)
-          send_data pdf.render, filename: "#{@pool.name}.pdf", disposition: 'inline'
+          send_data pdf.render, filename: "todas_las_apuestas-#{@pool.name}.pdf",
+            type: "application/pdf", disposition: 'inline'
         end
       end
     else

@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :pools do
+    member do
+      get :bets
+      get :results
+    end
     resources :registrations, only: [:index, :destroy]
   end
 
