@@ -34,7 +34,7 @@ class PoolsController < ApplicationController
   def create
     @pool = Pool.new(pool_params)
     if @pool.save
-      redirect_to @pool, notice: 'Pool was successfully created.'
+      redirect_to pools_path, notice: 'Pool was successfully created.'
     else
       render :new
     end
@@ -42,7 +42,7 @@ class PoolsController < ApplicationController
 
   def update
     if @pool.update(pool_params)
-      redirect_to @pool, notice: 'Pool was successfully updated.'
+      redirect_to pools_path, notice: 'Pool was successfully updated.'
     else
       render :edit
     end
