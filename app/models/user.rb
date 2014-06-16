@@ -38,6 +38,10 @@ class User < ActiveRecord::Base
     bets.where(pool_id: pool.id).includes(match: :group)#.order('matches.group_id')
   end
 
+  def bets_in_pool_with_date(pool, date)
+    bets.joins(:match).where('matches.date = ?', date).includes(:match).where(pool: pool).order('bets.pos')
+  end
+
   def answer_of_pool(pool)
     answers.where(pool_id: pool.id).first
   end

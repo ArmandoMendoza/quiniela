@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
   def index
     if current_user.regular? && @pool.present?
       @matches = @pool.matches.includes(:group).by_date(Date.today)
-      @bets = @pool.bets.with_matches_by_date(Date.today)
+      @bets = current_user.bets_in_pool_with_date(@pool, Date.today)
       @users = @pool.users
       @table = @pool.users_classification
     else
