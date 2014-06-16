@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="pool-header">
+      <%= @pool.name %> - Resumen
+      <div class="pull-right">
+        <%= back_table_button pool_path(@pool) %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="container-widgets">
+      <div class="group-links-widget">
+        <% @groups.each do |group| %>
+          <%= link_to group.name, "#", class: "group-link btn btn-widget btn-sm #{apply_colors}", data: { id: group.id } %>
+        <% end %>
+      </div>
+      <% @groups.each do |group| %>
+        <%= render partial: "pool_results", locals: { group: group, bets: @bets.of_group(group) } %>
+      <% end %>
+    </div>
+  </div>
+</div>

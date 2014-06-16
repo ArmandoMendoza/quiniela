@@ -1,5 +1,5 @@
 class PoolsController < ApplicationController
-  before_action :set_pool, only: [:show, :edit, :update, :destroy]
+  before_action :set_pool, except: [:index, :new, :create]
   authorize_resource
 
   def index
@@ -7,8 +7,21 @@ class PoolsController < ApplicationController
   end
 
   def show
+    if current_user.regular?
+      @matches = @pool.matches.includes(:group).by_date(Date.today)
+      @bets = current_user.bets_in_pool_with_date(@pool, Date.today)
+      @users = @pool.users
+      @table = @pool.users_classification
+    end
+  end
+
+  def results
     @bets = @pool.bets.includes(:match).where(user: current_user)
     @groups = Group.includes(:teams).all
+  end
+
+  def bets
+    results
   end
 
   def new

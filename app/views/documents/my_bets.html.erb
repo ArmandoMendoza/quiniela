@@ -1,0 +1,36 @@
+<%= index_panel("Mis Apuestas - #{@pool.name}") do %>
+  <div>
+    Jugador: <%= current_user.full_name %> <br>
+    Fecha: <%= Time.now.strftime("%d-%m-%Y  %H:%M") %>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Grupo</th>
+        <th>Juego</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Resultado</th>
+        <th>Apuesta</th>
+        <th>Puntos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bets.each do |bet| %>
+      <% bet.match.get_teams %>
+        <tr>
+          <td><%= bet.id %></td>
+          <td><%= bet.match.group.name %></td>
+          <td><%= bet.match.to_s %></td>
+          <td><%= bet.match.date.strftime('%d-%m') %></td>
+          <td><%= bet.match.hour %></td>
+          <td><%= bet.match.score_to_s %></td>
+          <td><%= bet.to_s %></td>
+          <td><%= bet.points %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+

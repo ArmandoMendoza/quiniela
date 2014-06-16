@@ -10,7 +10,11 @@ class Bet < ActiveRecord::Base
 
   ### instance methods
   def to_s
-    "#{local} - #{visitor}"
+    if local.present? && visitor.present?
+      "#{local} - #{visitor}"
+    else
+      "sin apostar"
+    end
   end
 
   def match_score
@@ -39,6 +43,14 @@ class Bet < ActiveRecord::Base
 
   def self.of_pool(pool)
     where(pool: pool)
+  end
+
+  def self.of_user(user)
+    where(user: user)
+  end
+
+  def self.of_user_in_pool(user, pool)
+    of_user(user).of_pool(pool).includes(match: :group)
   end
 
   def self.of_group(group)

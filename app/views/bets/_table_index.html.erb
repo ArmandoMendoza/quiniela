@@ -26,12 +26,13 @@
         <td class="center"><%= bet.visitor %></td>
         <td><%= bet.match_time %></td>
         <td class="center">
-        <% if can? :edit, bet %>
-          <%= edit_table_button edit_bet_path(bet) %>
-        <% end %>
-        <% if can? :destroy, bet %>
-          <%= destroy_table_button bet %>
-        <% end %>
+          <% if can? :edit, bet %>
+            <%= edit_table_button edit_bet_path(bet) %>
+          <% end %>
+          <% if can? :destroy, bet %>
+            <%= destroy_table_button bet %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

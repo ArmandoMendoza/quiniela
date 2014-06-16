@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   ### relations
   has_many :bets
   has_many :answers
+  has_many :pools, -> { distinct }, through: :bets
   ### scopes
   scope :order_by_last_name, -> { order(:last_name) }
   ### validations
@@ -13,6 +14,10 @@ class User < ActiveRecord::Base
   before_save :set_nickname
 
   ### instance methods
+  def full_name
+    "#{name} #{last_name}"
+  end
+
   def create_bets_from(pool)
     Bet.create_all_bets_for(self, pool)
   end
@@ -29,6 +34,14 @@ class User < ActiveRecord::Base
     role == "regular"
   end
 
+  def bets_in_pool(pool)
+    bets.where(pool_id: pool.id).includes(match: :group)#.order('matches.group_id')
+  end
+
+  def bets_in_pool_with_date(pool, date)
+    bets.joins(:match).where('matches.date = ?', date).includes(:match).where(pool: pool).order('bets.pos')
+  end
+
   def answer_of_pool(pool)
     answers.where(pool_id: pool.id).first
   end
@@ -38,9 +51,7 @@ class User < ActiveRecord::Base
   end
 
   def active_pools
-    ##get uniq ids of pool of my bets
-    pool_ids = bets.pluck(:pool_id).uniq
-    Pool.active.where(id: pool_ids)
+    pools.active
   end
 
   def last_active_pool

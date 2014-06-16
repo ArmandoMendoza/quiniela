@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'User Resource' do
+describe 'Pool Resource' do
   before do
     @admin = User.make!(:admin)
     3.times { Pool.make! }
@@ -19,21 +19,48 @@ describe 'User Resource' do
   end
 
   describe "show" do
-    pending
+    before do
+      @user = User.make!(:regular)
+    end
+    describe "pool belong to user" do
+      it "should show a resume of pool" do
+        pool = Pool.make!
+        pool.matches.each do |m|
+          Bet.make!(user: @user, pool: pool, match: m)
+        end
+        login(@user)
+        visit pool_path(@pool)
+        expect(current_path).to eq(pool_path(@pool))
+      end
+    end
+
+    describe "pool don't belong to user" do
+      before do
+        @pool = Pool.make!
+      end
+      it "should show a resume of pool" do
+        login(@user)
+        visit pool_path(@pool)
+        expect(current_path).to eq(pool_path(@pool))
+      end
+    end
   end
 
   describe "new/create" do
     it "should show a form to create a new pool" do
       3.times { Match.make! }
+      Pool.delete_all
       login(@admin)
       visit new_pool_path
       within("form") do
         fill_in "pool_name", with: "Quiniela Test"
+        fill_in "pool_end_date", with: "2014-06-31"
+        fill_in "pool_price", with: 1000
         select Match.first.to_s, from: "pool_match_ids"
         select Match.last.to_s, from: "pool_match_ids"
         click_submit_button
-        expect(Match.last.name).to eq("Quiniela Test")
-        expect(Match.last).to have(2).matches
+        expect(Pool.last.name).to eq("Quiniela Test")
+        expect(Pool.last).to have(2).matches
       end
     end
   end
@@ -46,7 +73,7 @@ describe 'User Resource' do
       within("form") do
         fill_in "pool_name", with: "Super Quiniela"
         click_submit_button
-        user.reload
+        pool.reload
         expect(pool.name).to eq("Super Quiniela")
       end
     end

@@ -41,6 +41,12 @@ module ApplicationHelper
     end
   end
 
+  def back_table_button(url = :back)
+    link_to url, class: "btn btn-default btn-xs" do
+      content_tag(:span, nil, class: "glyphicon glyphicon-arrow-left")
+    end
+  end
+
   def check_string(string)
     string.present? ? string : content_tag(:span, "no suministro", class: "text-danger")
   end

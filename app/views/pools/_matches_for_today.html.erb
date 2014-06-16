@@ -19,7 +19,7 @@
         <td>
           <span><%= match.local.abbr %></span>
             <%= flag(match.local) %>
-          <span><%= match.final_score.try(:to_s) || "por jugar" %></span>
+          <span><%= match.score_to_s %></span>
             <%= flag(match.visitor) %>
           <span><%= match.visitor.abbr %></span>
         </td>
