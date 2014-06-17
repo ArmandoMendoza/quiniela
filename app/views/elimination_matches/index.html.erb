@@ -1,14 +1,11 @@
 <div id="score-remote-form" style="display:none"></div>
 
-<%= index_panel("Partidos de Clasificacion", can?(:create, Match), new_match_path,
-  dashboard_path) do %>
-  <% if @matches.any? %>
+<%= index_panel("Partidos de Eliminacion", can?(:create, EliminationMatch), new_elimination_match_path, dashboard_path) do %>
+  <% if @elimination_matches.any? %>
     <table class="table sorted" id="matches-table">
       <thead>
         <tr>
-          <th></th>
           <th data-sort="int"><%= link_to "#", "#" %></th>
-          <th data-sort="string"><%= link_to "Grupo", "#" %></th>
           <th data-sort="date"><%= link_to "Fecha", "#" %></th>
           <th>Hora</th>
           <th>Juego</th>
@@ -20,11 +17,9 @@
         </tr>
       </thead>
       <tbody>
-        <% @matches.each do |match| %>
+        <% @elimination_matches.each do |match| %>
           <tr>
-            <%= td_color(match.group.color) %>
             <td><%= match.match_number %></td>
-            <td><%= match.group.name %></td>
             <td><%= match.date.strftime('%d-%m-%Y') %></td>
             <td><%= match.hour %></td>
             <td><%= match.to_s %></td>
@@ -32,13 +27,7 @@
             <td id="match-score-<%= match.id %>"><%= match.score_to_s %></td>
             <% if current_user.admin? %>
               <td>
-                <% if match.played? %>
-                  <%= link_to_change_result edit_match_score_path(match, match.final_score), match.id %>
-                <% else %>
-                  <%= link_to_change_result new_match_score_path(match), match.id %>
-                <% end %>
-                <%= link_to_results match_scores_path(match) %>
-                <%= edit_table_button edit_match_path(match) %>
+                <%= edit_table_button edit_elimination_match_path(match) %>
                 <%= destroy_table_button match %>
               </td>
             <% end %>

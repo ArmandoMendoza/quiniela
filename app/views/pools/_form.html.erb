@@ -7,7 +7,9 @@
   <%= f.input :completed %>
   <%= f.input :stopped %>
   <%= f.input :match_ids, collection: Match.all,
-    input_html: { class: "multiselect", multiple: true } %>
+    input_html: { id: "multiselect-matches", multiple: true } %>
+  <%= f.input :elimination_match_ids, collection: EliminationMatch.all,
+    input_html: { id: "multiselect-e-matches", multiple: true } %>
   <%= f.button :submit, class: "btn btn-success" %>
   <%= link_to "Volver", pools_path, class: "btn btn-default" %>
 <% end %>

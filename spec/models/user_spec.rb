@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe User do
   it { should have_many(:bets) }
+  it { should have_many(:elimination_bets) }
   it { should have_many(:answers)}
 
   describe "Callbacks" do

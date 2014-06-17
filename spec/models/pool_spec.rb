@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Pool do
   it { should have_and_belong_to_many(:matches) }
+  it { should have_and_belong_to_many(:elimination_matches) }
+  it { should have_many(:elimination_bets) }
   it { should have_many(:bets) }
   it { should have_many(:answers) }
   it { should have_many(:registrations) }

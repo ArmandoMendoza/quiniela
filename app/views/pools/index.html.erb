@@ -4,7 +4,8 @@
       <thead>
         <tr>
           <th>Nombre</th>
-          <th>Partidos</th>
+          <th>Partidos de Clas.</th>
+          <th>Partidos de Elim.</th>
           <th>Limite</th>
           <th>Detenida</th>
           <th>Completada</th>
@@ -16,6 +17,7 @@
           <tr>
             <td><%= pool.name %></td>
             <td><%= pool.matches.count %></td>
+            <td><%= pool.elimination_matches.count %></td>
             <td><%= pool.end_date %></td>
             <td><%= pool.stopped %></td>
             <td><%= pool.completed %></td>

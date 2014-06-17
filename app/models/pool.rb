@@ -1,7 +1,9 @@
 class Pool < ActiveRecord::Base
   ### relations
   has_and_belongs_to_many :matches
+  has_and_belongs_to_many :elimination_matches
   has_many :bets, dependent: :delete_all
+  has_many :elimination_bets, dependent: :delete_all
   has_many :answers, dependent: :delete_all
   has_many :registrations
   has_many :users, -> { distinct }, through: :bets

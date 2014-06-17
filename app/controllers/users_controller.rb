@@ -49,6 +49,7 @@ class UsersController < ApplicationController
     if params[:pool_id]
       pool = Pool.active.find(params[:pool_id])
       @user.create_bets_from(pool)
+      @user.create_elimination_bets_from(pool)
       @user.create_answer_for(pool)
       redirect_to @user, notice: "Apuestas creadas con exito!"
     else
@@ -58,8 +59,9 @@ class UsersController < ApplicationController
 
   def destroy_bets
     if params[:pool_id]
-      pool = @user.pools.find(params[:pool_id])
+      pool = @user.find_pool(params[:pool_id])
       @user.delete_bets_of_pool(pool)
+      @user.delete_elimination_bets_of_pool(pool)
       @user.delete_anwser_of_pool(pool)
       redirect_to @user, notice: "Apuestas Eliminadas con exito!"
     else

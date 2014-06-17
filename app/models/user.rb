@@ -3,8 +3,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :rememberable, :trackable, :validatable
   ### relations
   has_many :bets, dependent: :delete_all
+  has_many :elimination_bets, dependent: :delete_all
   has_many :answers, dependent: :delete_all
   has_many :pools, -> { distinct }, through: :bets
+  has_many :e_pools, -> { distinct }, through: :elimination_bets, source: :pool
+
   ### scopes
   scope :order_by_last_name, -> { order(:last_name) }
   ### validations
@@ -22,8 +25,12 @@ class User < ActiveRecord::Base
     Bet.create_all_bets_for(self, pool)
   end
 
+  def create_elimination_bets_from(pool)
+    EliminationBet.create_all_bets_for(self, pool)
+  end
+
   def create_answer_for(pool)
-    Answer.create(pool: pool, user: self)
+    Answer.create_answer_for(self, pool)
   end
 
   def admin?
@@ -36,6 +43,10 @@ class User < ActiveRecord::Base
 
   def bets_in_pool(pool)
     bets.where(pool_id: pool.id).includes(match: :group)#.order('matches.group_id')
+  end
+
+  def elimination_bets_in_pool(pool)
+    elimination_bets.where(pool_id: pool.id).includes(:match)#.order('matches.group_id')
   end
 
   def bets_in_pool_with_date(pool, date)
@@ -51,7 +62,17 @@ class User < ActiveRecord::Base
   end
 
   def active_pools
-    pools.active
+   (pools.active + e_pools.active).uniq
+  end
+
+  def all_pools
+    (pools + e_pools).uniq
+  end
+
+  def find_pool(id)
+    pool = pools.where(id: id)
+    e_pool = e_pools.where(id: id)
+    (pool + e_pool).first
   end
 
   def last_active_pool
@@ -60,6 +81,10 @@ class User < ActiveRecord::Base
 
   def delete_bets_of_pool(pool)
     bets_in_pool(pool).delete_all
+  end
+
+  def delete_elimination_bets_of_pool(pool)
+    elimination_bets_in_pool(pool).delete_all
   end
 
   def delete_anwser_of_pool(pool)

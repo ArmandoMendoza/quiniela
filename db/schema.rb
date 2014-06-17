@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140613205142) do
+ActiveRecord::Schema.define(version: 20140617191132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,41 @@ ActiveRecord::Schema.define(version: 20140613205142) do
   add_index "bets", ["match_id"], name: "index_bets_on_match_id", using: :btree
   add_index "bets", ["pool_id"], name: "index_bets_on_pool_id", using: :btree
   add_index "bets", ["user_id"], name: "index_bets_on_user_id", using: :btree
+
+  create_table "elimination_bets", force: true do |t|
+    t.integer  "local"
+    t.integer  "visitor"
+    t.string   "local_name"
+    t.string   "visitor_name"
+    t.integer  "user_id"
+    t.integer  "pool_id"
+    t.integer  "elimination_match_id"
+    t.boolean  "completed",            default: false
+    t.integer  "points",               default: 0
+    t.integer  "pos"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "elimination_matches", force: true do |t|
+    t.date     "date"
+    t.string   "hour"
+    t.string   "stadium"
+    t.integer  "local_team_id"
+    t.integer  "visitor_team_id"
+    t.integer  "visitor"
+    t.integer  "local"
+    t.string   "match_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "elimination_matches_pools", id: false, force: true do |t|
+    t.integer "elimination_match_id", null: false
+    t.integer "pool_id",              null: false
+  end
+
+  add_index "elimination_matches_pools", ["elimination_match_id", "pool_id"], name: "elimination_pool_index", using: :btree
 
   create_table "groups", force: true do |t|
     t.string   "name"

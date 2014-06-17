@@ -1,7 +1,10 @@
 jQuery ->
-  $('.multiselect').multiSelect
-    selectableHeader: "<div class='multiselect-header'>Partidos</div>",
-    selectionHeader: "<div class='multiselect-header'>Partidos en Quiniela</div>",
+  $('#multiselect-matches').multiSelect
+    selectableHeader: "<div class='multiselect-header'>Partidos</div>"
+    selectionHeader: "<div class='multiselect-header'>Partidos en Quiniela</div>"
+  $('#multiselect-e-matches').multiSelect
+    selectableHeader: "<div class='multiselect-header'>Partidos de Eliminacion</div>"
+    selectionHeader: "<div class='multiselect-header'>Partidos en Quiniela</div>"
   $('.chosen-select').chosen()
   $('.timepicker').ptTimeSelect()
   $('.datepicker').Zebra_DatePicker

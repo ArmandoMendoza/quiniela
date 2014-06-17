@@ -23,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @user.pools.each do |pool| %>
+        <% @user.all_pools.each do |pool| %>
         <tr>
           <td><%= pool.name %></td>
           <td class="center">

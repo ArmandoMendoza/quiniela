@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     resources :scores, except: :show
   end
 
+  resources :elimination_matches, except: :show
+
   resources :groups, except: :show
 
   resources :answers, only: :update
