@@ -9,13 +9,14 @@ class EliminationMatch < ActiveRecord::Base
   scope :by_date, ->(time) { where(date: time) }
   ### validations
   validates_presence_of :stadium, :date, :hour, :match_number
-
+  ### Callbacks
+  after_update :calculate_points_of_bets
   ###instance methods
 
   def to_s
     if local_team_id.present? && visitor_team_id.present?
       get_teams
-      "#{local_team.name} vs #{visitor_team.name}"
+      "#{local_name} vs #{visitor_name}"
     else
       "Partido #{match_number}"
     end
@@ -29,12 +30,39 @@ class EliminationMatch < ActiveRecord::Base
     end
   end
 
+  def local_name
+    local_team.name
+  end
+
+  def visitor_name
+    visitor_team.name
+  end
+
   def score_to_s
     played? ? "#{local} - #{visitor}" : "por jugar"
   end
 
-  def played?
-    local.present? && visitor.present?
+  def result_to_s
+    played? ? check_result : nil
   end
+
+  def played?
+    local.present? && visitor.present? && local_team_id.present? && visitor_team_id.present?
+  end
+
+  private
+    def check_result
+      if local > visitor
+        local_name
+      elsif visitor > local
+        visitor_name
+      elsif local == visitor
+        'draw'
+      end
+    end
+
+    def calculate_points_of_bets
+      elimination_bets.each(&:calculate_and_set_points) if elimination_bets.any?
+    end
 
 end

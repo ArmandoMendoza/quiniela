@@ -1,0 +1,12 @@
+<%= form_panel("Editar Apuesta") do %>
+  <%= simple_form_for @elimination_bet do |f| %>
+  <%= f.input :local_name, collection: Team.all, label_method: :name, value_method: :name,
+    input_html: { class: 'chosen-select', data: { placeholder: "Seleccione Equipo"}  } %>
+  <%= f.input :visitor_name, collection: Team.all, label_method: :name, value_method: :name,
+    input_html: { class: 'chosen-select', data: { placeholder: "Seleccione Equipo"}  } %>
+    <%= f.input :local %>
+    <%= f.input :visitor %>
+    <%= f.submit class: "btn btn-success"  %>
+    <%= link_to "Volver", elimination_bets_path, class: "btn btn-default" %>
+  <% end %>
+<% end %>

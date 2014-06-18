@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   end
 
   resources :elimination_matches, except: :show
+  resources :elimination_bets, except: :show
+
 
   resources :groups, except: :show
 

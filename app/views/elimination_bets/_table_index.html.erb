@@ -1,0 +1,41 @@
+<table class="table sorted" id="bets-table">
+  <thead>
+    <tr>
+      <th data-sort="int"><%= link_to "#", "#" %></th>
+      <th data-sort="string"><%= link_to "Quinela", "#" %></th>
+      <% if current_user.admin? %>
+        <th data-sort="string"><%= link_to "Usuario", "#" %></th>
+      <% end %>
+      <th>Juego</th>
+      <th>Resultado</th>
+      <th>Prediccion</th>
+      <th>Resultado</th>
+      <th>Puntos</th>
+      <th class="center">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @elimination_bets.each do |bet| %>
+      <tr>
+        <td><%= bet.elimination_match.match_number %></td>
+        <td><%= bet.pool.name %></td>
+        <% if current_user.admin? %>
+          <td><%= bet.user.full_name %></td>
+        <% end %>
+        <td><%= bet.elimination_match.to_s %></td>
+        <td><%= bet.elimination_match.score_to_s %></td>
+        <td><%= bet.to_s %></td>
+        <td><%= bet.score_to_s %></td>
+        <td><%= bet.points %></td>
+        <td class="center">
+          <% if can? :edit, bet %>
+            <%= edit_table_button edit_elimination_bet_path(bet) %>
+          <% end %>
+          <% if can? :destroy, bet %>
+            <%= destroy_table_button bet %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
