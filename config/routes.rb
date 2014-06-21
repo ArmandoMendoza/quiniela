@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
 
   authenticated :user do
-    root 'dashboard#index'
+    root 'dashboard#index', as: 'authenticated_root'
   end
 
   root 'home#index'
