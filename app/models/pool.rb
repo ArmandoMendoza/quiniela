@@ -1,22 +1,35 @@
 class Pool < ActiveRecord::Base
   ### relations
   has_and_belongs_to_many :matches
-  has_many :bets
-  has_many :answers
-  has_many :registers
-  has_many :users, through: :bets
+  has_many :bets, dependent: :delete_all
+  has_many :answers, dependent: :delete_all
+  has_many :registrations
+  has_many :users, -> { distinct }, through: :bets
   ### validations
-  validates_presence_of :name, :end_date, :price
+  validates_presence_of :name, :end_date, :price, :pot_percentage
   ### scopes
   scope :active, -> { where(completed: false) }
   scope :inactive, -> { where(completed: true) }
 
-  def uniq_users
-    users.distinct
-  end
-
+  ## instance methods
   def pot_size
-    (uniq_users.count) * price
+    (users.count * price) * (pot_percentage / 100)
   end
 
+  def users_classification
+    classification = {}
+    users.each do |user|
+      classification[user.nickname] = user.total_points_in_pool(self)
+    end
+    Hash[classification.sort_by{|k,v| v}.reverse]
+  end
+
+  ## class methods
+    def self.active_for_user(user)
+      array_pool = all.to_a
+      user.pools.each do |user_pool|
+        array_pool.delete(user_pool)
+      end
+      array_pool
+    end
 end

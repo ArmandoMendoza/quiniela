@@ -4,8 +4,17 @@ describe User do
   it { should have_many(:bets) }
   it { should have_many(:answers)}
 
-  describe "instance methods" do
+  describe "Callbacks" do
+    describe "#set_nickname" do
+      it "should set a nickname from the name if nickname is not set" do
+        user = User.make(:regular, name: "Armando", last_name: "Mendoza", nickname: nil)
+        user.save
+        expect(user.nickname).to eq("armando_mendoza")
+      end
+    end
+  end
 
+  describe "instance methods" do
     describe "#total_points_in_pool" do
       it "return the total bet's points of user in a given pool" do
         user = User.make!(:regular)

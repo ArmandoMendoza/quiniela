@@ -1,26 +1,34 @@
+<% if current_user.regular? %>
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div class="container-widgets">
-      <div class="group-links-widget">
-        <% @groups.each do |group| %>
-          <%= link_to group.name, "#", class: "group-link btn btn-widget btn-sm #{apply_colors}", data: { id: group.id } %>
-        <% end %>
+  <div class="col-md-8">
+    <%= render "options_panel" %>
+    <% unless @matches.nil? %>
+      <%= render partial: "matches_for_today", locals: { matches: @matches } %>
+    <% end %>
+    <% unless @bets.nil? %>
+      <%= render partial: "bets_for_today", locals: { bets: @bets } %>
+    <% end %>
+    <div class="info-container">
+      <div class="dashboard-info">
+        <div class="description">PARTICIPANTES</div>
+        <div class="info"><span><%= @users.count %></span></div>
       </div>
-
-      <% @groups.each do |group| %>
-        <%= render partial: "pool_bets", locals: { group: group, bets: @bets.of_group(group) } %>
-      <% end %>
-
-
+      <div class="dashboard-info">
+        <div class="description">POTE EN BS.</div>
+        <div class="info">
+          <span><%= number_with_precision(@pool.pot_size, separator: ',', delimiter: '.') %></span>
+        </div>
+      </div>
+      <div class="dashboard-info">
+        <div class="description">MI POSICIÓN</div>
+        <div class="info">
+          <span><%= position_in_classification(@table, current_user.nickname) %></span>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="col-md-4">
+    <%= render partial: "clasification", locals: { classification: @table } %>
   </div>
 </div>
-<% if current_user.answer_of_pool(@pool).present? %>
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="container-widgets" style="text-align: left">
-        <%= render partial: "answers_form", locals: { answer: current_user.answer_of_pool(@pool) } %>
-      </div>
-    </div>
-  </div>
 <% end %>

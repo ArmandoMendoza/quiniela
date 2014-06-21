@@ -1,19 +1,24 @@
 require 'machinist/active_record'
+require 'faker'
 
 User.blueprint(:admin) do
- name { "Admin" }
- email { "admin#{sn}@app.com" }
- role { "admin" }
- password { "12345678" }
- password_confirmation { "12345678" }
+  name { "Admin" }
+  last_name { "Application" }
+  nickname { Faker::Internet.user_name }
+  email { "admin#{sn}@app.com" }
+  role { "admin" }
+  password { "12345678" }
+  password_confirmation { "12345678" }
 end
 
 User.blueprint(:regular) do
- name { "Regular" }
- email { "regular#{sn}@app.com" }
- role { "regular" }
- password { "12345678" }
- password_confirmation { "12345678" }
+  name { "Regular" }
+  last_name { "Application" }
+  nickname { Faker::Internet.user_name }
+  email { "regular#{sn}@app.com" }
+  role { "regular" }
+  password { "12345678" }
+  password_confirmation { "12345678" }
 end
 
 Group.blueprint do
@@ -21,7 +26,7 @@ Group.blueprint do
 end
 
 Group.blueprint(:with_teams) do
-  name { "Group #{sm}" }
+  name { "Group #{sn}" }
   teams(4)
 end
 
@@ -37,6 +42,7 @@ Match.blueprint do
   stadium { "Stadium #{sn}" }
   local_team_id { Team.make!.id }
   visitor_team_id { Team.make!.id }
+  match_number { Faker::Number.digit  }
 end
 
 Score.blueprint do
@@ -51,6 +57,7 @@ Pool.blueprint do
   end_date { Date.today + 80 }
   completed { false }
   price { 2000 }
+  pot_percentage { 90 }
   matches(5)
 end
 
@@ -69,4 +76,13 @@ Answer.blueprint do
   answer_two { "incorrect" }
   user
   pool
+end
+
+Registration.blueprint do
+  name { "Registration #{sn}" }
+  last_name { "Application" }
+  nickname { Faker::Internet.user_name }
+  phone { '0414-3761125' }
+  email { "register#{sn}@gmail.com" }
+  pool { Pool.make! }
 end

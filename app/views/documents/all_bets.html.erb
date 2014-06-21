@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todas las Predicciones - <%= @pool.name %></title>
+  </head>
+  <body>
+    <div style="text-align: center; font-size: 18px;">
+      <b>Todas las Predicciones - <%= @pool.name %></b>
+    </div>
+    <% @users.each do |user| %>
+      <div>
+        Jugador: <b><%= "#{user.full_name} - #{user.nickname}" </b> <br>
+        Fecha: <b><%= Time.now.strftime("%d-%m-%Y  %H:%M") %></b><br>
+        Goleador del Mundial: <b><%= user.answers.on_pool(@pool).player %></b> <br>
+        Equipo Ganador: <b><%= user.answers.on_pool(@pool).team %></b>
+      </div>
+
+      <table class="table" style="font-size: 14px">
+        <thead>
+          <tr style="text-align: center">
+            <th style="padding: 10px 20px">Id</th>
+            <th style="padding: 10px 20px">Grupo</th>
+            <th style="padding: 10px 20px">Juego</th>
+            <th style="padding: 10px 20px">Fecha</th>
+            <th style="padding: 10px 20px">Hora</th>
+            <th style="padding: 10px 20px">Resultado</th>
+            <th style="padding: 10px 20px">Apuesta</th>
+            <th style="padding: 10px 20px">Puntos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Bet.of_user_in_pool(user, @pool).order(['matches.group_id', 'bets.pos']).each do |bet| %>
+          <% bet.match.get_teams %>
+            <tr style="text-align: center">
+              <td><%= bet.id %></td>
+              <td><%= bet.match.group.name %></td>
+              <td><%= bet.match.to_s %></td>
+              <td><%= bet.match.date.strftime('%d-%m') %></td>
+              <td><%= bet.match.hour %></td>
+              <td><%= bet.match.score_to_s %></td>
+              <td><%= bet.to_s %></td>
+              <td><%= bet.points %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <div style="page-break-after:always"></div>
+    <% end %>
+  </body>
+</html>

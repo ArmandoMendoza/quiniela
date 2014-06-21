@@ -10,7 +10,11 @@ class Bet < ActiveRecord::Base
 
   ### instance methods
   def to_s
-    "#{local} - #{visitor}"
+    if local.present? && visitor.present?
+      "#{local} - #{visitor}"
+    else
+      "sin apostar"
+    end
   end
 
   def match_score
@@ -31,6 +35,7 @@ class Bet < ActiveRecord::Base
     pool.matches.each do |match|
       attributes = {pool: pool, match: match, user: user}
       unless exists?(attributes)
+        attributes[:pos] = match.match_number.gsub(/[^\d]/, '').to_i
         create(attributes)
       end
     end
@@ -40,12 +45,20 @@ class Bet < ActiveRecord::Base
     where(pool: pool)
   end
 
+  def self.of_user(user)
+    where(user: user)
+  end
+
+  def self.of_user_in_pool(user, pool)
+    of_user(user).of_pool(pool).includes(match: :group)
+  end
+
   def self.of_group(group)
-    joins(:match).where('matches.group_id = ?', group.id).order('matches.match_number')
+    joins(:match).where('matches.group_id = ?', group.id).order('bets.pos')
   end
 
   def self.with_matches_by_date(time)
-    joins(:match).where('matches.date = ?', time).order('matches.match_number')
+    joins(:match).where('matches.date = ?', time).order('bets.pos')
   end
 
   private

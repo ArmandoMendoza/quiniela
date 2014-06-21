@@ -1,35 +1,33 @@
-<h1>Listing scores</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Periodo</th>
-      <th><%= @match.local.name %></th>
-      <th><%= @match.visitor.name %></th>
-      <th colspan="3">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @scores.each do |score| %>
-      <tr>
-        <td><%= score.match_time %></td>
-        <td><%= score.local %></td>
-        <td><%= score.visitor %></td>
-        <% if can? :edit, score %>
-          <td><%= link_to 'Edit', [:edit, @match, score] %></td>
+<%= index_panel("Registros", can?(:create, Score), new_match_score_path(@match), matches_path) do %>
+  <% if @scores.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Periodo</th>
+          <th class="center"><%= @match.local.name %></th>
+          <th class="center"><%= @match.visitor.name %></th>
+          <th class="center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @scores.each do |score| %>
+          <tr>
+            <td><%= score.match_time %></td>
+            <td class="center"><%= score.local %></td>
+            <td class="center"><%= score.visitor %></td>
+            <td class="center">
+              <% if can? :edit, score %>
+                <%= edit_table_button [:edit, @match, score] %>
+              <% end %>
+              <% if can? :destroy, score %>
+                <%= destroy_table_button [@match, score] %>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-        <% if can? :destroy, score %>
-          <td><%= link_to 'Destroy', [@match, score], method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if can? :create, Score %>
-  <%= link_to 'New Score', new_match_score_path(@match) %>
+      </tbody>
+    </table>
+  <% else %>
+    <%=  mssg_for_empty_table %>
+  <% end %>
 <% end %>
-
-<%= link_to 'Partidos', matches_path %>
-

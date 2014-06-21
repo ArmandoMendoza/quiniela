@@ -1,14 +1,15 @@
 <%= simple_form_for(@user) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :name %>
-  <%= f.input :phone %>
-  <%= f.input :email %>
+  <%= f.input :name, disabled: current_user.regular? %>
+  <%= f.input :last_name, disabled: current_user.regular? %>
+  <%= f.input :nickname, disabled: current_user.regular?  %>
+  <%= f.input :phone, disabled: current_user.regular? %>
+  <%= f.input :email, disabled: current_user.regular? %>
   <%= f.input :password %>
   <%= f.input :password_confirmation %>
   <% if current_user.admin? %>
     <%= f.input :role, collection: ["admin", "regular"], input_html: { class: "chosen-select" } %>
   <% end %>
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <%= f.button :submit, class: "btn btn-success" %>
+  <%= link_to "Volver", users_path, class: "btn btn-default" %>
 <% end %>

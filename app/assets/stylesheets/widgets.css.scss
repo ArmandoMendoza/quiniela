@@ -7,7 +7,7 @@
   padding: 10px;
   border: 1px solid #C6C6C5;
   border-radius: 3px 3px 3px 3px;
-  text-align: center;
+  // text-align: center;
   margin-bottom: 30px;
   // width: 960px;
   .answer {
@@ -17,149 +17,163 @@
 }
 .group-links-widget {
   margin: 10px 0 20px 0;
+  text-align: center;
 }
-
-.matches-widget {
-  display: inline-block;
-  margin-right: 15px;
+.group-table-widget {
+  padding-left: 30px;
   table {
-    font-size: 16px;
-    border: 1px solid $gris_b;
-    border-radius: 3px 3px 3px 3px;
-    tr.odd { background-color: #FFFFFF }
-    tr.even { background-color: $gris_a }
-    ul {
-      padding: 0;
-      margin: 0;
-      li {
-        list-style: none;
-        padding: 0 0 0 0;
-        margin: 0;
-        text-align: center;
-      }
-    }
-    .score {
-      display: inline-block;
-      background-color: #FFFFFF;
-      border: solid 1px $gris_b;
-      font-size: 14px;
-      padding: 0 10px 3px 10px;
-    }
-    .header-widget { background-color: $gris_a }
-    .header-widget > td {
-      font-size: 14px;
-      padding: 8px 15px;
-      border: 1px solid $gris_b;
-      text-align: center;
-      &:first-child {
-        color: #FFFFFF;
-        background-color: $rojo;
-        font-weight: 900;
-        font-size: 52px;
-        padding: 0 20px;
-      }
-      .result { font-weight: 900 }
-    }
-    .sub-header-widget { background-color: $gris_a }
-    .sub-header-widget > td {
-      font-size: 14px;
-      text-align: center;
-      border: 1px solid $gris_b;
-      padding: 5px 0;
-    }
-    .row-widget > td {
-      font-size: 12px;
-      padding: 5px;
-      border-left: solid 1px $gris_b;
-      text-align: center;
-      .li-team {
-        width: 100%;
-        padding: 5px 0;
-        .flag {
-          display: inline-block;
-        }
-        .team {
-          display: inline-block;
-          text-align: center;
-          width: 30px;
-        }
-      }
-      .li-bet {
-        width: 100%;
-        padding: 5px 0;
-        .flag {
-          display: inline-block;
-        }
-        .team {
-          display: inline-block;
-          text-align: center;
-          width: 60px;
-          font-weight: 600;
-          font-size: 18px;
-        }
-        .field {
-          margin: 0 10px;
-          display: inline-block;
-        }
-      }
-    }
-    .row-widget .ptos { background-color: #008D36 }
-    .input-bet {
-      font-size: 16px;
-      font-weight: 600;
-      width: 25px;
-      background-color: #FFFFFF;
-      text-align: center;
-      border: solid 1px $gris_b;
-    }
+    display: inline-block;
+    margin: 0px 10px;
   }
 }
 
-.classification-widget {
-  display: inline-block;
-  table {
-    font-size: 16px;
-    border: 1px solid $gris_b;
-    border-radius: 3px 3px 3px 3px;
-    tr.odd { background-color: #FFFFFF }
-    tr.even { background-color: $gris_a }
-    ul {
-      padding: 0;
+table.matches-widget {
+  font-size: 16px;
+  border: 1px solid $gris_b;
+  tr.odd { background-color: #FFFFFF }
+  tr.even { background-color: $gris_a }
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style: none;
+      padding: 0 0 0 0;
       margin: 0;
-      li {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+      text-align: center;
+    }
+  }
+  .score {
+    display: inline-block;
+    background-color: #FFFFFF;
+    border: solid 1px $gris_b;
+    font-size: 14px;
+    padding: 0 10px 3px 10px;
+  }
+  .header-widget { background-color: $gris_a }
+  .header-widget > td {
+    font-size: 14px;
+    padding: 8px 15px;
+    border-bottom: 1px solid $gris_b;
+    text-align: center;
+    &:first-child {
+      color: #FFFFFF;
+      font-weight: 900;
+      font-size: 52px;
+      padding: 0 20px;
+    }
+    .result { font-weight: 900 }
+  }
+  .sub-header-widget { background-color: $gris_a }
+  .sub-header-widget > td {
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 1px solid $gris_b;
+    padding: 5px 0;
+    &:first-child {
+      border-right: 1px solid $gris_b;
+    }
+  }
+  .row-widget > td {
+    font-size: 12px;
+    padding: 5px;
+    text-align: center;
+    &:first-child {
+      border-right: 1px solid $gris_b;
+    }
+    .li-team {
+      width: 100%;
+      padding: 5px 0;
+      .flag {
+        display: inline-block;
+      }
+      .team {
+        display: inline-block;
         text-align: center;
+        width: 30px;
       }
     }
-    span {
-      background-color: #FFFFFF;
-      padding: 2px 10px;
-      font-weight: 900;
+    .li-bet {
+      width: 100%;
+      padding: 5px 0;
+      .flag {
+        display: inline-block;
+      }
+      .team {
+        display: inline-block;
+        text-align: center;
+        width: 60px;
+        font-weight: 600;
+        font-size: 18px;
+      }
+      .field {
+        margin: 0 10px;
+        display: inline-block;
+      }
     }
-    .header-widget { background-color: #ECECEC }
-    .header-widget > td:first-child {
-      background-color: #DB5A30;
-      color: #FFFFFF;
+  }
+  .row-widget .ptos { background-color: #008D36 }
+  .input-bet {
+    font-size: 16px;
+    font-weight: 600;
+    width: 25px;
+    background-color: #FFFFFF;
+    text-align: center;
+    border: solid 1px $gris_b;
+  }
+}
+
+table.classification-widget {
+  font-size: 16px;
+  tbody {
+    border: 1px solid $gris_b;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style: none;
       padding: 0;
-      font-size: 42px;
-    }
-    .header-widget > td {
-      padding: 12px;
-      border: 1px solid #C6C6C5;
+      margin: 0;
       text-align: center;
-      font-size: 18px;
-      font-weight: 900;
     }
-    .row-team > td:first-child {
-      font-weight: normal;
-    }
-    .row-team > td {
-      padding: 5px 15px;
-      text-align: center;
-      font-weight: 900;
-      border-left: solid 1px $gris_c;
-    }
+  }
+  span {
+    background-color: #FFFFFF;
+    padding: 2px 10px;
+    font-weight: 900;
+  }
+  .header-widget { background-color: #ECECEC }
+  .header-widget > td:first-child {
+    color: #FFFFFF;
+    padding: 0;
+    font-size: 42px;
+  }
+  .header-widget > td {
+    padding: 16px;
+    border-bottom: 1px solid $gris_b;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+  }
+  .row-team > td:first-child {
+    font-weight: normal;
+  }
+  .row-team > td {
+    padding: 5px 15px;
+    text-align: center;
+    font-weight: 900;
+    border-bottom: 1px solid $gris_b;
+  }
+  .teams-classified {
+    font-size: 38px;
+    font-weight: 900;
+  }
+  .row-classified {
+    border-left: 1px solid $gris_b;
+    border-right: 1px solid $gris_b;
+  }
+  //temporal
+  td.fake-space {
+    height: 120px;
   }
 }

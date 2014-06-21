@@ -1,8 +1,18 @@
 jQuery ->
-  $('div#div-container > div.group').first().show()
+
+  ### Bind a formulario para capturar eventos ajax ####
+  if $('form.edit_bet').length > 0
+    $('form.edit_bet').bind "ajax:beforeSend", (evt, xhr, settings) ->
+      form = $(this)
+      form.find('.input-bet').css('background-color', '#f2dede')
+
+  $('div.group').first().show()
 
   $('.group-link').click (e)->
+    e.preventDefault()
     id = $(this).data('id')
+    if $('.input-bet').length > 0
+      calculate($("div.group#g#{id}"))
     prev = $('div.group').not(':hidden').data('id')
     if prev < id
       directions = { prev: "right", curr: "left" }
@@ -12,7 +22,7 @@ jQuery ->
       return
     $('div.group').not(':hidden').toggle 'slide', { direction: directions.prev }, 'fast', ->
       $("#g#{id}").show('slide', { direction: directions.curr }, 'fast')
-    e.preventDefault()
+    false
 
   ###### Calculate points #######
   class Team
@@ -36,7 +46,11 @@ jQuery ->
       @teams = []
     orderedTeams: ->
       @teams.sort (a, b)->
-        b.points - a.points
+        avG = a.goles_favor - a.goles_contra
+        bvG = b.goles_favor - b.goles_contra
+        p = b.points - a.points
+        return p if p != 0
+        return bvG - avG
     add_team: (team)->
       @teams.push(team)
     find_team: (name)->
@@ -98,6 +112,11 @@ jQuery ->
       row.find('td.points').html(team.points)
       row.remove()
       $(".classification#group_#{id}").append(row)
+    t = $(".classification#group_#{id} tbody tr.row-team")
+    first = $(t[0]).data('abrr')
+    second = $(t[1]).data('abrr')
+    $("#group_#{id} .teams-classified").html("#{first} - #{second}")
+
   ################
 
   $('.input-bet').blur ()->
@@ -105,6 +124,7 @@ jQuery ->
     group = $(this).parents('div.group')
     $(form).submit()
     calculate(group)
+
   $('#answer_answer_one').blur ()->
     form = this.form
     $(form).submit()
@@ -112,3 +132,7 @@ jQuery ->
   $('#answer_answer_two').chosen().change ->
     form = this.form
     $(form).submit()
+
+  ##Calculo inicial
+  if $("div.group#g1").length > 0 && $('.input-bet').length > 0
+    calculate($("div.group#g1"))

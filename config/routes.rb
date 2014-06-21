@@ -3,7 +3,13 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :pools do
-    resources :registers, only: [:index, :destroy]
+    member do
+      get :bets
+      get :results
+    end
+    resources :registrations, only: [:index, :destroy] do
+      get :register, on: :member
+    end
   end
 
   resources :bets, except: [:new, :create, :show]
@@ -12,6 +18,7 @@ Rails.application.routes.draw do
     member do
       get :bets
       post :create_bets
+      delete :destroy_bets
     end
   end
 
@@ -19,10 +26,16 @@ Rails.application.routes.draw do
     resources :scores, except: :show
   end
 
+  resources :groups, except: :show
+
   resources :answers, only: :update
+
+  get 'documents/my_bets/:pool_id', to: "documents#my_bets", as: 'documents_my_bets'
+  get 'documents/all_bets/:pool_id', to: "documents#all_bets", as: 'documents_all_bets'
+
   post '/contact', to: 'home#contact', as: 'contacts'
-  post '/register', to: 'home#register', as: 'registers'
-  get 'dashboard/index', as: 'dashboard'
+  post '/registrations', to: 'home#registration', as: 'registrations'
+  get '/dashboard', to: 'dashboard#index', as: 'dashboard'
 
   authenticated :user do
     root 'dashboard#index'

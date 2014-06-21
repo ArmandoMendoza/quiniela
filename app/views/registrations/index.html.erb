@@ -1,0 +1,39 @@
+<%= index_panel("Registros", false, "#", pools_path) do %>
+  <% if @registrations.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>NickName</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Email</th>
+          <th>Telefono</th>
+          <th>Status</th>
+          <th class="center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @registrations.each do |registration| %>
+          <tr>
+            <td><%= registration.nickname %></td>
+            <td><%= registration.name %></td>
+            <td><%= registration.last_name %></td>
+            <td><%= registration.email %></td>
+            <td><%= registration.phone %></td>
+            <td><%= registration.status %></td>
+            <td class="center">
+              <% if current_user.admin? %>
+                <%= destroy_table_button [@pool, registration] %>
+                <% if registration.status == "unregistered" %>
+                  <%= link_to_register [:register, @pool, registration] %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <%=  mssg_for_empty_table %>
+  <% end %>
+<% end %>

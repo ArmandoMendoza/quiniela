@@ -1,0 +1,3 @@
+$.modal.close();
+$("#match-score-" + <%= @match.id %>).html("<%= @match.score_to_s %>");
+$("#link-to-change-result-" +  <%= @match.id %>).attr("href", "<%= edit_match_score_path(@match, @match.final_score) %>")

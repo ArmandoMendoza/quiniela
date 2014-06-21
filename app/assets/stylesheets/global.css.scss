@@ -9,18 +9,14 @@ body {
   color: #FFFFFF !important;
 }
 
+.highlight {
+  background-color: $verde !important;
+  color: #FFFFFF !important;
+}
+
 .center {
   text-align: center !important;
 }
-//COLORS BUTTONS
-.rojo { border-color: $rojo; background-color: $rojo; }
-.naranja { border-color: $naranja; background-color: $naranja; }
-.amarillo { border-color: $amarillo; background-color: $amarillo; }
-.verde { border-color: $verde; background-color: $verde; }
-.celeste { border-color: $celeste; background-color: $celeste; }
-.azul { border-color: $azul; background-color: $azul; }
-.fucsia { border-color: $fucsia; background-color: $fucsia; }
-.morado { border-color: $morado; background-color: $morado; }
 
 .login-form {
   border-radius: 6px 6px 6px 6px;
@@ -38,4 +34,39 @@ body {
     margin: 0 0 40px 0;
     color: #C6C6C5;
   }
+}
+
+.user-pool-list {
+  margin: 0;
+  padding: 0;
+  span.title {
+    font-size: 14px;
+    font-weight: bold;
+    padding-right: 10px;
+  }
+  li {
+    font-size: 12px;
+    display: inline;
+    list-style-type: none;
+    padding-right: 20px;
+  }
+}
+
+.pool-header {
+  color: #FFFFFF;
+  background-color: $negro;
+  padding: 5px 10px 5px 30px;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.multiselect-header {
+  color: #FFFFFF;
+  background-color: $negro;
+  text-align: center;
+  padding-bottom: 3px;
+}
+
+.row-color {
+  width: 3px;
 }

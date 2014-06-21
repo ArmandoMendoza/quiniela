@@ -1,17 +1,24 @@
 jQuery ->
-  $('.chosen-select').chosen()
-  $('.main').onepage_scroll()
+  $('.chosen-select').chosen
+    width: '100%'
   $.anystretch("<%= asset_path('copa-home.jpg') %>", { speed: 150 })
-  $('.home-menu-link').click (e)->
-    e.preventDefault
-    id = $(this).data("index")
-    $('.main').moveTo(id)
-    false
 
-  $('#accordion').collapse()
+  $('#accordion-score, #accordion-rules, #accord-winner').collapse()
 
-  $('#accordion').on 'hidden.bs.collapse', ()->
+  $('#accordion-rules').on 'hidden.bs.collapse', ()->
     $('.glyphicon').removeClass('glyphicon-minus').addClass('glyphicon-plus')
 
   $('.collapse-link').click (e)->
     $(this).parent().find('span').toggleClass('glyphicon-minus glyphicon-plus')
+
+  $('a.home-menu-link').on 'click', (e)->
+    e.preventDefault()
+    target = this.hash
+    $target = $(target)
+    $('html, body').stop().animate(
+      {
+        'scrollTop': $target.offset().top + 50
+      }, 450, 'swing', ()->
+        window.location.hash = target
+        false
+    )

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   authorize_resource
 
   def index
-    @users = User.all
+    @users = User.all.order_by_last_name
   end
 
   def show
@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      UserMailer.new_user_email(@user, @user.password).deliver
       redirect_to @user, notice: 'User was successfully created.'
     else
       render :new
@@ -40,8 +41,8 @@ class UsersController < ApplicationController
   end
 
   def bets
-    @pools = Pool.active
-    redirect_to(users_path, notice: "No hay Quinielas activas") if @pools.empty?
+    @pools = Pool.active_for_user(@user)
+    # redirect_to(users_path, notice: "No hay Quinielas activas") if @pools.empty?
   end
 
   def create_bets
@@ -52,6 +53,17 @@ class UsersController < ApplicationController
       redirect_to @user, notice: "Apuestas creadas con exito!"
     else
       redirect_to bets_user_path(@user), notice: 'Seleccione una Quiniela activa'
+    end
+  end
+
+  def destroy_bets
+    if params[:pool_id]
+      pool = @user.pools.find(params[:pool_id])
+      @user.delete_bets_of_pool(pool)
+      @user.delete_anwser_of_pool(pool)
+      redirect_to @user, notice: "Apuestas Eliminadas con exito!"
+    else
+      redirect_to bets_user_path(@user), notice: 'Seleccione una Quiniela del Usuario'
     end
   end
 

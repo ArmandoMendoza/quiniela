@@ -1,5 +1,6 @@
 class PoolsController < ApplicationController
-  before_action :set_pool, only: [:show, :edit, :update, :destroy]
+  before_action :set_pool, except: [:index, :new, :create]
+  before_action :check_status_of_pool, only: :bets
   authorize_resource
 
   def index
@@ -7,8 +8,21 @@ class PoolsController < ApplicationController
   end
 
   def show
+    if current_user.regular?
+      @matches = @pool.matches.includes(:group).by_date(Date.current)
+      @bets = current_user.bets_in_pool_with_date(@pool, Date.current)
+      @users = @pool.users
+      @table = @pool.users_classification
+    end
+  end
+
+  def results
     @bets = @pool.bets.includes(:match).where(user: current_user)
     @groups = Group.includes(:teams).all
+  end
+
+  def bets
+    results
   end
 
   def new
@@ -21,7 +35,7 @@ class PoolsController < ApplicationController
   def create
     @pool = Pool.new(pool_params)
     if @pool.save
-      redirect_to @pool, notice: 'Pool was successfully created.'
+      redirect_to pools_path, notice: 'Pool was successfully created.'
     else
       render :new
     end
@@ -29,7 +43,7 @@ class PoolsController < ApplicationController
 
   def update
     if @pool.update(pool_params)
-      redirect_to @pool, notice: 'Pool was successfully updated.'
+      redirect_to pools_path, notice: 'Pool was successfully updated.'
     else
       render :edit
     end
@@ -47,5 +61,10 @@ class PoolsController < ApplicationController
 
     def pool_params
       params[:pool].permit!
+    end
+
+    def check_status_of_pool
+      redirect_to(pool_path(@pool),
+        notice: "El tiempo para completar tus pronosticos ha terminado") if @pool.stopped
     end
 end

@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Quiniela-Home</title>
+    <title>Tuquinielaonline.com</title>
+    <meta http-equiv="Content-Language" content="es">
+    <meta name="description" content="La mejor quiniela online del mundial Brasil 2014">
+    <meta name="keywords" content="mundial, quiniela, brasil, 2014, futbol, fifa">
+    <meta name="ROBOTS" content="FOLLOW, INDEX">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,300,400italic,400,600italic,600,700italic,700,800italic,800" rel="stylesheet"
     type="text/css">
     <%= stylesheet_link_tag 'home', media: 'all' %>
     <%= javascript_include_tag 'modernizr' %>
     <%= csrf_meta_tags %>
   </head>
-  <body style="padding-top: 50px">
+  <body>
+    <div class="container-fluid">
     <%= render "shared/navbar_home" %>
-    <div class="main">
-    <%= yield %>
+      <div class="row">
+        <div class="col-md-12">
+        <%= yield %>
+        </div>
+      </div>
     </div>
     <%= javascript_include_tag 'home' %>
   </body>

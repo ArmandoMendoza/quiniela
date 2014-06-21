@@ -1,10 +1,11 @@
-<div id="div-container">
+<div class="group-table-widget">
 <%= content_tag(:div, class: "group", id: "g#{group.id}", data: { id: group.id }) do %>
   <% if bets.any? %>
-    <div class="matches-widget">
-    <table id="results">
+    <table class="matches-widget" >
       <tr class="header-widget">
-        <td><%= group.name.split(" ")[1] %></td>
+        <td style="<%= set_background_color(group.color) %>">
+          <%= group.name.split(" ")[1] %>
+        </td>
         <% group.teams.each do |team| %>
           <td><ul><li><%= flag(team) %></li><li><%= team.abbr %></li></ul></td>
         <% end %>
@@ -22,7 +23,7 @@
           <!-- FECHA Y ESTADIO -->
           <td><ul>
             <li><%= bet.match.date.strftime("%d/%m") %></li>
-            <li>10:00</li>
+            <li><%= bet.match.hour %></li>
             <li><%= bet.match.stadium %></li>
           </ul></td>
           <!-- PARTIDO -->
@@ -62,36 +63,43 @@
         </tr>
       <% end %>
     </table>
-    </div>
 
-    <div class="classification-widget">
-      <table class="classification" id="group_<%= group.id %>">
-        <tr class="header-widget">
-          <td><%= group.name.split(" ")[1] %></td>
-          <td>J</td>
-          <td>G</td>
-          <td>E</td>
-          <td>P</td>
-          <td>GF</td>
-          <td>GC</td>
-          <td>PTS</td>
+    <table class="classification classification-widget" id="group_<%= group.id %>">
+      <tr class="header-widget">
+        <td style="<%= set_background_color(group.color) %>">
+          <%= group.name.split(" ")[1] %>
+        </td>
+        <td>J</td>
+        <td>G</td>
+        <td>E</td>
+        <td>P</td>
+        <td>GF</td>
+        <td>GC</td>
+        <td>PTS</td>
+      </tr>
+      <% classification_table.each do |team| %>
+        <tr class="row-team" id="<%= team.name %>" data-abrr="<%= team.abbr %>">
+          <td><ul><li><%= flag(team) %></li><li><%= team.abbr %></li></ul></td>
+          <td class="matches"><%= team.matches %></td>
+          <td class="win"><%= team.win %></td>
+          <td class="draw"><%= team.draw %></td>
+          <td class="lose"><%= team.lose %></td>
+          <td class="goles_favor"><%= team.goles_favor %></td>
+          <td class="goles_contra"><%= team.goles_contra %></td>
+          <td class="points"><%= team.points %></td>
         </tr>
-        <tbody>
-        <% group.teams.each do |team| %>
-          <tr class="row-team <%= cycle("odd", "even")  %>" id="<%= team.name %>">
-            <td><ul><li><%= flag(team) %></li><li><%= team.abbr %></li></ul></td>
-            <td class="matches">0</td>
-            <td class="win">0</td>
-            <td class="draw">0</td>
-            <td class="lose">0</td>
-            <td class="goles_favor">0</td>
-            <td class="goles_contra">0</td>
-            <td class="points">0</td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+      <% end %>
+      <tfoot>
+        <tr class="row-team row-classified">
+          <td colspan="8">
+            <span class="teams-classified">
+              <%= classification_table[0].abbr %> - <%= classification_table[1].abbr %>
+            </span>
+          </td>
+        </tr>
+        <tr><td class="fake-space"></td></tr>
+      </tfoot>
+    </table>
   <% end %>
 <% end %>
 </div>

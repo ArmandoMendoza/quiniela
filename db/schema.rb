@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519225753) do
+ActiveRecord::Schema.define(version: 20140613205142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140519225753) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "points",     default: 0
+    t.integer  "pos"
   end
 
   add_index "bets", ["match_id"], name: "index_bets_on_match_id", using: :btree
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140519225753) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "color",      default: "#FFF"
   end
 
   create_table "matches", force: true do |t|
@@ -75,23 +77,27 @@ ActiveRecord::Schema.define(version: 20140519225753) do
   create_table "pools", force: true do |t|
     t.string   "name"
     t.date     "end_date"
-    t.boolean  "completed",  default: false
+    t.boolean  "completed",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "price"
+    t.float    "pot_percentage"
+    t.boolean  "stopped",        default: false
   end
 
-  create_table "registers", force: true do |t|
+  create_table "registrations", force: true do |t|
     t.string   "name"
     t.string   "phone"
     t.string   "email"
-    t.string   "comments"
     t.integer  "pool_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "nickname"
+    t.string   "last_name"
+    t.string   "status"
   end
 
-  add_index "registers", ["pool_id"], name: "index_registers_on_pool_id", using: :btree
+  add_index "registrations", ["pool_id"], name: "index_registrations_on_pool_id", using: :btree
 
   create_table "scores", force: true do |t|
     t.integer  "local"
@@ -129,6 +135,8 @@ ActiveRecord::Schema.define(version: 20140519225753) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "last_name"
+    t.string   "nickname"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

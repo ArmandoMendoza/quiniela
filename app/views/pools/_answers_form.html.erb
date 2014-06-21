@@ -1,3 +1,7 @@
+<div class="center">
+  <b>Realiza tus pronosticos de Goleador y Campeón del Mundial para obtener puntos extras</b>
+</div>
+<br>
 <%= simple_form_for answer, remote: true, method: :put do |f| %>
   <div class="row">
     <div class="col-md-6">
@@ -7,7 +11,7 @@
     </div>
     <div class="col-md-6">
       <div class="answer">
-      <%= f.input :answer_two, label: "Campeon del Mundial (+5)",
+      <%= f.input :answer_two, label: "Campeón del Mundial (+5)",
         collection: Team.all, input_html: { class: "chosen-select" } %>
       </div>
     </div>

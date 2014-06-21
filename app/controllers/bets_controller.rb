@@ -1,15 +1,12 @@
 class BetsController < ApplicationController
   before_action :set_bet, except: :index
-  before_action :check_group, only: :index
   authorize_resource
 
   def index
     if current_user.admin?
-      @bets = Bet.all.includes([:user, :match, :pool])
-      @bets = @bets.of_group(@group)
+      @bets = Bet.all.includes([:user,:pool, { match: :group }])
     else
-      @bets = current_user.bets.includes([:match, :pool])
-      @bets = @bets.of_group(@group)
+      @bets = current_user.bets.includes([{ match: :group }, :pool])
     end
   end
 
@@ -36,10 +33,6 @@ class BetsController < ApplicationController
   private
     def set_bet
       @bet = Bet.find(params[:id])
-    end
-
-    def check_group
-      @group = params[:group_id] ? Group.find(params[:group_id]) : @group = Group.first
     end
 
     def bet_params

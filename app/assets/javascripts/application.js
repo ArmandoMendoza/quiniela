@@ -19,6 +19,8 @@
 //= require jquery.anystretch.min
 //= require stupidtable.min
 //= require jquery.ptTimeSelect
+//= require jquery.multi-select
+//= require jquery.simplemodal
 //= require global
 //= require stupidtable
 //= require anystretch

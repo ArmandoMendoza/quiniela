@@ -1,11 +1,12 @@
 class DashboardController < ApplicationController
-
   def index
-    unless current_user.admin?
-      @pool = current_user.last_active_pool
-      @matches = @pool.matches.includes(:group).by_date(Date.today)
-      @bets = @pool.bets.with_matches_by_date(Date.today)
-      @users = @pool.uniq_users
+    @q = Bet.search(params[:q])
+    @pools = current_user.pools
+    @matches = Match.all
+    if params[:q].present?
+      @bets = @q.result.includes({ match: :group }, :pool, :user)
+    else
+      @bets = Bet.where(user_id: current_user.id).includes({match: :group}, :pool, :user).limit(10)
     end
   end
 end

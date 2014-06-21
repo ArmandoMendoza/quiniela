@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div class="header" style="text-align: center">
+      <h1 style="color: red">Quiniela <%= @registration.pool.name %></h1>
+
+      <h2 style="color: blue">
+        Mundial Brasil 2014 <br>
+        Confirmación de registro
+      </h2>
+
+      <h3 style="color: red"><%= "#{@registration.name} #{@registration.last_name}" %></h3>
+    </div>
+
+    <p>
+      Te damos la bienvenida a la MEJOR QUINIELA ONLINE, Gracias por registrarte y
+      participar en este gran juego del Mundial Brasil 2014, A continuación te daremos las
+      instrucciones a seguir para terminar el proceso de inscripción:
+    </p>
+    <p>
+      1. Realiza el pago de Bs. <%= @registration.pool.price %> a través de una transferencia bancaria o depósito bancario en la siguiente cuenta:
+    </p>
+    <p>
+      Banco: Mercantil <br>
+
+      Titular: Federico Georgi <br>
+
+      CI: 16.541.695 <br>
+
+      Cuenta: 0105-0063-01-1063379210 <br>
+
+      Correo: federicogeorgi@hotmail.com <br>
+
+      Monto: <%= @registration.pool.price %> <br>
+    </p>
+
+    <p>
+      LA FECHA LIMITE PARA REALIZAR LA TOTALIDAD DEL PAGO ES EL 08 DE
+      JUNIO DE 2014. DEPOSITOS RECIBIDOS DESPUES DE ESA FECHA NO SERAN
+      ACEPTADOS PARA PARTICIPAR EN www.tuquinielaonline.com
+    </p>
+
+    <p>
+      2. Una vez realizado el pago, debes confírmar a través de un correo electrónico
+      adjuntando la imagen del depósito o la pantalla de la transferencia realizada, al correo:
+      <br>
+      quinielaquintus@gmail.com
+    </p>
+
+    <p>
+      3. Luego de que tu pago sea confirmado, recibirás un mail con la contraseña con la
+      cual podrás tener acceso al portal web www.tuquinielaonline.com y realizar todas tus
+      predicciones.
+    </p>
+
+    <p>
+      Te deseamos mucha suerte y nuevamente gracias por participar.
+      Equipo www.tuquinielaonline.com
+      0414.074.94.11/0414.736.82.42
+    </p>
+  </body>
+</html>

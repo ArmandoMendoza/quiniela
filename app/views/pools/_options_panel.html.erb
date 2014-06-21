@@ -1,0 +1,27 @@
+<%= form_panel(@pool.name.upcase) do %>
+  <%= link_to "Realizar Apuestas", bets_pool_path(@pool), class: "btn btn-default" %>
+  <%= link_to "Ver Resultados", results_pool_path(@pool), class: "btn btn-default" %>
+  <div class="btn-group">
+    <%= dropdown_button("Ver mis apuestas") %>
+    <ul class="dropdown-menu" role="menu">
+      <li>
+        <%= link_to "archivo PDF", documents_my_bets_path(@pool, format: :pdf), target: "_blank" %>
+      </li>
+      <li>
+        <%= link_to "vista HTML", documents_my_bets_path(@pool), target: "_blank" %>
+      </li>
+    </ul>
+  </div>
+  <div class="btn-group">
+    <%= dropdown_button("Ver todas las apuestas") %>
+    <ul class="dropdown-menu" role="menu">
+      <li>
+        <%= link_to "archivo PDF", documents_all_bets_path(@pool, format: :pdf), target: "_blank" %>
+      </li>
+      <li>
+        <%= link_to "vista HTML", documents_all_bets_path(@pool), target: "_blank" %>
+      </li>
+    </ul>
+  </div>
+
+<% end %>

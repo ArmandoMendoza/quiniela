@@ -1,0 +1,27 @@
+<div class="row">
+  <%= search_form_for @q, url: dashboard_path do |f| %>
+  <div class="col-md-3">
+    <%= f.select :pool_id_eq, @pools.collect {|p| [ p.name, p.id ] }, {},
+      { class: "form-control chosen-select" } %>
+  </div>
+  <div class="col-md-3">
+    <%= f.select :match_id_eq, @matches.collect {|m| [ m.to_s, m.id ] }, {},
+      { class: "form-control chosen-select" } %>
+  </div>
+  <div class="col-md-1">
+    <div class="form-group">
+      <%= f.text_field :local_eq, class: "form-control center",
+        placeholder: "Local" %>
+    </div>
+  </div>
+  <div class="col-md-1">
+    <div class="form-group">
+      <%= f.text_field :visitor_eq, class: "form-control center",
+        placeholder: "Visit." %>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <%= f.submit "Buscar", class: "btn btn-default" %>
+  </div>
+  <% end %>
+</div>

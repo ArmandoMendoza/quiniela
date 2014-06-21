@@ -7,6 +7,8 @@ gem 'simple_form', git: 'https://github.com/plataformatec/simple_form.git', tag:
 gem 'mail_form'
 gem 'jbuilder', '~> 2.0'
 gem 'cancancan'
+gem 'prawn'
+gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
 gem 'rails_12factor', group: :production
 
 

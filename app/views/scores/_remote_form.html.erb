@@ -1,0 +1,9 @@
+<%= simple_form_for([@match, @score], remote: true) do |f| %>
+  <%= f.label @match.local.name %>
+  <%= f.input :local, label: false %>
+  <%= f.label @match.visitor.name %>
+  <%= f.input :visitor, label: false %>
+  <%= f.input :match_time, label: false, as: :hidden %>
+  <%= f.button :submit, "Guardar", class: "btn btn-success" %>
+  <%= link_to "Cerrar", "#", class: "btn btn-default simplemodal-close" %>
+<% end %>

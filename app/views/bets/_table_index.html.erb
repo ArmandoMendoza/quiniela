@@ -1,38 +1,40 @@
-<h1>Apuestas</h1>
-<table class="table">
+<table class="table sorted" id="bets-table">
   <thead>
     <tr>
-      <td>Id</td>
-      <th>Quinela</th>
+      <th></th>
+      <th data-sort="int"><%= link_to "#", "#" %></th>
+      <th data-sort="string"><%= link_to "Quinela", "#" %></th>
+      <th data-sort="string"><%= link_to "Grupo", "#" %></th>
       <% if current_user.admin? %>
-        <th>Usuario</th>
+        <th data-sort="string"><%= link_to "Usuario", "#" %></th>
       <% end %>
       <th>Juego</th>
-      <th>Local</th>
-      <th>Visitante</th>
-      <th>Periodo</th>
-      <th colspan="3">Acciones</th>
+      <th class="center">Prediccion</th>
+      <th>ref</th>
+      <th class="center">Acciones</th>
     </tr>
   </thead>
   <tbody>
     <% @bets.each do |bet| %>
       <tr>
-        <td><%= bet.id %></td>
+        <%= td_color(bet.match.group.color) %>
+        <td><%= bet.match.match_number %></td>
         <td><%= bet.pool.name %></td>
+        <td><%= bet.match.group.name %></td>
         <% if current_user.admin? %>
-          <td><%= bet.user.name %></td>
+          <td><%= bet.user.full_name %></td>
         <% end %>
         <td><%= bet.match.to_s %></td>
-        <td><%= bet.local %></td>
-        <td><%= bet.visitor %></td>
-        <td><%= bet.match_time %></td>
-        <% if can? :edit, bet %>
-          <td><%= link_to 'Edit', edit_bet_path(bet) %></td>
-        <% end %>
-        <% if can? :destroy, bet %>
-          <td><%= link_to 'Destroy', bet, method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <td class="center"><%= bet.to_s %></td>
+        <td><%= bet.id %></td>
+        <td class="center">
+          <% if can? :edit, bet %>
+            <%= edit_table_button edit_bet_path(bet) %>
+          <% end %>
+          <% if can? :destroy, bet %>
+            <%= destroy_table_button bet %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

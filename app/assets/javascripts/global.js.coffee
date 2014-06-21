@@ -1,4 +1,7 @@
 jQuery ->
+  $('.multiselect').multiSelect
+    selectableHeader: "<div class='multiselect-header'>Partidos</div>",
+    selectionHeader: "<div class='multiselect-header'>Partidos en Quiniela</div>",
   $('.chosen-select').chosen()
   $('.timepicker').ptTimeSelect()
   $('.datepicker').Zebra_DatePicker
@@ -7,4 +10,4 @@ jQuery ->
       'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
     lang_clear_date: "Limpiar"
     show_select_today: false
-    direction: ['2014-06-12','2014-07-13']
+    # direction: ['2014-06-12','2014-07-13']

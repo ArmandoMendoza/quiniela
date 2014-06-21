@@ -1,29 +1,31 @@
-<% unless current_user.admin? %>
-<div class="row">
-  <div class="col-md-8">
-    <% unless @matches.nil? %>
-      <%= render partial: "matches_for_today", locals: { matches: @matches } %>
-    <% end %>
-    <% unless @bets.nil? %>
-      <%= render partial: "bets_for_today", locals: { bets: @bets } %>
-    <% end %>
-    <div class="info-container">
-      <div class="dashboard-info">
-        <div class="description">PARTICIPANTES</div>
-        <div class="info"><span><%= @users.count %></span></div>
-      </div>
-      <div class="dashboard-info">
-        <div class="description">POTE EN BS.</div>
-        <div class="info"><span><%= @pool.pot_size %></span></div>
-      </div>
-      <div class="dashboard-info">
-        <div class="description">MI POSICION</div>
-        <div class="info"><span>30000</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <%= render partial: "clasification", locals: { users: @users, pool: @pool } %>
-  </div>
-</div>
+<%= index_panel("Buscador de Apuestas") do %>
+  <p>
+    <%= render "search_form" %>
+  </p>
+  <% if @bets.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Usuario</th>
+          <th>Juego</th>
+          <th>Quiniela</th>
+          <th class="center">Prediccion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bets.each do |bet| %>
+          <tr>
+            <%= td_color(bet.match.group.color) %>
+            <td><%= bet.user.nickname %></td>
+            <td><%= bet.match.to_s %></td>
+            <td><%= bet.pool.name %></td>
+            <td class="center"><%= bet.to_s %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <%=  mssg_for_empty_table %>
+  <% end %>
 <% end %>

@@ -1,5 +1,5 @@
 <% if @bet.errors.any? %>
-  console.log("update error. id:<%= @bet.id %>")
+  $("#edit_bet_<%= @bet.id %>").find(".input-bet").css("background-color", "#f2dede")
 <% else %>
-  console.log("updated id:<%= @bet.id %>")
+  $("#edit_bet_<%= @bet.id %>").find(".input-bet").css("background-color", "#dff0d8")
 <% end %>
