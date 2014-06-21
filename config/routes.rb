@@ -23,5 +23,10 @@ Rails.application.routes.draw do
   post '/contact', to: 'home#contact', as: 'contacts'
   post '/register', to: 'home#register', as: 'registers'
   get 'dashboard/index', as: 'dashboard'
+
+  authenticated :user do
+    root 'dashboard#index'
+  end
+
   root 'home#index'
 end
