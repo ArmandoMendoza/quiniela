@@ -27,6 +27,14 @@ class Pool < ActiveRecord::Base
   end
 
   ## class methods
+    def bets_of_user(user)
+      bets.includes(:match).where(user: user)
+    end
+
+    def elimination_bets_of_user(user)
+      elimination_bets.includes(:elimination_match).where(user: user)
+    end
+
     def self.active_for_user(user)
       array_pool = all.to_a
       user.pools.each do |user_pool|

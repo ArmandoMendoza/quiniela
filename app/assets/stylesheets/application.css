@@ -21,5 +21,6 @@
  *= require dashboard
  *= require global
  *= require widgets
+ *= require elimination_bets
  *= require_self
  */

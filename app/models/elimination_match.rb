@@ -31,11 +31,19 @@ class EliminationMatch < ActiveRecord::Base
   end
 
   def local_name
-    local_team.name
+    local_team.try(:name) || nil
   end
 
   def visitor_name
-    visitor_team.name
+    visitor_team.try(:name) || nil
+  end
+
+  def visitor
+    @visitor_team || Team.find(visitor_team_id)
+  end
+
+  def local
+    @local_team || Team.find(local_team_id)
   end
 
   def score_to_s

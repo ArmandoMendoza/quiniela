@@ -17,12 +17,16 @@ class PoolsController < ApplicationController
   end
 
   def results
-    @bets = @pool.bets.includes(:match).where(user: current_user)
+    @bets = @pool.bets_of_user(current_user)
     @groups = Group.includes(:teams).all
   end
 
   def bets
     results
+  end
+
+  def elimination_bets
+    @elimination_bets = @pool.elimination_bets_of_user(current_user)
   end
 
   def new

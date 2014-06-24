@@ -25,4 +25,5 @@
 //= require stupidtable
 //= require anystretch
 //= require bets
+//= require elimination
 //= require matches

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       get :bets
       get :results
+      get :elimination_bets
     end
     resources :registrations, only: [:index, :destroy] do
       get :register, on: :member
