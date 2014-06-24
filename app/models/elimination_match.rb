@@ -11,6 +11,7 @@ class EliminationMatch < ActiveRecord::Base
   validates_presence_of :stadium, :date, :hour, :match_number
   ### Callbacks
   after_update :calculate_points_of_bets
+
   ###instance methods
 
   def to_s
@@ -38,14 +39,6 @@ class EliminationMatch < ActiveRecord::Base
     visitor_team.try(:name) || nil
   end
 
-  def visitor
-    @visitor_team || Team.find(visitor_team_id)
-  end
-
-  def local
-    @local_team || Team.find(local_team_id)
-  end
-
   def score_to_s
     played? ? "#{local} - #{visitor}" : "por jugar"
   end
@@ -57,6 +50,17 @@ class EliminationMatch < ActiveRecord::Base
   def played?
     local.present? && visitor.present? && local_team_id.present? && visitor_team_id.present?
   end
+
+  def next_match_to_s
+    if next_match.present?
+      match = EliminationMatch.find(next_match)
+      match.to_s
+    else
+      "No hay partido Seleccionado"
+    end
+  end
+
+  ### class methods
 
   private
     def check_result

@@ -1,5 +1,5 @@
-<% if @bet.errors.any? %>
-  $("#edit_bet_<%= @bet.id %>").find(".input-bet").css("background-color", "#f2dede")
+<% if @elimination_bet.errors.any? %>
+  $("#edit_elimination_bet_<%= @elimination_bet.id %>").find("input").css("color", "red")
 <% else %>
-  $("#edit_bet_<%= @bet.id %>").find(".input-bet").css("background-color", "#dff0d8")
+  $("#edit_elimination_bet_<%= @elimination_bet.id %>").find("input").css("color", "green")
 <% end %>

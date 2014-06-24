@@ -61,6 +61,10 @@ class User < ActiveRecord::Base
     bets.where(pool_id: pool.id).sum(:points)
   end
 
+  def total_elimination_points_in_pool(pool)
+    elimination_bets.where(pool_id: pool.id).sum(:points)
+  end
+
   def active_pools
    (pools.active + e_pools.active).uniq
   end

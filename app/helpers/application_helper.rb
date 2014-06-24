@@ -100,11 +100,13 @@ module ApplicationHelper
   end
 
   def flag(team)
+    return unless team
     name = team.abbr.downcase.gsub(" ","_")
     image_tag "flags/33x22_#{name}.png"
   end
 
   def big_flag(team)
+    return unless team
     name = team.abbr.downcase.gsub(" ","_")
     image_tag "flags/50x33_#{name}.png"
   end

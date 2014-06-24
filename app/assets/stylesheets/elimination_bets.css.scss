@@ -1,6 +1,50 @@
 @import "colors";
 
+table#elimination-bets{
+  tr#octavos td {
+    padding: 5px;
+  }
+}
+
 .elimination_match {
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  padding: 10px;
+  width: 130px;
   border: solid 1px $negro;
+  background-color: $negro;
+  color: $blanco;
   margin-bottom: 5px;
+  input {
+    border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    background-color: $blanco !important;
+    border: none !important;
+    width: 40px;
+    text-align: center;
+    padding: 5px;
+    color: $negro;
+    margin: 5px 2px 2px 2px;
+  }
+  ul.flag-result {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style: none;
+      padding: 0 0 0 0;
+      margin: 0;
+      text-align: center;
+    }
+  }
+  .info-elimination-bet {
+    font-size: 10px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .submit-button {
+    text-align: center;
+  }
 }

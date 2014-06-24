@@ -21,9 +21,9 @@ class Pool < ActiveRecord::Base
   def users_classification
     classification = {}
     users.each do |user|
-      classification[user.nickname] = user.total_points_in_pool(self)
+      classification[user.nickname] = [user.total_points_in_pool(self), user.total_elimination_points_in_pool(self)]
     end
-    Hash[classification.sort_by{|k,v| v}.reverse]
+    Hash[classification.sort_by{|k,v| v[0] + v[1]}.reverse]
   end
 
   ## class methods
@@ -32,7 +32,8 @@ class Pool < ActiveRecord::Base
     end
 
     def elimination_bets_of_user(user)
-      elimination_bets.includes(:elimination_match).where(user: user)
+      elimination_bets.includes(:elimination_match).where(user: user).
+      order("elimination_matches.match_number")
     end
 
     def self.active_for_user(user)

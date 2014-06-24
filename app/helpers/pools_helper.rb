@@ -8,4 +8,11 @@ module PoolsHelper
       raw("#{name} ") + content_tag(:span, nil, class: "caret")
     end
   end
+
+  def div_for_elimination_match(match)
+    content_tag(:div, class: "elimination_match center-block", id: match.id,
+      data: { next: match.next_match, select: match.select }) do
+        yield
+      end
+  end
 end

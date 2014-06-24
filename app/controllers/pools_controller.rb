@@ -26,7 +26,10 @@ class PoolsController < ApplicationController
   end
 
   def elimination_bets
-    @elimination_bets = @pool.elimination_bets_of_user(current_user)
+    @octavos_bets = @pool.elimination_bets_of_user(current_user).limit(8)
+    @cuartos_bets = @pool.elimination_bets_of_user(current_user).offset(8).limit(4)
+    @semi_bets = @pool.elimination_bets_of_user(current_user).offset(12).limit(2)
+    @final = @pool.elimination_bets_of_user(current_user).offset(14).limit(2).last
   end
 
   def new

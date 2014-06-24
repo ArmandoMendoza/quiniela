@@ -13,17 +13,18 @@ describe Pool do
   describe "instance methods" do
     describe "#users_classification" do
       it "should return an array of active users of pool ordered by total points in pool" do
-        users = {"armando" => 20, "camilo" => 31, "federico" => 15, "rafael" => 30}
+        users = {"armando" => [20,5], "camilo" => [31,5], "federico" => [15,5], "rafael" => [30,5]}
         mocks = {}
         users.each do |name, points|
           mocks[name] = mock_model(User, nickname: name)
-          allow(mocks[name]).to receive(:total_points_in_pool).with(an_instance_of(Pool)) { points }
+          allow(mocks[name]).to receive(:total_points_in_pool).with(an_instance_of(Pool)) { points[0] }
+          allow(mocks[name]).to receive(:total_elimination_points_in_pool).with(an_instance_of(Pool)) { points[1] }
         end
         Pool.any_instance.stub(:users).and_return([mocks["federico"], mocks["camilo"],
           mocks["armando"], mocks["rafael"]])
         pool = Pool.make!
-        expect(pool.users_classification).to eq( {"camilo" => 31 , "rafael" => 30,
-          "armando" => 20, "federico" => 15} )
+        expect(pool.users_classification).to eq( {"camilo" => [31,5] , "rafael" => [30,5],
+          "armando" => [20,5], "federico" => [15,5]} )
       end
     end
   end

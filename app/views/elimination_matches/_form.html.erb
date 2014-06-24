@@ -10,6 +10,9 @@
     input_html: { class: 'chosen-select', data: { placeholder: "Seleccione Equipo"}  } %>
   <%= f.input :local %>
   <%= f.input :visitor %>
+  <%= f.input :next_match, collection: EliminationMatch.all, label_method: :to_s,
+    value_method: :id, input_html: { class: 'chosen-select', data: { placeholder: "Seleccione Partido"}  } %>
+  <%= f.input :select, collection: ["local", "visitor"] %>
   <%= f.button :submit, class: "btn btn-success" %>
   <%= link_to "Volver", elimination_matches_path, class: "btn btn-default" %>
 <% end %>

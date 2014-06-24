@@ -1,19 +1,23 @@
 <div>
   <table class="table-dashboard">
     <tr class="header">
-      <td colspan="3">CLASIFICACIÓN</td>
+      <td colspan="5">CLASIFICACIÓN</td>
     </tr>
     <tr class="sub-header">
       <td>Pos</td>
       <td>Usuario</td>
-      <td>Puntos</td>
+      <td>Clas.</td>
+      <td>Elim.</td>
+      <td>Total</td>
     </tr>
     <% classification.each_with_index do |(nickname, points), pos| %>
       <tr class="row-game <%= cycle("odd", "even") %> <%= highlight_current_user(nickname,
         :nickname) %>">
         <td><%= pos + 1 %></td>
         <td><%= nickname %></td>
-        <td><%= points %></td>
+        <td><%= points[0] %></td>
+        <td><%= points[1] %></td>
+        <td><%= points[0].to_i + points[1].to_i %></td>
     <% end %>
   </table>
 </div>

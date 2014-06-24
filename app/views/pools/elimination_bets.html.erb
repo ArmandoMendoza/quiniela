@@ -1,18 +1,24 @@
-<% @elimination_bets.each do |eb| %>
-  <div class="elimination_match" id="<%= eb.elimination_match.id %>">
-    <%= eb.elimination_match.to_s %>
-    <%= eb.elimination_match.match_number %>
-    <%= eb.to_s %>
-    <%= form_for eb do |f| %>
-      <%= flag(eb.elimination_match.local) if eb.elimination_match.local_team_id.present? %>
-      <%= f.text_field :local, id: "score-local" %>
-      <%= flag(eb.elimination_match.visitor) if eb.elimination_match.visitor_team_id.present? %>
-      <%= f.text_field :visitor, id: "score-visitor" %>
-      ------------------------
-      <%= f.text_field :local_name, value: eb.elimination_match.local_name %>
-      ------------------------
-      <%= f.text_field :visitor_name, value: eb.elimination_match.visitor_name %>
-      <%= link_to "Prueba", "#", class: "link-prueba" %>
+<%= index_panel("Predicciones de Eliminacion", false, "#", pool_path(@pool) ) do %>
+<table id="elimination-bets">
+  <tr id="octavos">
+    <% @octavos_bets.each do |eb| %>
+      <td><%= render partial: "pool_elimination_bets", locals: { eb: eb } %></td>
     <% end %>
-  </div>
+  </tr>
+  <tr id="cuartos">
+    <% @cuartos_bets.each do |eb| %>
+      <td colspan="2"><%= render partial: "pool_elimination_bets", locals: { eb: eb } %></td>
+    <% end %>
+  </tr>
+  <tr id="semi">
+    <% @semi_bets.each do |eb| %>
+      <td colspan="4"><%= render partial: "pool_elimination_bets", locals: { eb: eb } %></td>
+    <% end %>
+  </tr>
+  <tr id="final">
+    <td colspan="8">
+      <%= render partial: "pool_elimination_bets", locals: { eb: @final } %>
+    </td>
+  </tr>
+</table>
 <% end %>

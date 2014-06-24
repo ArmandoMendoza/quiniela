@@ -26,6 +26,21 @@ class EliminationBet < ActiveRecord::Base
     update_column(:points, points)
   end
 
+  ###Estos metodos son un parche en el diseño de datos. Una apuesta deberia poder
+  ###retornar sin ploblemas los equipos elegidos
+
+  def find_local_team
+    if local_name.present?
+      Team.where(name: local_name).first
+    end
+  end
+
+  def find_visitor_team
+    if visitor_name.present?
+      Team.where(name: visitor_name).first
+    end
+  end
+
   ### class methods
   def self.create_all_bets_for(user, pool)
     pool.elimination_matches.each do |match|
