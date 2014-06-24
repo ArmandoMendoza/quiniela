@@ -1,0 +1,10 @@
+<%= simple_form_for(@elimination_match, remote: true) do |f| %>
+  <%= f.input :local_team_id, collection: Team.all, label_method: :name, value_method: :id,
+    input_html: { class: 'chosen-select', data: { placeholder: "Seleccione Equipo"}  } %>
+  <%= f.input :visitor_team_id, collection: Team.all, label_method: :name, value_method: :id,
+    input_html: { class: 'chosen-select', data: { placeholder: "Seleccione Equipo"}  } %>
+  <%= f.input :local %>
+  <%= f.input :visitor %>
+  <%= f.button :submit, "Guardar", class: "btn btn-success" %>
+  <%= link_to "Cerrar", "#", class: "btn btn-default simplemodal-close" %>
+<% end %>

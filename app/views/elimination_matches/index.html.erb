@@ -1,4 +1,4 @@
-<div id="score-remote-form" style="display:none"></div>
+<div id="match-remote-form" style="display:none"></div>
 
 <%= index_panel("Partidos de Eliminacion", can?(:create, EliminationMatch), new_elimination_match_path, dashboard_path) do %>
   <% if @elimination_matches.any? %>
@@ -31,6 +31,7 @@
             <td id="match-score-<%= match.id %>"><%= match.score_to_s %></td>
             <% if current_user.admin? %>
               <td>
+                <%= link_to_change_result edit_elimination_match_path(match), match.id %>
                 <%= edit_table_button edit_elimination_match_path(match) %>
                 <%= destroy_table_button match %>
               </td>

@@ -26,10 +26,15 @@ class EliminationMatchesController < ApplicationController
   end
 
   def update
-    if @elimination_match.update(match_params)
-      redirect_to elimination_matches_path, notice: 'Elimination Match was successfully updated.'
-    else
-      render :edit
+    respond_to do |format|
+      if @elimination_match.update(match_params)
+        format.html { redirect_to elimination_matches_path, notice: 'Elimination Match was successfully updated.'}
+        format.js
+
+      else
+        format { render :edit }
+        format.js
+      end
     end
   end
 
