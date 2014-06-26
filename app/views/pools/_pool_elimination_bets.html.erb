@@ -1,6 +1,6 @@
 <%= div_for_elimination_match(eb.elimination_match) do %>
   <div class="info-elimination-bet">
-    <%= truncate(eb.elimination_match.to_s, length: 20) %><br>
+    <%= truncate(eb.elimination_match.to_s, length: 18) %><br>
     <%= "#{eb.elimination_match.date.strftime('%d-%m-%Y')}  #{eb.elimination_match.hour}" %>
   </div>
   <%= form_for eb, remote: true do |f| %>
@@ -32,9 +32,12 @@
       <% end %>
       <li><%= f.text_field :visitor, id: "visitor-score" %></li>
     </ul>
-    <div class="clearfix"></div>
+    <div class="clearfix" style="margin-bottom: 5px"></div>
     <div class="submit-button">
-      <%= link_to "Enviar Resultado", "#", class: "link-prueba" %>
+      <%= link_to "Enviar", "#", class: "btn btn-default btn-xs link-prueba" %>
     </div>
   <% end %>
+<% end %>
+<% unless eb.elimination_match.round == "Final" || eb.elimination_match.round == "Otro" %>
+  <div class="triangle-down center-block"></div>
 <% end %>

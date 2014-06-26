@@ -16,14 +16,15 @@
     <% end %>
   </tr>
   <tr id="final">
-    <td colspan="8">
+    <td colspan="2"></td>
+    <td colspan="2">
       <%= render partial: "pool_elimination_bets", locals: { eb: @final } %>
     </td>
-  </tr>
-  <tr id="final">
-    <td colspan="8">
+    <td colspan="2">
       <%= render partial: "pool_elimination_bets", locals: { eb: @otro } %>
     </td>
+    <td colspan="2"></td>
   </tr>
+
 </table>
 <% end %>

@@ -1,5 +1,13 @@
 @import "colors";
 
+.triangle-down {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid $negro;
+}
+
 table#elimination-bets{
   tr#octavos td {
     padding: 5px;
@@ -15,7 +23,7 @@ table#elimination-bets{
   border: solid 1px $negro;
   background-color: $negro;
   color: $blanco;
-  margin-bottom: 5px;
+  // margin-bottom: 5px;
   input {
     border-radius: 4px 4px 4px 4px;
     -moz-border-radius: 4px 4px 4px 4px;
