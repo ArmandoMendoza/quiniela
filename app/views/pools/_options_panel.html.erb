@@ -1,5 +1,10 @@
 <%= form_panel(@pool.name.upcase) do %>
+  <% if @pool.active_clasification %>
   <%= link_to "Realizar Apuestas", bets_pool_path(@pool), class: "btn btn-default" %>
+  <% end %>
+  <% if @pool.active_elimination %>
+  <%= link_to "Eliminacion", elimination_bets_pool_path(@pool), class: "btn btn-default" %>
+  <% end %>
   <%= link_to "Ver Resultados", results_pool_path(@pool), class: "btn btn-default" %>
   <div class="btn-group">
     <%= dropdown_button("Ver mis apuestas") %>

@@ -2,15 +2,17 @@
 
 <%= index_panel("Partidos de Eliminacion", can?(:create, EliminationMatch), new_elimination_match_path, dashboard_path) do %>
   <% if @elimination_matches.any? %>
-    <table class="table sorted" id="matches-table">
+    <table class="table sorted" id="matches-table" style="font-size: 11px">
       <thead>
         <tr>
           <th data-sort="int"><%= link_to "#", "#" %></th>
           <th data-sort="date"><%= link_to "Fecha", "#" %></th>
           <th>Hora</th>
-          <th>Juego</th>
+          <th>Partido</th>
           <th>Estadio</th>
-          <th>Clasifica al Juego</th>
+          <th>Round</th>
+          <th>Ganador al Partido</th>
+          <th>Perdedor al Partido</th>
           <th>Como</th>
           <th>Resultado</th>
           <% if current_user.admin? %>
@@ -26,7 +28,9 @@
             <td><%= match.hour %></td>
             <td><%= match.to_s %></td>
             <td><%= match.stadium %></td>
-            <td><%= match.next_match_to_s %></td>
+            <td><%= match.round %></td>
+            <td><%= match.winner_match_to_s %></td>
+            <td><%= match.loser_match_to_s %></td>
             <td><%= match.select %></td>
             <td id="match-score-<%= match.id %>"><%= match.score_to_s %></td>
             <% if current_user.admin? %>

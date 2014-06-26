@@ -35,11 +35,21 @@ es:
         visitor_team_id: "Equipo Visitante"
         match_number: "Nro de Partido"
         hour: "Hora"
+      elimination_match:
+        date: "Fecha"
+        stadium: "Estadio"
+        local_team_id: "Equipo Local"
+        visitor_team_id: "Equipo Visitante"
+        match_number: "Nro de Partido"
+        hour: "Hora"
+        match_to_winner: "Ganador al Partido"
+        match_to_loser: "Perdedor al Partido"
       pool:
         name: "Nombre"
         end_date: "Fecha de Finalizacion"
         completed: "Completada"
-        stopped: "Detenida"
+        active_clasification: "Editar Clasificacion"
+        active_elimination: "Editar Eliminacion"
         price: "Precio"
         pot_percentage: "Porcentaje de Pote"
       registration:

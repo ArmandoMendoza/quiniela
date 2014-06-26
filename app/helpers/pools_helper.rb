@@ -11,7 +11,8 @@ module PoolsHelper
 
   def div_for_elimination_match(match)
     content_tag(:div, class: "elimination_match center-block", id: match.id,
-      data: { next: match.next_match, select: match.select }) do
+      data: { match_to_winner: match.match_to_winner, match_to_loser: match.match_to_loser,
+      select: match.select, round: match.round }) do
         yield
       end
   end

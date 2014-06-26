@@ -7,7 +7,8 @@
           <th>Partidos de Clas.</th>
           <th>Partidos de Elim.</th>
           <th>Limite</th>
-          <th>Detenida</th>
+          <th>Clasificacion</th>
+          <th>Eliminacion</th>
           <th>Completada</th>
           <th class="center">Acciones</th>
         </tr>
@@ -19,7 +20,8 @@
             <td><%= pool.matches.count %></td>
             <td><%= pool.elimination_matches.count %></td>
             <td><%= pool.end_date %></td>
-            <td><%= pool.stopped %></td>
+            <td><%= pool.active_clasification %></td>
+            <td><%= pool.active_elimination %></td>
             <td><%= pool.completed %></td>
             <td class="center">
               <% if can? :read, pool %>

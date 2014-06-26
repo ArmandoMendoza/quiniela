@@ -2,11 +2,19 @@
 <div class="row">
   <div class="col-md-8">
     <%= render "options_panel" %>
-    <% unless @matches.nil? %>
+    <% if @matches.any? %>
       <%= render partial: "matches_for_today", locals: { matches: @matches } %>
     <% end %>
-    <% unless @bets.nil? %>
+    <% if @elimination_matches.any? %>
+      <%= render partial: "elimination_matches_for_today",
+        locals: { elimination_matches: @elimination_matches } %>
+    <% end %>
+    <% if @bets.any? %>
       <%= render partial: "bets_for_today", locals: { bets: @bets } %>
+    <% end %>
+    <% if @elimination_bets.any? %>
+      <%= render partial: "elimination_bets_for_today",
+        locals: { elimination_bets: @elimination_bets } %>
     <% end %>
     <div class="info-container">
       <div class="dashboard-info">

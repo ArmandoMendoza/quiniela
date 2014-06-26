@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624152951) do
+ActiveRecord::Schema.define(version: 20140626012422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,8 +72,10 @@ ActiveRecord::Schema.define(version: 20140624152951) do
     t.string   "match_number"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "next_match"
+    t.integer  "match_to_winner"
     t.string   "select"
+    t.string   "round"
+    t.integer  "match_to_loser"
   end
 
   create_table "elimination_matches_pools", id: false, force: true do |t|
@@ -114,12 +116,13 @@ ActiveRecord::Schema.define(version: 20140624152951) do
   create_table "pools", force: true do |t|
     t.string   "name"
     t.date     "end_date"
-    t.boolean  "completed",      default: false
+    t.boolean  "completed",            default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "price"
     t.float    "pot_percentage"
-    t.boolean  "stopped",        default: false
+    t.boolean  "active_clasification", default: false
+    t.boolean  "active_elimination",   default: false
   end
 
   create_table "registrations", force: true do |t|

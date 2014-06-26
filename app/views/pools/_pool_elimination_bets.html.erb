@@ -10,17 +10,25 @@
       id: "visitor-name" %>
     <ul class="flag-result pull-left">
       <% if eb.find_local_team %>
-        <li id="local-flag"><%= flag(eb.find_local_team)%></li>
+        <li class="local-flag" data-class="local">
+          <%= flag(eb.find_local_team)%>
+        </li>
       <% else %>
-        <li id="local-flag"><%= flag(eb.elimination_match.local_team)%></li>
+        <li class="local-flag" data-class="local">
+          <%= flag(eb.elimination_match.local_team)%>
+        </li>
       <% end %>
       <li><%= f.text_field :local, id: "local-score" %></li>
     </ul>
     <ul class="flag-result pull-right">
       <% if eb.find_visitor_team %>
-        <li id="visitor-flag"><%= flag(eb.find_visitor_team)%></li>
+        <li class="visitor-flag" data-class="visitor">
+          <%= flag(eb.find_visitor_team)%>
+        </li>
       <% else %>
-        <li id="visitor-flag"><%= flag(eb.elimination_match.visitor_team)%></li>
+        <li class="visitor-flag" data-class="visitor">
+          <%= flag(eb.elimination_match.visitor_team)%>
+        </li>
       <% end %>
       <li><%= f.text_field :visitor, id: "visitor-score" %></li>
     </ul>

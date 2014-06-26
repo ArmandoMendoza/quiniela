@@ -1,4 +1,6 @@
 class EliminationMatch < ActiveRecord::Base
+  ### Constants
+  ROUNDS = ["Octavos", "Cuartos", "Semi-Final", "Final", "Otro"]
   ### accesores
   attr_reader :visitor_team, :local_team
   ### relations
@@ -8,7 +10,7 @@ class EliminationMatch < ActiveRecord::Base
   default_scope -> { order([:match_number, :date]) }
   scope :by_date, ->(time) { where(date: time) }
   ### validations
-  validates_presence_of :stadium, :date, :hour, :match_number
+  validates_presence_of :stadium, :date, :hour, :match_number, :round
   ### Callbacks
   after_update :calculate_points_of_bets
 
@@ -51,16 +53,23 @@ class EliminationMatch < ActiveRecord::Base
     local.present? && visitor.present? && local_team_id.present? && visitor_team_id.present?
   end
 
-  def next_match_to_s
-    if next_match.present?
-      match = EliminationMatch.find(next_match)
+  def winner_match_to_s
+    if match_to_winner.present?
+      match = EliminationMatch.find(match_to_winner)
       match.to_s
     else
-      "No hay partido Seleccionado"
+      "No aplica"
     end
   end
 
-  ### class methods
+  def loser_match_to_s
+    if match_to_loser.present?
+      match = EliminationMatch.find(match_to_loser)
+      match.to_s
+    else
+      "No aplica"
+    end
+  end
 
   private
     def check_result

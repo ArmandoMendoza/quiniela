@@ -1,0 +1,30 @@
+<div>
+  <table class="table-dashboard">
+    <tr class="header">
+      <td colspan="7">PREDICCIÓN PARA HOY - RONDA DE ELIMINACIÓN</td>
+    </tr>
+    <tr class="sub-header">
+      <td>Nro</td>
+      <td>Partido</th>
+      <td>Ciudad</td>
+      <td>Fecha</td>
+      <td>Hora</th>
+    </tr>
+    <% elimination_bets.includes(:elimination_match).each do |bet| %>
+      <% bet.elimination_match.get_teams %>
+      <tr class="row-game <%= cycle("odd", "even") %>">
+        <td><%= bet.elimination_match.match_number %></td>
+        <td>
+          <span><%= bet.find_local_team.try(:abbr) %></span>
+            <%= flag(bet.find_local_team) %>
+          <span><%= bet.score_to_s %></span>
+            <%= flag(bet.find_visitor_team) %>
+          <span><%= bet.find_visitor_team.try(:abbr) %></span>
+        </td>
+        <td><%= bet.elimination_match.stadium %></td>
+        <td><%= bet.elimination_match.date.strftime("%d-%m") %></td>
+        <td><%= bet.elimination_match.hour %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

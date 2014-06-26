@@ -50,7 +50,12 @@ class User < ActiveRecord::Base
   end
 
   def bets_in_pool_with_date(pool, date)
-    bets.joins(:match).where('matches.date = ?', date).includes(:match).where(pool: pool).order('bets.pos')
+    bets.joins(:match).where('matches.date = ?', date).where(pool: pool).order('bets.pos')
+  end
+
+  def elimination_bets_in_pool_with_date(pool, date)
+    elimination_bets.joins(:elimination_match).where('elimination_matches.date = ?', date).
+    where(pool: pool).order('elimination_matches.match_number')
   end
 
   def answer_of_pool(pool)

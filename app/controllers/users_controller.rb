@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def bets
-    @pools = Pool.active_for_user(@user)
+    @pools = Pool.all #Pool.active_for_user(@user)
     # redirect_to(users_path, notice: "No hay Quinielas activas") if @pools.empty?
   end
 

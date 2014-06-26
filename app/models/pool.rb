@@ -31,8 +31,10 @@ class Pool < ActiveRecord::Base
       bets.includes(:match).where(user: user)
     end
 
-    def elimination_bets_of_user(user)
-      elimination_bets.includes(:elimination_match).where(user: user).
+    def elimination_bets_of_user(user, round)
+      elimination_bets.includes(:elimination_match).
+      where(user: user).
+      where("elimination_matches.round=?", round).
       order("elimination_matches.match_number")
     end
 

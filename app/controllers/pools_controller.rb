@@ -1,6 +1,7 @@
 class PoolsController < ApplicationController
   before_action :set_pool, except: [:index, :new, :create]
-  before_action :check_status_of_pool, only: :bets
+  before_action :check_status_of_clasification, only: :bets
+  before_action :check_status_of_elimination, only: :elimination_bets
   authorize_resource
 
   def index
@@ -11,6 +12,8 @@ class PoolsController < ApplicationController
     if current_user.regular?
       @matches = @pool.matches.includes(:group).by_date(Date.current)
       @bets = current_user.bets_in_pool_with_date(@pool, Date.current)
+      @elimination_matches = @pool.elimination_matches.by_date(Date.current)
+      @elimination_bets = current_user.elimination_bets_in_pool_with_date(@pool, Date.current)
       @users = @pool.users
       @table = @pool.users_classification
     end
@@ -26,10 +29,11 @@ class PoolsController < ApplicationController
   end
 
   def elimination_bets
-    @octavos_bets = @pool.elimination_bets_of_user(current_user).limit(8)
-    @cuartos_bets = @pool.elimination_bets_of_user(current_user).offset(8).limit(4)
-    @semi_bets = @pool.elimination_bets_of_user(current_user).offset(12).limit(2)
-    @final = @pool.elimination_bets_of_user(current_user).offset(14).limit(2).last
+    @octavos_bets = @pool.elimination_bets_of_user(current_user, "Octavos")
+    @cuartos_bets = @pool.elimination_bets_of_user(current_user, "Cuartos")
+    @semi_bets = @pool.elimination_bets_of_user(current_user, "Semi-Final")
+    @final = @pool.elimination_bets_of_user(current_user, "Final").first
+    @otro = @pool.elimination_bets_of_user(current_user, "Otro").first
   end
 
   def new
@@ -70,8 +74,13 @@ class PoolsController < ApplicationController
       params[:pool].permit!
     end
 
-    def check_status_of_pool
+    def check_status_of_clasification
       redirect_to(pool_path(@pool),
-        notice: "El tiempo para completar tus pronosticos ha terminado") if @pool.stopped
+        notice: "El tiempo para completar tus pronosticos ha terminado") unless @pool.active_clasification
+    end
+
+    def check_status_of_elimination
+      redirect_to(pool_path(@pool),
+        notice: "El tiempo para completar tus pronosticos ha terminado") unless @pool.active_elimination
     end
 end

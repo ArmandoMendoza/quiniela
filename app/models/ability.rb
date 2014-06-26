@@ -13,10 +13,10 @@ class Ability
       can :read, Bet, user_id: user.id
       can :read, EliminationBet, user_id: user.id
       can :update, Bet do |bet|
-        bet.user_id == user.id && !bet.pool.stopped
+        bet.user_id == user.id && bet.pool.active_clasification
       end
       can :update, EliminationBet do |bet|
-        bet.user_id == user.id && !bet.pool.stopped
+        bet.user_id == user.id && bet.pool.active_elimination
       end
       can :update, Answer, user_id: user.id
     end
