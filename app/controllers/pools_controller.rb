@@ -29,11 +29,11 @@ class PoolsController < ApplicationController
   end
 
   def elimination_bets
-    @octavos_bets = @pool.elimination_bets_of_user(current_user, "Octavos")
-    @cuartos_bets = @pool.elimination_bets_of_user(current_user, "Cuartos")
-    @semi_bets = @pool.elimination_bets_of_user(current_user, "Semi-Final")
-    @final = @pool.elimination_bets_of_user(current_user, "Final").first
-    @otro = @pool.elimination_bets_of_user(current_user, "Otro").first
+    @octavos_bets = @pool.elimination_bets_of_user_by_round(current_user, "Octavos")
+    @cuartos_bets = @pool.elimination_bets_of_user_by_round(current_user, "Cuartos")
+    @semi_bets = @pool.elimination_bets_of_user_by_round(current_user, "Semi-Final")
+    @final = @pool.elimination_bets_of_user_by_round(current_user, "Final").first
+    @otro = @pool.elimination_bets_of_user_by_round(current_user, "Otro").first
   end
 
   def new

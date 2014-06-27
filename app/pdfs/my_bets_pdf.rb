@@ -1,10 +1,11 @@
 class MyBetsPdf < Prawn::Document
 
-  def initialize(pool, bets, user)
+  def initialize(pool, user)
     super()
     @pool = pool
-    @bets = bets
     @user = user
+    @bets = @user.bets_in_pool(@pool).order(['matches.group_id', 'bets.pos'])
+    @e_bets = @user.elimination_bets_in_pool(@pool).order('elimination_matches.match_number')
     header
     body
   end
@@ -19,15 +20,29 @@ class MyBetsPdf < Prawn::Document
 
   def body
     move_down 60
-    table rows
+    text "RONDA CLASIFICACION"
+    table clasification
+    start_new_page
+    text "RONDA ELIMINACION"
+    table elimination, cell_style: { size: 8 }
   end
 
-  def rows
+  def clasification
     [["id","Grupo", "Juego", "Fecha", "Hora", "Resultado", "Apuesta", "Puntos"]] +
     @bets.map do |bet|
       bet.match.get_teams
       [ bet.id, bet.match.group.name, bet.match.to_s, bet.match.date.strftime('%d-%m'),
         bet.match.hour, bet.match.score_to_s, bet.to_s, bet.points ]
+    end
+  end
+
+  def elimination
+    [["id", "Ronda", "Fecha", "Hora", "Partido", "Resultado", "Apuesta", "Resultado", "Puntos"]] +
+    @e_bets.map do |bet|
+      # bet.elimination_match.get_teams
+      [ bet.id, bet.elimination_match.round, bet.elimination_match.date.strftime('%d-%m'),
+        bet.elimination_match.hour, bet.elimination_match.to_s, bet.elimination_match.score_to_s,
+        bet.to_s, bet.score_to_s, bet.points ]
     end
   end
 end

@@ -2,12 +2,11 @@ class DocumentsController < ApplicationController
   before_action :set_pool, only: [:my_bets, :all_bets]
 
   def my_bets
-    @bets = current_user.bets_in_pool(@pool).order(['matches.group_id', 'bets.pos'])
-    if @bets
+    if @pool
       respond_to do |format|
         format.html
         format.pdf do
-          pdf = MyBetsPdf.new(@pool, @bets, current_user)
+          pdf = MyBetsPdf.new(@pool, current_user)
           send_data pdf.render, filename: "mis_apuestas-#{@pool.name}.pdf",
             type: "application/pdf", disposition: 'inline'
         end

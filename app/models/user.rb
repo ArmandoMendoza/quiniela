@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   end
 
   def elimination_bets_in_pool(pool)
-    elimination_bets.where(pool_id: pool.id).includes(:match)#.order('matches.group_id')
+    elimination_bets.where(pool_id: pool.id).includes(:elimination_match)#.order('matches.group_id')
   end
 
   def bets_in_pool_with_date(pool, date)

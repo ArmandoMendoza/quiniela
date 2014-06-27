@@ -1,6 +1,6 @@
 <%= div_for_elimination_match(eb.elimination_match) do %>
   <div class="info-elimination-bet">
-    <%= truncate(eb.elimination_match.to_s, length: 18) %><br>
+    <%= truncate(eb.to_s, length: 18) %><br>
     <%= "#{eb.elimination_match.date.strftime('%d-%m-%Y')}  #{eb.elimination_match.hour}" %>
   </div>
   <%= form_for eb, remote: true do |f| %>
