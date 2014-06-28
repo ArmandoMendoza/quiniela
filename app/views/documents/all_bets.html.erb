@@ -62,7 +62,7 @@
         </thead>
         <tbody>
           <% user.elimination_bets_in_pool(@pool).order("elimination_matches.match_number").each do |bet| %>
-          <% bet.elimination_match.get_teams %>
+          <%# bet.elimination_match.get_teams %>
             <tr style="text-align: center">
               <td><%= bet.id %></td>
               <td><%= bet.elimination_match.date.strftime('%d-%m') %></td>
