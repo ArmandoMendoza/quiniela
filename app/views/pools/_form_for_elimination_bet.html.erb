@@ -1,0 +1,36 @@
+<%= form_for eb, remote: true do |f| %>
+  <%= f.hidden_field :local_name, value: local_name, id: "local-name"  %>
+  <%= f.hidden_field :visitor_name, value: visitor_name, id: "visitor-name" %>
+  <ul class="flag-result pull-left">
+    <% if eb.find_local_team %>
+      <li class="local-flag" data-class="local">
+        <%= flag(eb.find_local_team)%>
+      </li>
+    <% else %>
+      <li class="local-flag" data-class="local">
+        <%= flag(eb.elimination_match.local_team)%>
+      </li>
+    <% end %>
+    <li><%= f.text_field :local, id: "local-score",
+      disabled: !@pool.active_elimination %></li>
+  </ul>
+  <ul class="flag-result pull-right">
+    <% if eb.find_visitor_team %>
+      <li class="visitor-flag" data-class="visitor">
+        <%= flag(eb.find_visitor_team)%>
+      </li>
+    <% else %>
+      <li class="visitor-flag" data-class="visitor">
+        <%= flag(eb.elimination_match.visitor_team)%>
+      </li>
+    <% end %>
+    <li><%= f.text_field :visitor, id: "visitor-score",
+      disabled: !@pool.active_elimination %></li>
+  </ul>
+  <div class="clearfix" style="margin-bottom: 5px"></div>
+  <div class="submit-button">
+    <% if @pool.active_elimination %>
+      <%= link_to "Enviar", "#", class: "btn btn-default btn-xs link-prueba" %>
+    <% end %>
+  </div>
+<% end %>

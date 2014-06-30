@@ -1,0 +1,25 @@
+<ul class="flag-result pull-left">
+  <% if eb.find_local_team %>
+    <li class="local-flag" data-class="local">
+      <%= flag(eb.find_local_team)%>
+    </li>
+  <% else %>
+    <li class="local-flag" data-class="local">
+      <%= flag(eb.elimination_match.local_team)%>
+    </li>
+  <% end %>
+  <li><%= text_field_tag :local, eb.local, disabled: true %></li>
+</ul>
+<ul class="flag-result pull-right">
+  <% if eb.find_visitor_team %>
+    <li class="visitor-flag" data-class="visitor">
+      <%= flag(eb.find_visitor_team)%>
+    </li>
+  <% else %>
+    <li class="visitor-flag" data-class="visitor">
+      <%= flag(eb.elimination_match.visitor_team)%>
+    </li>
+  <% end %>
+  <li><%= text_field_tag :visitor, eb.visitor, disabled: true %></li>
+</ul>
+<div class="clearfix" style="margin-bottom: 5px"></div>
