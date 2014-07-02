@@ -1,0 +1,39 @@
+<div class="row">
+  <%= search_form_for @q, url: dashboard_path do |f| %>
+  <div class="col-md-2">
+    <%= f.select :pool_id_eq, @pools.collect {|p| [ p.name, p.id ] }, {},
+      { class: "form-control chosen-select" } %>
+  </div>
+  <div class="col-md-3">
+    <%= f.select :elimination_match_id_eq, @matches.collect {|m| [ m.to_s, m.id ] }, {},
+      { class: "form-control chosen-select" } %>
+  </div>
+  <div class="col-md-2 col-sm-1">
+    <div class="form-group">
+      <%= f.select :local_name_eq, Team.all.collect {|t| [t.name, t.name]}, {},
+       { class: "form-control chosen-select" } %>
+    </div>
+  </div>
+  <div class="col-md-1 col-sm-1">
+    <div class="form-group">
+      <%= f.text_field :local_eq, class: "form-control center",
+        placeholder: "Local" %>
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-1">
+    <div class="form-group">
+      <%= f.select :visitor_name_eq, Team.all.collect {|t| [t.name, t.name]}, {},
+       { class: "form-control chosen-select" } %>
+    </div>
+  </div>
+  <div class="col-md-1 col-sm-1">
+    <div class="form-group">
+      <%= f.text_field :visitor_eq, class: "form-control center",
+        placeholder: "Visit." %>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <%= f.submit "Buscar", class: "btn btn-default" %>
+  </div>
+  <% end %>
+</div>
