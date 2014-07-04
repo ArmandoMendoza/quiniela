@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMailer.new_user_email(@user, @user.password).deliver
-      redirect_to @user, notice: 'User was successfully created.'
+      redirect_to bets_user_path(@user), notice: 'User was successfully created.'
     else
       render :new
     end
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to users_url, notice: 'User was successfully updated.'
     else
       render :edit
     end
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
       @user.create_bets_from(pool)
       @user.create_elimination_bets_from(pool)
       @user.create_answer_for(pool)
-      redirect_to @user, notice: "Apuestas creadas con exito!"
+      redirect_to users_url, notice: "Apuestas creadas con exito!"
     else
       redirect_to bets_user_path(@user), notice: 'Seleccione una Quiniela activa'
     end
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
       @user.delete_bets_of_pool(pool)
       @user.delete_elimination_bets_of_pool(pool)
       @user.delete_anwser_of_pool(pool)
-      redirect_to @user, notice: "Apuestas Eliminadas con exito!"
+      redirect_to users_url, notice: "Apuestas Eliminadas con exito!"
     else
       redirect_to bets_user_path(@user), notice: 'Seleccione una Quiniela del Usuario'
     end
