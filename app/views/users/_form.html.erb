@@ -5,6 +5,9 @@
   <%= f.input :nickname, disabled: current_user.regular?  %>
   <%= f.input :phone, disabled: current_user.regular? %>
   <%= f.input :email, disabled: current_user.regular? %>
+  <% if current_user.admin? %>
+    <%= f.input :bonus_points %>
+  <% end %>
   <%= f.input :password %>
   <%= f.input :password_confirmation %>
   <% if current_user.admin? %>

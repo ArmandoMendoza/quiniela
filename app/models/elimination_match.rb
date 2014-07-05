@@ -1,6 +1,6 @@
 class EliminationMatch < ActiveRecord::Base
   ### Constants
-  ROUNDS = ["Octavos", "Cuartos", "Semi-Final", "Final", "Otro"]
+  ROUNDS = ["Octavos", "Cuartos", "Semi-Final", "Final", "3ro y 4to"]
   ### accesores
   attr_reader :visitor_team, :local_team
   ### relations

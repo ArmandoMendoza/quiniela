@@ -1,13 +1,14 @@
 <div>
   <table class="table-dashboard">
     <tr class="header">
-      <td colspan="5">CLASIFICACIÓN</td>
+      <td colspan="6">CLASIFICACIÓN</td>
     </tr>
     <tr class="sub-header">
       <td>Pos</td>
       <td>Usuario</td>
       <td>Clas.</td>
       <td>Elim.</td>
+      <td>Bonus</td>
       <td>Total</td>
     </tr>
     <% classification.each_with_index do |(nickname, points), pos| %>
@@ -17,7 +18,8 @@
         <td><%= nickname %></td>
         <td><%= points[0] %></td>
         <td><%= points[1] %></td>
-        <td><%= points[0].to_i + points[1].to_i %></td>
+        <td><%= points[2] %></td>
+        <td><%= points[0].to_i + points[1].to_i + points[2].to_i %></td>
     <% end %>
   </table>
 </div>

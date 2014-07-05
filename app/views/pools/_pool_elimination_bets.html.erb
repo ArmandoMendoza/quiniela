@@ -1,13 +1,21 @@
 <%= div_for_elimination_match(eb.elimination_match) do %>
   <div class="info-elimination-bet">
-    <%= truncate(eb.to_s, length: 18) %><br>
+    <% eb.elimination_match.to_s %>
+    <%= "[#{eb.elimination_match.match_number}]  #{eb.elimination_match.round}"  %><br>
+    <% if eb.elimination_match.round == "Octavos" %>
+      <% local_name = eb.elimination_match.local_name %>
+      <% visitor_name = eb.elimination_match.visitor_name %>
+      <%= truncate(eb.elimination_match.to_s, length: 18) %><br>
+    <% else %>
+      <% local_name = eb.local_name %>
+      <% visitor_name = eb.visitor_name %>
+      <%= truncate(eb.to_s, length: 18) %><br>
+    <% end %>
     <%= "#{eb.elimination_match.date.strftime('%d-%m-%Y')}  #{eb.elimination_match.hour}" %>
   </div>
   <%= form_for eb, remote: true do |f| %>
-    <%= f.hidden_field :local_name, value: eb.elimination_match.local_name,
-      id: "local-name"  %>
-    <%= f.hidden_field :visitor_name, value: eb.elimination_match.visitor_name,
-      id: "visitor-name" %>
+    <%= f.hidden_field :local_name, value: local_name, id: "local-name"  %>
+    <%= f.hidden_field :visitor_name, value: visitor_name, id: "visitor-name" %>
     <ul class="flag-result pull-left">
       <% if eb.find_local_team %>
         <li class="local-flag" data-class="local">

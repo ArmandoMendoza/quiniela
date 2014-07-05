@@ -21,9 +21,10 @@ class Pool < ActiveRecord::Base
   def users_classification
     classification = {}
     users.each do |user|
-      classification[user.nickname] = [user.total_points_in_pool(self), user.total_elimination_points_in_pool(self)]
+      classification[user.nickname] = [user.total_points_in_pool(self), user.total_elimination_points_in_pool(self),
+        user.bonus_points]
     end
-    Hash[classification.sort_by{|k,v| v[0] + v[1]}.reverse]
+    Hash[classification.sort_by{|k,v| v[0].to_i + v[1].to_i + v[2].to_i}.reverse]
   end
 
   ## class methods

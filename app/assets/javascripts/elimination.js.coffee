@@ -1,6 +1,6 @@
 jQuery ->
   $('.visitor-flag, .local-flag').click (e)->
-    tp = $(this).data('class')
+    winner = $(this).data('class')
     form = $(this).closest('form')
     div = $(this).closest('.elimination_match')
     match_to_winner = div.data('match-to-winner')
@@ -9,13 +9,22 @@ jQuery ->
     round = div.data('round')
     local_score = form.find('#local-score').val()
     visitor_score = form.find('#visitor-score').val()
-    name = form.find("##{tp}-name").val()
-    flag = form.find(".#{tp}-flag").html()
+    winner_name = form.find("##{winner}-name").val()
+    winner_flag = form.find(".#{winner}-flag").html()
     if local_score == visitor_score && match_to_winner
       winner_div = $("##{match_to_winner}")
       winner_form = winner_div.find('form')
-      winner_form.find("##{select}-name").val(name)
-      winner_form.find(".#{select}-flag").html(flag)
+      winner_form.find("##{select}-name").val(winner_name)
+      winner_form.find(".#{select}-flag").html(winner_flag)
+      if match_to_loser
+        loser = if winner == "local" then "visitor" else "local"
+        loser_name = form.find("##{loser}-name").val()
+        loser_flag = form.find(".#{loser}-flag").html()
+        loser_div = $("##{match_to_loser}")
+        loser_form = loser_div.find('form')
+        loser_form.find("##{select}-name").val(loser_name)
+        loser_form.find(".#{select}-flag").html(loser_flag)
+
 
   $('.link-prueba').click (e)->
     form = $(this).closest('form')
@@ -30,6 +39,9 @@ jQuery ->
     visitor_name = form.find('#visitor-name').val()
     local_flag = form.find('.local-flag').html()
     visitor_flag = form.find('.visitor-flag').html()
+
+    if local_score == visitor_score
+      alert "Haz Click en la bandera del equipo ganador"
 
     if match_to_winner
       winner_div = $("##{match_to_winner}")
