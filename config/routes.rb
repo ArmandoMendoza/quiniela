@@ -41,5 +41,10 @@ Rails.application.routes.draw do
   post '/contact', to: 'home#contact', as: 'contacts'
   post '/registrations', to: 'home#registration', as: 'registrations'
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
+
+  authenticated :user do
+    root 'dashboard#index', as: 'authenticated_root'
+  end
+
   root 'home#index'
 end
