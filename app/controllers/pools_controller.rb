@@ -33,7 +33,7 @@ class PoolsController < ApplicationController
     @cuartos_bets = @pool.elimination_bets_of_user_by_round(current_user, "Cuartos")
     @semi_bets = @pool.elimination_bets_of_user_by_round(current_user, "Semi-Final")
     @final = @pool.elimination_bets_of_user_by_round(current_user, "Final").first
-    @otro = @pool.elimination_bets_of_user_by_round(current_user, "Otro").first
+    @otro = @pool.elimination_bets_of_user_by_round(current_user, "3ro y 4to").first
   end
 
   def new
