@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.10'
-gem 'pg'
+gem 'pg', '~> 0.18'
 gem 'devise'
 gem 'simple_form'
 gem 'mail_form'
@@ -37,7 +37,7 @@ group :development do
 end
 
 group :test do
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'machinist'
   gem 'faker'
   gem 'capybara'

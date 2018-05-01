@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Home' do
+describe 'Home', type: :feature do
   describe "index" do
     it "should show form for registration" do
       visit root_path

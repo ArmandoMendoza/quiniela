@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.effect.all
 //= require chosen.jquery.min
 //= require bootstrap
 //= require zebra_datepicker

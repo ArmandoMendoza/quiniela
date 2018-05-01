@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Pool Resource' do
+describe 'Pool Resource', type: :feature do
   before do
     @admin = User.make!(:admin)
     3.times { Pool.make! }
