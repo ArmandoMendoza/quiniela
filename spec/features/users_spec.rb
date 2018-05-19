@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'User Resource' do
+describe 'User Resource', type: :feature do
   before do
     @admin = User.make!(:admin)
     3.times { User.make!(:regular) }

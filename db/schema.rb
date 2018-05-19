@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140627030829) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answers", force: true do |t|
+  create_table "answers", force: :cascade do |t|
     t.string   "answer_one"
     t.string   "answer_two"
     t.integer  "user_id"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140627030829) do
   add_index "answers", ["pool_id"], name: "index_answers_on_pool_id", using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
-  create_table "bets", force: true do |t|
+  create_table "bets", force: :cascade do |t|
     t.integer  "local"
     t.integer  "visitor"
     t.string   "match_time"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20140627030829) do
   add_index "bets", ["pool_id"], name: "index_bets_on_pool_id", using: :btree
   add_index "bets", ["user_id"], name: "index_bets_on_user_id", using: :btree
 
-  create_table "elimination_bets", force: true do |t|
+  create_table "elimination_bets", force: :cascade do |t|
     t.integer  "local"
     t.integer  "visitor"
     t.string   "local_name"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140627030829) do
     t.datetime "updated_at"
   end
 
-  create_table "elimination_matches", force: true do |t|
+  create_table "elimination_matches", force: :cascade do |t|
     t.date     "date"
     t.string   "hour"
     t.string   "stadium"
@@ -78,21 +78,21 @@ ActiveRecord::Schema.define(version: 20140627030829) do
     t.integer  "match_to_loser"
   end
 
-  create_table "elimination_matches_pools", id: false, force: true do |t|
+  create_table "elimination_matches_pools", id: false, force: :cascade do |t|
     t.integer "elimination_match_id", null: false
     t.integer "pool_id",              null: false
   end
 
   add_index "elimination_matches_pools", ["elimination_match_id", "pool_id"], name: "elimination_pool_index", using: :btree
 
-  create_table "groups", force: true do |t|
+  create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "color",      default: "#FFF"
   end
 
-  create_table "matches", force: true do |t|
+  create_table "matches", force: :cascade do |t|
     t.date     "date"
     t.string   "stadium"
     t.integer  "local_team_id"
@@ -105,15 +105,17 @@ ActiveRecord::Schema.define(version: 20140627030829) do
   end
 
   add_index "matches", ["group_id"], name: "index_matches_on_group_id", using: :btree
+  add_index "matches", ["local_team_id"], name: "index_matches_on_local_team_id", using: :btree
+  add_index "matches", ["visitor_team_id"], name: "index_matches_on_visitor_team_id", using: :btree
 
-  create_table "matches_pools", id: false, force: true do |t|
+  create_table "matches_pools", id: false, force: :cascade do |t|
     t.integer "match_id", null: false
     t.integer "pool_id",  null: false
   end
 
   add_index "matches_pools", ["match_id", "pool_id"], name: "index_matches_pools_on_match_id_and_pool_id", using: :btree
 
-  create_table "pools", force: true do |t|
+  create_table "pools", force: :cascade do |t|
     t.string   "name"
     t.date     "end_date"
     t.boolean  "completed",            default: false
@@ -125,7 +127,7 @@ ActiveRecord::Schema.define(version: 20140627030829) do
     t.boolean  "active_elimination",   default: false
   end
 
-  create_table "registrations", force: true do |t|
+  create_table "registrations", force: :cascade do |t|
     t.string   "name"
     t.string   "phone"
     t.string   "email"
@@ -139,7 +141,7 @@ ActiveRecord::Schema.define(version: 20140627030829) do
 
   add_index "registrations", ["pool_id"], name: "index_registrations_on_pool_id", using: :btree
 
-  create_table "scores", force: true do |t|
+  create_table "scores", force: :cascade do |t|
     t.integer  "local"
     t.integer  "visitor"
     t.string   "match_time"
@@ -150,7 +152,7 @@ ActiveRecord::Schema.define(version: 20140627030829) do
 
   add_index "scores", ["match_id"], name: "index_scores_on_match_id", using: :btree
 
-  create_table "teams", force: true do |t|
+  create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.string   "abbr"
     t.integer  "pos"
@@ -161,7 +163,7 @@ ActiveRecord::Schema.define(version: 20140627030829) do
 
   add_index "teams", ["group_id"], name: "index_teams_on_group_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "phone"
     t.string   "role"
@@ -177,7 +179,7 @@ ActiveRecord::Schema.define(version: 20140627030829) do
     t.datetime "updated_at"
     t.string   "last_name"
     t.string   "nickname"
-    t.integer  "bonus_points"
+    t.integer  "bonus_points",        default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

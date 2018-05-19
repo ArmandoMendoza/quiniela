@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Score Resource' do
+describe 'Score Resource', type: :feature do
   before do
     @admin = User.make!(:admin)
     @score = Score.make!

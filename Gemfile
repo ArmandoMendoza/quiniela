@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.1'
-gem 'pg'
+gem 'rails', '4.2.10'
+gem 'pg', '~> 0.18'
 gem 'devise'
-gem 'simple_form', git: 'https://github.com/plataformatec/simple_form.git', tag: 'v3.1.0.rc1'
+gem 'simple_form'
 gem 'mail_form'
 gem 'jbuilder', '~> 2.0'
 gem 'cancancan'
 gem 'prawn'
-gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
+gem 'ransack'
 gem 'rails_12factor', group: :production
 
 
@@ -29,15 +29,15 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   # gem 'capistrano-rails'
-  gem "better_errors"
-  gem "binding_of_caller"
-  gem "quiet_assets"
-  gem "bullet"
-  gem "lol_dba"
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
+  gem 'bullet'
+  gem 'lol_dba'
 end
 
 group :test do
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'machinist'
   gem 'faker'
   gem 'capybara'
@@ -47,6 +47,6 @@ group :test do
 end
 
 group :development, :test do
-  gem "rspec-rails"
-  gem 'debugger'
+  gem 'rspec-rails'
+  gem 'byebug'
 end
