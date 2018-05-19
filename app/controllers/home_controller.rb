@@ -11,7 +11,7 @@ class HomeController < ApplicationController
     params_registration = params[:registration].permit!
     @registration = Registration.new(params_registration)
     if @registration.save
-      UserMailer.registration_email(@registration).deliver
+      UserMailer.registration_email(@registration).deliver_now
       redirect_to root_path, notice: "Registro creado... Gracias por participar!!!"
     else
       @contact = Contact.new
