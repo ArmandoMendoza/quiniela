@@ -8,6 +8,7 @@ gem 'mail_form'
 gem 'jbuilder', '~> 2.0'
 gem 'cancancan'
 gem 'prawn'
+gem 'prawn-table'
 gem 'ransack'
 gem 'rails_12factor', group: :production
 

@@ -3,6 +3,7 @@ class Bet < ActiveRecord::Base
   belongs_to :user
   belongs_to :pool
   belongs_to :match
+
   ### validations
   validates_presence_of :local, :visitor, :match_time, on: :update
   ### callbacks

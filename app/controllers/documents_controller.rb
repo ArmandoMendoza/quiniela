@@ -3,6 +3,7 @@ class DocumentsController < ApplicationController
 
   def my_bets
     if @pool
+      @bets = current_user.bets_in_pool(@pool).order(['matches.group_id', 'bets.pos'])
       respond_to do |format|
         format.html
         format.pdf do
