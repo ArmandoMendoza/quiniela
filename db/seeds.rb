@@ -3,9 +3,14 @@ User.create(name: "Admin", email: "admin@app.com", password: "12345678",
   password_confirmation: "12345678", role: "admin", last_name: "Application")
 
 #Groups
-('A'..'H').each do |l|
-  Group.create(name: "Grupo #{l}")
-end
+Group.create(name: "Grupo A", color: "#DB5A30")
+Group.create(name: "Grupo B", color: "#E77B05")
+Group.create(name: "Grupo C", color: "#EDCD00")
+Group.create(name: "Grupo D", color: "#94BC55")
+Group.create(name: "Grupo E", color: "#66C1BE")
+Group.create(name: "Grupo F", color: "#4D75AE")
+Group.create(name: "Grupo G", color: "#A693C6")
+Group.create(name: "Grupo H", color: "#9E6BA5")
 
 #teams
 Team.create(name: "Rusia", abbr: "RUS", group_id: 1, pos: 1)
