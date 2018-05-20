@@ -51,3 +51,5 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'byebug'
 end
+
+ruby "2.3.7"
