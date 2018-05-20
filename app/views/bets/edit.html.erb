@@ -1,7 +1,7 @@
 <%= form_panel("Editar Apuesta") do %>
   <%= simple_form_for @bet do |f| %>
-    <%= f.input :local %>
-    <%= f.input :visitor %>
+    <%= f.input :local, label: "Local - #{@bet.match.local.name}" %>
+    <%= f.input :visitor, label: "Visitante - #{@bet.match.visitor.name}" %>
     <%= f.input :match_time, collection: Score::MATCH_TIMES, input_html: { class: 'chosen-select',
       data: { placeholder: "Seleccione Periodo de Juego"}  } %>
     <%= f.submit class: "btn btn-success"  %>
