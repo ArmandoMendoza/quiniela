@@ -3,7 +3,7 @@ class MatchesController < ApplicationController
   authorize_resource
 
   def index
-    @matches = Match.includes(:group).all
+    @matches = Match.includes(:group).order("cast(match_number as double precision) ASC")
   end
 
   def show

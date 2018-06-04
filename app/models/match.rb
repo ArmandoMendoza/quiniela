@@ -7,7 +7,7 @@ class Match < ActiveRecord::Base
   belongs_to :group
   has_and_belongs_to_many :pools
   ### scopes
-  default_scope -> { order([:match_number, :date]) }
+  # default_scope -> { order([:match_number]) }
   scope :by_date, ->(time) { where(date: time) }
   ### validations
   validates_presence_of :stadium, :date, :visitor_team_id, :local_team_id
