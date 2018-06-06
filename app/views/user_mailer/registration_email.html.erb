@@ -5,7 +5,7 @@
   </head>
   <body>
     <div class="header" style="text-align: center">
-      <h1 style="color: red">Quiniela <%= @registration.pool.name %></h1>
+      <h1 style="color: red"><%= @registration.pool.name %></h1>
 
       <h2 style="color: blue">
         Mundial Rusia 2018 <br>
@@ -21,26 +21,12 @@
       instrucciones a seguir para terminar el proceso de inscripción:
     </p>
     <p>
-      1. Realiza el pago de Bs. <%= @registration.pool.price %> a través de una transferencia bancaria o depósito bancario en la siguiente cuenta:
-    </p>
-    <p>
-      Banco: Mercantil <br>
-
-      Titular: Federico Georgi <br>
-
-      CI: 16.541.695 <br>
-
-      Cuenta: 0105-0063-01-1063379210 <br>
-
-      Correo: federicogeorgi@hotmail.com <br>
-
-      Monto: <%= @registration.pool.price %> <br>
+      1. Realiza el pago de US$ <%= @registration.pool.price %> en efectivo preferiblemente o en transferencia bancaria acordando con los organizadores.
     </p>
 
     <p>
-      LA FECHA LIMITE PARA REALIZAR LA TOTALIDAD DEL PAGO ES EL 08 DE
-      JUNIO DE 2018. DEPOSITOS RECIBIDOS DESPUES DE ESA FECHA NO SERAN
-      ACEPTADOS PARA PARTICIPAR EN www.tuquinielaonline.com
+      LA FECHA LIMITE PARA REALIZAR LA TOTALIDAD DEL PAGO ES EL 12 DE JUNIO DE 2018. 
+      PAGOS RECIBIDOS DESPUES DE ESA FECHA NO SERAN ACEPTADOS PARA PARTICIPAR EN LA QUINIELA.
     </p>
 
     <p>
@@ -52,14 +38,14 @@
 
     <p>
       3. Luego de que tu pago sea confirmado, recibirás un mail con la contraseña con la
-      cual podrás tener acceso al portal web www.tuquinielaonline.com y realizar todas tus
+      cual podrás tener acceso al portal web https://quiniela2018.herokuapp.com y realizar todas tus
       predicciones.
     </p>
 
     <p>
       Te deseamos mucha suerte y nuevamente gracias por participar.
-      Equipo www.tuquinielaonline.com
-      0414.074.94.11/0414.736.82.42
+      Cualquier duda contáctanos a los teléfonos:
+      0414.125.30.00/0414.736.82.42
     </p>
   </body>
 </html>
