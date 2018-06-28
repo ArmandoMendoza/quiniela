@@ -15,16 +15,18 @@
       </li>
     </ul>
   </div>
-  <div class="btn-group">
-    <%= dropdown_button("Ver todas las apuestas") %>
-    <ul class="dropdown-menu" role="menu">
-      <li>
-        <%= link_to "archivo PDF", documents_all_bets_path(@pool, format: :pdf), target: "_blank" %>
-      </li>
-      <li>
-        <%= link_to "vista HTML", documents_all_bets_path(@pool), target: "_blank" %>
-      </li>
-    </ul>
-  </div>
+  <% if @pool.show_all_bets %>
+    <div class="btn-group">
+      <%= dropdown_button("Ver todas las apuestas") %>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <%= link_to "archivo PDF", documents_all_bets_path(@pool, format: :pdf), target: "_blank" %>
+        </li>
+        <li>
+          <%= link_to "vista HTML", documents_all_bets_path(@pool), target: "_blank" %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
 
 <% end %>

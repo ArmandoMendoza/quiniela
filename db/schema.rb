@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140627030829) do
+ActiveRecord::Schema.define(version: 20180628210210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20140627030829) do
     t.float    "pot_percentage"
     t.boolean  "active_clasification", default: false
     t.boolean  "active_elimination",   default: false
+    t.boolean  "show_all_bets",        default: true
   end
 
   create_table "registrations", force: :cascade do |t|
