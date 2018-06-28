@@ -1,30 +1,37 @@
 <%= index_panel("Predicciones de Eliminacion", false, "#", pool_path(@pool) ) do %>
 <table id="elimination-bets">
-  <tr id="octavos">
-    <% @octavos_bets.each do |eb| %>
-      <td><%= render partial: "pool_elimination_bets", locals: { eb: eb } %></td>
-    <% end %>
-  </tr>
-  <tr id="cuartos">
-    <% @cuartos_bets.each do |eb| %>
-      <td colspan="2"><%= render partial: "pool_elimination_bets", locals: { eb: eb } %></td>
-    <% end %>
-  </tr>
-  <tr id="semi">
-    <% @semi_bets.each do |eb| %>
-      <td colspan="4"><%= render partial: "pool_elimination_bets", locals: { eb: eb } %></td>
-    <% end %>
-  </tr>
-  <tr id="final">
-    <td colspan="2"></td>
-    <td colspan="2">
-      <%= render partial: "pool_elimination_bets", locals: { eb: @final } %>
-    </td>
-    <td colspan="2">
-      <%= render partial: "pool_elimination_bets", locals: { eb: @otro } %>
-    </td>
-    <td colspan="2"></td>
-  </tr>
-
+  <% if @octavos_bets.any? %>
+    <tr id="octavos">
+      <% @octavos_bets.each do |eb| %>
+        <td><%= render partial: "pool_elimination_bets", locals: { eb: eb } %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  <% if @cuartos_bets.any? %>
+    <tr id="cuartos">
+      <% @cuartos_bets.each do |eb| %>
+        <td colspan="2"><%= render partial: "pool_elimination_bets", locals: { eb: eb } %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  <% if @semi_bets.any? %>
+    <tr id="semi">
+      <% @semi_bets.each do |eb| %>
+        <td colspan="4"><%= render partial: "pool_elimination_bets", locals: { eb: eb } %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  <% if @final && @otro %>
+    <tr id="final">
+      <td colspan="2"></td>
+      <td colspan="2">
+        <%= render partial: "pool_elimination_bets", locals: { eb: @final } %>
+      </td>
+      <td colspan="2">
+        <%= render partial: "pool_elimination_bets", locals: { eb: @otro } %>
+      </td>
+      <td colspan="2"></td>
+    </tr>
+  <% end %>
 </table>
 <% end %>
