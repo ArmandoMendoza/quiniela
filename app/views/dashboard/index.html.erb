@@ -1,6 +1,6 @@
 <%= index_panel("Buscador de Apuestas") do %>
   <p>
-    <%= render "search_form" %>
+    <%= render "search_form_to_elimination" %>
   </p>
   <% if @bets.any? %>
     <table class="table">
@@ -21,8 +21,8 @@
             <td><%= bet.pool.name %></td>
             <td><%= bet.match.to_s %></td>
             <td><%= bet.match.score_to_s %></td>
-            <td><%= bet.to_s %></td>
-            <!-- <td>bet.score_to_s</td> -->
+            <!-- <td> bet.to_s </td> -->
+            <td><%= bet.score_to_s %></td>
           </tr>
         <% end %>
       </tbody>

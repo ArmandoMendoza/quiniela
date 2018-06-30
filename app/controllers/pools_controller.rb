@@ -1,7 +1,7 @@
 class PoolsController < ApplicationController
   before_action :set_pool, except: [:index, :new, :create]
   before_action :check_status_of_clasification, only: :bets
-  # before_action :check_status_of_elimination, only: :elimination_bets
+  before_action :check_status_of_elimination, only: :elimination_bets
   authorize_resource
 
   def index
